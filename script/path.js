@@ -1,7 +1,14 @@
+/**
+ * Path 模块 - 负责处理“尘土飞扬的小径” (A Dusty Path) 场景。
+ * 这是玩家进入“世界 (World)”探索前的准备界面，主要功能包括：
+ * 1. 整理行囊：选择要带入荒野的资源和武器。
+ * 2. 负重管理：计算背包装载量，根据玩家持有的背包类型（如背包、货车等）决定上限。
+ * 3. 启程 (Embark)：将选择好的资源从村庄仓库扣除，正式进入大地图探索。
+ */
 var Path = {
-	DEFAULT_BAG_SPACE: 10,
+	DEFAULT_BAG_SPACE: 10, // 初始默认背包空间
 	_STORES_OFFSET: 0,
-	// Everything not in this list weighs 1
+	// 物品重量定义 (未在列表中出现的物品默认为 1)
 	Weight: {
 		'bone spear': 2,
 		'iron sword': 3,
@@ -10,12 +17,16 @@ var Path = {
 		'bullets': 0.1,
 		'energy cell': 0.2,
 		'laser rifle': 5,
-    'plasma rifle': 5,
+		'plasma rifle': 5,
 		'bolas': 0.5,
 	},
 		
 	name: 'Path',
-	options: {}, // Nuthin'
+	options: {}, // 暂无
+	/**
+	 * 初始化函数
+	 * 创建界面容器、按钮，并设置初始状态。
+	 */
 	init: function(options) {
 		this.options = $.extend(
 			this.options,
@@ -69,6 +80,10 @@ var Path = {
 		return w;
 	},
 	
+	/**
+	 * 获取最大负重上限
+	 * 根据玩家当前拥有的载具（货运无人机、车队、货车、帆布背包）来增加容量。
+	 */
 	getCapacity: function() {
 		if($SM.get('stores["cargo drone"]', true) > 0) {
 			return Path.DEFAULT_BAG_SPACE + 100;
@@ -82,13 +97,16 @@ var Path = {
 		return Path.DEFAULT_BAG_SPACE;
 	},
 	
+	/**
+	 * 计算当前行囊剩余可用空间
+	 */
 	getFreeSpace: function() {
 		var num = 0;
 		if(Path.outfit) {
 			for(var k in Path.outfit) {
 				var n = Path.outfit[k];
 				if(isNaN(n)) {
-					// No idea how this happens, but I will fix it here!
+					// 修正可能出现的非法数值
 					Path.outfit[k] = n = 0;
 				}
 				num += n * Path.getWeight(k);
@@ -97,6 +115,9 @@ var Path = {
 		return Path.getCapacity() - num;
 	},
 	
+	/**
+	 * 更新玩家特技 (Perks) 显示
+	 */
 	updatePerks: function(ignoreStores) {
 		if($SM.get('character.perks')) {
 			var perks = $('#perks');
@@ -321,6 +342,10 @@ var Path = {
 		document.title = _('A Dusty Path');
 	},
 	
+	/**
+	 * 启程进入荒野
+	 * 将当前选择的物资从村庄库存中扣除，并将玩家转移到世界大地图 (World) 场景。
+	 */
 	embark: function() {
 		for(var k in Path.outfit) {
 			$SM.add('stores["'+k+'"]', -Path.outfit[k]);
@@ -331,6 +356,9 @@ var Path = {
 		AudioEngine.playSound(AudioLibrary.EMBARK);
 	},
 	
+	/**
+	 * 处理状态更新（如角色特技改变或收入变动时）
+	 */
 	handleStateUpdates: function(e){
 		if(e.category == 'character' && e.stateName.indexOf('character.perks') === 0 && Engine.activeModule == Path){
 			Path.updatePerks();

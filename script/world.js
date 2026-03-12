@@ -1,26 +1,34 @@
+/**
+ * World 模块 - 游戏的“世界探索”核心引擎。
+ * 负责大地图的生成、玩家的移动、地形交互、生存机制（水/食物）、战斗触发以及各种地标的处理。
+ */
 var World = {
-  RADIUS: 30,
-  VILLAGE_POS: [30, 30],
+  RADIUS: 30, // 地图半径
+  VILLAGE_POS: [30, 30], // 村庄（大本营）在地图上的坐标
+  /**
+   * 地图图例 (TILE)
+   * 定义了地图上各种地形和建筑对应的 ASCII 字符。
+   */
   TILE: {
-    VILLAGE: 'A',
-    IRON_MINE: 'I',
-    COAL_MINE: 'C',
-    SULPHUR_MINE: 'S',
-    FOREST: ';',
-    FIELD: ',',
-    BARRENS: '.',
-    ROAD: '#',
-    HOUSE: 'H',
-    CAVE: 'V',
-    TOWN: 'O',
-    CITY: 'Y',
-    OUTPOST: 'P',
-    SHIP: 'W',
-    BOREHOLE: 'B',
-    BATTLEFIELD: 'F',
-    SWAMP: 'M',
-    CACHE: 'U',
-    EXECUTIONER: 'X'
+    VILLAGE: 'A',      // 村庄
+    IRON_MINE: 'I',    // 铁矿
+    COAL_MINE: 'C',    // 煤矿
+    SULPHUR_MINE: 'S', // 硫磺矿
+    FOREST: ';',       // 森林
+    FIELD: ',',        // 原野
+    BARRENS: '.',      // 荒地
+    ROAD: '#',         // 道路
+    HOUSE: 'H',        // 旧房子
+    CAVE: 'V',         // 洞穴
+    TOWN: 'O',         // 城镇
+    CITY: 'Y',         // 城市
+    OUTPOST: 'P',      // 前哨站
+    SHIP: 'W',         // 坠毁的飞船
+    BOREHOLE: 'B',     // 钻孔
+    BATTLEFIELD: 'F',  // 战场
+    SWAMP: 'M',        // 沼泽
+    CACHE: 'U',        // 隐藏点
+    EXECUTIONER: 'X'   // 战列舰（终极副本）
   },
   TILE_PROBS: {},
   LANDMARKS: {},
@@ -42,6 +50,10 @@ var World = {
   WEST:  [-1,  0],
   EAST:  [ 1,  0],
 
+  /**
+   * 武器系统定义
+   * 包含伤害、冷却、攻击类型和弹药消耗。
+   */
   Weapons: {
     'fists': {
       verb: _('punch'),
@@ -124,18 +136,25 @@ var World = {
 
   name: 'World',
   options: {}, // Nothing for now
+  /**
+   * 初始化世界模块
+   * 配置地形概率、地标位置、并生成或加载地图和掩码。
+   */
   init: function(options) {
     this.options = $.extend(
       this.options,
       options
     );
 
-    // Setup probabilities. Sum must equal 1.
+    // 设置基础地形的随机生成权重（总和须为 1）
     World.TILE_PROBS[World.TILE.FOREST] = 0.15;
     World.TILE_PROBS[World.TILE.FIELD] = 0.35;
     World.TILE_PROBS[World.TILE.BARRENS] = 0.5;
 
-    // Setpiece definitions
+    /**
+     * 地标配置定义
+     * 包含数量、距离村庄的最小/最大半径、触发的场景脚本名以及 UI 标签。
+     */
     World.LANDMARKS[World.TILE.OUTPOST] = { num: 0, minRadius: 0, maxRadius: 0, scene: 'outpost', label: _('An&nbsp;Outpost') };
     World.LANDMARKS[World.TILE.IRON_MINE] = { num: 1, minRadius: 5, maxRadius: 5, scene: 'ironmine', label:  _('Iron&nbsp;Mine') };
     World.LANDMARKS[World.TILE.COAL_MINE] = { num: 1, minRadius: 10, maxRadius: 10, scene: 'coalmine', label:  _('Coal&nbsp;Mine') };
@@ -150,17 +169,18 @@ var World = {
     World.LANDMARKS[World.TILE.SWAMP] = { num: 1, minRadius: 15, maxRadius: World.RADIUS * 1.5, scene: 'swamp', label:  _('A&nbsp;Murky&nbsp;Swamp')};
     World.LANDMARKS[World.TILE.EXECUTIONER] = { num: 1, minRadius: 28, maxRadius: 28, scene: 'executioner', 'label': _('A&nbsp;Ravaged&nbsp;Battleship')};
 
-    // Only add the cache if there is prestige data
+    // 如果有前世存档（二周目），则加入特殊的“毁坏的村庄”地标
     if($SM.get('previous.stores')) {
       World.LANDMARKS[World.TILE.CACHE] = { num: 1, minRadius: 10, maxRadius: World.RADIUS * 1.5, scene: 'cache', label:  _('A&nbsp;Destroyed&nbsp;Village')};
     }
 
+    // 首次进入世界时生成地图
     if(typeof $SM.get('features.location.world') == 'undefined') {
       $SM.set('features.location.world', true);
       $SM.set('features.executioner', true);
       $SM.setM('game.world', {
         map: World.generateMap(),
-        mask: World.newMask()
+        mask: World.newMask() // 迷雾掩码
       });
     }
     else if (!$SM.get('features.executioner')) {
@@ -371,6 +391,10 @@ var World = {
     if(World.curPos[0] < World.RADIUS * 2) World.move(World.EAST);
   },
 
+  /**
+   * 角色移动逻辑
+   * 处理移动方向、触发地形叙事、更新迷雾、绘制地图以及执行生存检查（消耗水/食物）。
+   */
   move: function(direction) {
     var oldTile = World.state.map[World.curPos[0]][World.curPos[1]];
     World.curPos[0] += direction[0];
@@ -378,12 +402,13 @@ var World = {
     World.narrateMove(oldTile, World.state.map[World.curPos[0]][World.curPos[1]]);
     World.lightMap(World.curPos[0], World.curPos[1], World.state.mask);
     World.drawMap();
-    World.doSpace();
+    World.doSpace(); // 执行移动后的空间交互检查
 
-    // play random footstep
+    // 播放随机脚步声
     var randomFootstep = Math.floor(Math.random() * 5) + 1;
     AudioEngine.playSound(AudioLibrary['FOOTSTEPS_' + randomFootstep]);
 
+    // 检查当前区域是否危险（是否需要护甲保护）
     if(World.checkDanger()) {
       if(World.danger) {
         Notifications.notify(World, _('dangerous to be this far from the village without proper protection'));
@@ -391,6 +416,78 @@ var World = {
         Notifications.notify(World, _('safer here'));
       }
     }
+  },
+
+  /**
+   * 补给消耗逻辑
+   * 每移动一定步数消耗食物和水。如果补给耗尽，会进入饥饿/脱水状态并最终导致死亡。
+   * 特长如“新陈代谢慢”或“沙漠之鼠”可以减缓消耗。
+   */
+  useSupplies: function() {
+    World.foodMove++;
+    World.waterMove++;
+    // 1. 食物消耗
+    var movesPerFood = World.MOVES_PER_FOOD;
+    movesPerFood *= $SM.hasPerk('slow metabolism') ? 2 : 1;
+    if(World.foodMove >= movesPerFood) {
+      World.foodMove = 0;
+      var num = Path.outfit['cured meat'];
+      num--;
+      if(num === 0) {
+        Notifications.notify(World, _('the meat has run out'));
+      } else if(num < 0) {
+        // 进入饥饿状态
+        num = 0;
+        if(!World.starvation) {
+          Notifications.notify(World, _('starvation sets in'));
+          World.starvation = true;
+        } else {
+          // 饥饿多次后死亡
+          $SM.set('character.starved', $SM.get('character.starved', true));
+          $SM.add('character.starved', 1);
+          if($SM.get('character.starved') >= 10 && !$SM.hasPerk('slow metabolism')) {
+            $SM.addPerk('slow metabolism');
+          }
+          World.die();
+          return false;
+        }
+      } else {
+        World.starvation = false;
+        World.setHp(World.health + World.meatHeal()); // 吃肉会回血
+      }
+      Path.outfit['cured meat'] = num;
+    }
+    // 2. 水消耗
+    var movesPerWater = World.MOVES_PER_WATER;
+    movesPerWater *= $SM.hasPerk('desert rat') ? 2 : 1;
+    if(World.waterMove >= movesPerWater) {
+      World.waterMove = 0;
+      var water = World.water;
+      water--;
+      if(water === 0) {
+        Notifications.notify(World, _('there is no more water'));
+      } else if(water < 0) {
+        water = 0;
+        if(!World.thirst) {
+          Notifications.notify(World, _('the thirst becomes unbearable'));
+          World.thirst = true;
+        } else {
+          // 脱水多次后死亡
+          $SM.set('character.dehydrated', $SM.get('character.dehydrated', true));
+          $SM.add('character.dehydrated', 1);
+          if($SM.get('character.dehydrated') >= 10 && !$SM.hasPerk('desert rat')) {
+            $SM.addPerk('desert rat');
+          }
+          World.die();
+          return false;
+        }
+      } else {
+        World.thirst = false;
+      }
+      World.setWater(water);
+      World.updateSupplies();
+    }
+    return true;
   },
 
   keyDown: function(event) {
@@ -477,81 +574,11 @@ var World = {
     return false;
   },
 
-  useSupplies: function() {
-    World.foodMove++;
-    World.waterMove++;
-    // Food
-    var movesPerFood = World.MOVES_PER_FOOD;
-    movesPerFood *= $SM.hasPerk('slow metabolism') ? 2 : 1;
-    if(World.foodMove >= movesPerFood) {
-      World.foodMove = 0;
-      var num = Path.outfit['cured meat'];
-      num--;
-      if(num === 0) {
-        Notifications.notify(World, _('the meat has run out'));
-      } else if(num < 0) {
-        // Starvation! Hooray!
-        num = 0;
-        if(!World.starvation) {
-          Notifications.notify(World, _('starvation sets in'));
-          World.starvation = true;
-        } else {
-          $SM.set('character.starved', $SM.get('character.starved', true));
-          $SM.add('character.starved', 1);
-          if($SM.get('character.starved') >= 10 && !$SM.hasPerk('slow metabolism')) {
-            $SM.addPerk('slow metabolism');
-          }
-          World.die();
-          return false;
-        }
-      } else {
-        World.starvation = false;
-        World.setHp(World.health + World.meatHeal());
-      }
-      Path.outfit['cured meat'] = num;
-    }
-    // Water
-    var movesPerWater = World.MOVES_PER_WATER;
-    movesPerWater *= $SM.hasPerk('desert rat') ? 2 : 1;
-    if(World.waterMove >= movesPerWater) {
-      World.waterMove = 0;
-      var water = World.water;
-      water--;
-      if(water === 0) {
-        Notifications.notify(World, _('there is no more water'));
-      } else if(water < 0) {
-        water = 0;
-        if(!World.thirst) {
-          Notifications.notify(World, _('the thirst becomes unbearable'));
-          World.thirst = true;
-        } else {
-          $SM.set('character.dehydrated', $SM.get('character.dehydrated', true));
-          $SM.add('character.dehydrated', 1);
-          if($SM.get('character.dehydrated') >= 10 && !$SM.hasPerk('desert rat')) {
-            $SM.addPerk('desert rat');
-          }
-          World.die();
-          return false;
-        }
-      } else {
-        World.thirst = false;
-      }
-      World.setWater(water);
-      World.updateSupplies();
-    }
-    return true;
-  },
-
-  meatHeal: function() {
-    return World.MEAT_HEAL * ($SM.hasPerk('gastronome') ? 2 : 1);
-  },
-
-  medsHeal: function() {
-    return World.MEDS_HEAL;
-  },
-
-  hypoHeal: () => World.HYPO_HEAL,
-
+  /**
+   * 检查是否触发随机战斗
+   * 移动时有一定概率（FIGHT_CHANCE）进入战斗界面。
+   * 特长“潜行”可以减半该概率。
+   */
   checkFight: function() {
     World.fightMove = typeof World.fightMove == 'number' ? World.fightMove : 0;
     World.fightMove++;
@@ -565,6 +592,13 @@ var World = {
     }
   },
 
+  /**
+   * 空间交互检查 (核心移动回调)
+   * 每次移动后执行，判断当前所在格子触发的逻辑：
+   * 1. 回到村庄：重置状态。
+   * 2. 副本/地标：启动特定的剧情或连续事件。
+   * 3. 普通地块：检查物资消耗并判定是否遇敌。
+   */
   doSpace: function() {
     var curTile = World.state.map[World.curPos[0]][World.curPos[1]];
 

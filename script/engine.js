@@ -1,3 +1,12 @@
+/**
+ * Engine 模块 - 游戏的“大脑”和核心控制器。
+ * 它负责整个游戏的生命周期管理，包括：
+ * 1. 初始化 (init)：启动所有子系统（音频、存档、UI 容器）。
+ * 2. 存档管理 (saveGame/loadGame)：将游戏进度保存到 localStorage 或从中恢复。
+ * 3. 场景切换 (travelTo)：在“房间”、“森林”、“小径”、“世界”等不同模块之间导航。
+ * 4. 特长系统 (Perks)：定义和管理玩家获得的各种永久增益。
+ * 5. 全局设置：语言切换、音量控制、夜间模式（Lights off）、极速模式 (Hyper Mode) 以及导出存档。
+ */
 (function() {
   var Engine = window.Engine = {
 
@@ -7,9 +16,13 @@
     SAVE_DISPLAY: 30 * 1000,
     GAME_OVER: false,
 
-    //object event types
+    // 对象事件类型
     topics: {},
 
+    /**
+     * 特长 (Perks) 定义
+     * 玩家在特定事件中或达成特定条件后获得的永久性被动加成。
+     */
     Perks: {
       'boxer': {
         name: _('boxer'),
@@ -78,6 +91,10 @@
       doubleTime: false
     },
 
+    /**
+     * 游戏初始化入口
+     * 执行环境检查（浏览器/移动端）、创建全局 UI 元素（菜单栏）、初始化所有核心子模块。
+     */
     init: function(options) {
       this.options = $.extend(
         this.options,
@@ -86,25 +103,26 @@
       this._debug = this.options.debug;
       this._log = this.options.log;
 
-      // Check for HTML5 support
+      // 检查 HTML5 支持
       if(!Engine.browserValid()) {
         window.location = 'browserWarning.html';
       }
 
-      // Check for mobile
+      // 检查移动端
       if(Engine.isMobile()) {
         window.location = 'mobileWarning.html';
       }
 
       Engine.disableSelection();
 
+      // 加载存档或初始化新状态
       if(this.options.state != null) {
         window.State = this.options.state;
       } else {
         Engine.loadGame();
       }
 
-      // start loading music and events early
+      // 提前开始加载音频和音效文件
       for (var key in AudioLibrary) {
         if (
           key.toString().indexOf('MUSIC_') > -1 ||
@@ -113,12 +131,15 @@
           }
       }
 
+      // 创建位置滑动容器（用于在不同地点间切换的动画效果）
       $('<div>').attr('id', 'locationSlider').appendTo('#main');
 
+      // 构建侧边/顶部菜单按钮
       var menu = $('<div>')
         .addClass('menu')
         .appendTo('body');
 
+      // 1. 语言选择按钮
       if(typeof langs != 'undefined'){
         var customSelect = $('<span>')
           .addClass('customSelect')
@@ -142,42 +163,49 @@
         });
       }
 
+      // 2. 音量开关
       $('<span>')
         .addClass('volume menuBtn')
         .text(_('sound on.'))
         .click(() => Engine.toggleVolume())
         .appendTo(menu);
 
+      // 3. 应用推荐 (iOS/Android)
       $('<span>')
         .addClass('appStore menuBtn')
         .text(_('get the app.'))
         .click(Engine.getApp)
         .appendTo(menu);
 
+      // 4. 夜间模式开关 (Lights Off)
       $('<span>')
         .addClass('lightsOff menuBtn')
         .text(_('lights off.'))
         .click(Engine.turnLightsOff)
         .appendTo(menu);
 
+      // 5. 极速模式开关 (Hyper Mode)
       $('<span>')
         .addClass('hyper menuBtn')
         .text(_('hyper.'))
         .click(Engine.confirmHyperMode)
         .appendTo(menu);
 
+      // 6. 重新开始按钮 (删除所有存档)
       $('<span>')
         .addClass('menuBtn')
         .text(_('restart.'))
         .click(Engine.confirmDelete)
         .appendTo(menu);
 
+      // 7. 分享按钮
       $('<span>')
         .addClass('menuBtn')
         .text(_('share.'))
         .click(Engine.share)
         .appendTo(menu);
 
+      // 8. 存档导入/导出按钮
       $('<span>')
         .addClass('menuBtn')
         .text(_('save.'))
@@ -194,33 +222,35 @@
           .appendTo(menu);
       }
 
+      // 9. GitHub 链接
       $('<span>')
         .addClass('menuBtn')
         .text(_('github.'))
         .click(function() { window.open('https://github.com/doublespeakgames/adarkroom'); })
         .appendTo(menu);
 
-      // Register keypress handlers
+      // 注册全局键盘和滑动事件
       $('body').off('keydown').keydown(Engine.keyDown);
       $('body').off('keyup').keyup(Engine.keyUp);
 
-      // Register swipe handlers
       swipeElement = $('#outerSlider');
       swipeElement.on('swipeleft', Engine.swipeLeft);
       swipeElement.on('swiperight', Engine.swipeRight);
       swipeElement.on('swipeup', Engine.swipeUp);
       swipeElement.on('swipedown', Engine.swipeDown);
 
-      // subscribe to stateUpdates
+      // 订阅状态更新分发器 (用于响应资源的增减等变化)
       $.Dispatch('stateUpdate').subscribe(Engine.handleStateUpdates);
 
-      $SM.init();
-      AudioEngine.init();
-      Notifications.init();
-      Events.init();
-      Room.init();
+      // 核心业务子模块初始化
+      $SM.init(); // 状态管理 (Save Manager)
+      AudioEngine.init(); // 音频引擎
+      Notifications.init(); // 消息通知栏
+      Events.init(); // 随机事件系统
+      Room.init(); // 起始“房间”模块
 
 
+      // 根据当前进度恢复已解锁的模块
       if(typeof $SM.get('stores.wood') != 'undefined') {
         Outside.init();
       }
@@ -234,6 +264,7 @@
         Ship.init();
       }
 
+      // 恢复配置设置
       if($SM.get('config.lightsOff', true)){
         Engine.turnLightsOff();
       }
@@ -248,6 +279,7 @@
       }
       
       Engine.saveLanguage();
+      // 默认跳转到“房间”界面
       Engine.travelTo(Room);
 
       setTimeout(notifyAboutSound, 3000);
@@ -269,11 +301,17 @@
       return ( location.search.indexOf( 'ignorebrowser=true' ) < 0 && /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test( navigator.userAgent ) );
     },
 
+    /**
+     * 保存游戏
+     * 将当前的 State 对象序列化为 JSON 字符串并存入 localStorage。
+     * 同时会在界面左上角短暂显示“已保存”提示。
+     */
     saveGame: function() {
       if(typeof Storage != 'undefined' && localStorage) {
         if(Engine._saveTimer != null) {
           clearTimeout(Engine._saveTimer);
         }
+        // 控制保存提示的显示频率，避免过于频繁
         if(typeof Engine._lastNotify == 'undefined' || Date.now() - Engine._lastNotify > Engine.SAVE_DISPLAY){
           $('#saveNotify').css('opacity', 1).animate({opacity: 0}, 1000, 'linear');
           Engine._lastNotify = Date.now();
@@ -282,12 +320,17 @@
       }
     },
 
+    /**
+     * 加载游戏
+     * 从 localStorage 读取 JSON 字符串并反序列化恢复 State 对象。
+     * 如果没有存档，则初始化一个新的游戏状态。
+     */
     loadGame: function() {
       try {
         var savedState = JSON.parse(localStorage.gameState);
         if(savedState) {
           State = savedState;
-          $SM.updateOldState();
+          $SM.updateOldState(); // 处理旧版本存档的兼容性
           Engine.log("loaded save!");
         }
       } catch(e) {
@@ -598,6 +641,15 @@
 
     activeModule: null,
 
+    /**
+     * 场景/地点切换
+     * @param {Object} module - 目标模块对象（如 Room, Outside, Path 等）。
+     * 该函数负责：
+     * 1. 切换顶部导航栏的选择状态。
+     * 2. 执行左右滑动的面板动画。
+     * 3. 触发目标模块的 onArrival 回调。
+     * 4. 打印目标模块在后台时积累的消息队列。
+     */
     travelTo: function(module) {
       if(Engine.activeModule == module) {
         return;
@@ -611,16 +663,16 @@
       var stores = $('#storesContainer');
       var panelIndex = $('.location').index(module.panel);
       var diff = Math.abs(panelIndex - currentIndex);
+      // 执行左右切换的动画
       slider.animate({left: -(panelIndex * 700) + 'px'}, 300 * diff);
 
       if($SM.get('stores.wood') !== undefined) {
-        // FIXME Why does this work if there's an animation queue...?
+        // 让资源面板也随之移动，以保持 UI 对齐
         stores.animate({right: -(panelIndex * 700) + 'px'}, 300 * diff);
       }
 
+      // 控制武器面板的可见性（仅在特定场景显示）
       if(Engine.activeModule == Room || Engine.activeModule == Path || Engine.activeModule == Fabricator) {
-        // Don't fade out the weapons if we're switching to a module
-        // where we're going to keep showing them anyway.
         if (module != Room && module != Path && module != Fabricator) {
           $('div#weapons').animate({opacity: 0}, 300);
         }
@@ -631,7 +683,9 @@
       }
 
       Engine.activeModule = module;
+      // 触发模块到达事件
       module.onArrival(diff);
+      // 打印在该模块处于非活动状态时产生的通知
       Notifications.printQueue(module);
     },
 

@@ -1,11 +1,20 @@
 /**
- * Module that registers the fabricator functionality
+ * Fabricator 模块 - 负责处理游戏后期“制造机” (Fabricator) 的功能。
+ * 这是玩家在失事飞船中发现的高级制作系统，用于制造顶级装备和生存升级。
+ * 主要功能包括：
+ * 1. 高级物品制造：利用“外星合金 (Alien Alloy)”制造能量剑、等离子步枪等顶级武器。
+ * 2. 蓝图系统：某些物品（如动能装甲、干扰器）需要先在探索中获得蓝图才能制造。
+ * 3. 终极生存升级：制造流体循环器（减少水消耗）和货运无人机（大幅增加负重）。
  */
 const Fabricator = {
   _STORES_OFFSET: 0,
   name: _('Fabricator'),
+  /**
+   * 可制造项目定义 (Craftables)
+   * 这里的物品通常消耗极其稀有的“外星合金”。
+   */
   Craftables: {
-    'energy blade': {
+    'energy blade': { // 能量剑
       name: _('energy blade'),
       type: 'weapon',
       buildMsg: _("the blade hums, charged particles sparking and fizzing."),
@@ -13,7 +22,7 @@ const Fabricator = {
         'alien alloy': 1
       })
     },
-    'fluid recycler': {
+    'fluid recycler': { // 流体循环器（极大地减少探险时的水分消耗）
       name: _('fluid recycler'),
       type: 'upgrade',
       maximum: 1,
@@ -22,7 +31,7 @@ const Fabricator = {
         'alien alloy': 2
       })
     },
-    'cargo drone': {
+    'cargo drone': { // 货运无人机（提供游戏内最高的背包容量上限）
       name: _('cargo drone'),
       type: 'upgrade',
       maximum: 1,
@@ -31,17 +40,17 @@ const Fabricator = {
         'alien alloy': 2
       })
     },
-    'kinetic armour': {
+    'kinetic armour': { // 动能装甲（最强防具，带特殊机制）
       name: _('kinetic armour'),
       type: 'upgrade',
       maximum: 1,
-      blueprintRequired: true,
+      blueprintRequired: true, // 需要蓝图
       buildMsg: _('wanderer soldiers succeed by subverting the enemy\'s rage.'),
       cost: () => ({
         'alien alloy': 2
       })
     },
-    'disruptor': {
+    'disruptor': { // 干扰器（特殊战斗武器）
       name: _('disruptor'),
       type: 'weapon',
       blueprintRequired: true,
@@ -50,7 +59,7 @@ const Fabricator = {
         'alien alloy': 1
       })
     },
-    'hypo': {
+    'hypo': { // 高级医疗针 (一次制造 5 个)
       name: _('hypo'),
       type: 'tool',
       blueprintRequired: true,
@@ -60,7 +69,7 @@ const Fabricator = {
       }),
       quantity: 5
     },
-    'stim': {
+    'stim': { // 兴奋剂
       name: _('stim'),
       type: 'tool',
       blueprintRequired: true,
@@ -69,7 +78,7 @@ const Fabricator = {
         'alien alloy': 1
       })
     },
-    'plasma rifle': {
+    'plasma rifle': { // 等离子步枪（远程最强火力）
       name: _('plasma rifle'),
       type: 'weapon',
       blueprintRequired: true,
@@ -78,7 +87,7 @@ const Fabricator = {
         'alien alloy': 1
       })
     },
-    'glowstone': {
+    'glowstone': { // 发光石（永不熄灭的照明工具）
       name: _('glow stone'),
       type: 'tool',
       blueprintRequired: true,
@@ -89,6 +98,9 @@ const Fabricator = {
     }
   },
 
+  /**
+   * 初始化制造机模块
+   */
   init: () => {
 
     if (!$SM.get('features.location.fabricator')) {

@@ -14,46 +14,57 @@
  * Original file created by: Michael Galusha
  */
 
+/**
+ * StateManager ($SM) 模块 - 游戏的“数据中心”和“存档管理器”。
+ * 它是整个游戏最基础的模块之一，负责管理所有游戏数据（资源、建筑、特长、进度等）。
+ */
 var StateManager = {
 
-	MAX_STORE: 99999999999999,
+	MAX_STORE: 99999999999999, // 资源存储的最大上限
 
 	options: {},
 
+	/**
+	 * 初始化状态管理器
+	 * 预定义常见的数据分类（features, stores, income 等），并订阅状态更新事件。
+	 */
 	init: function(options) {
 		this.options = $.extend(
 				this.options,
 				options
 		);
 
-		//create categories
+		// 创建主要数据分类
 		var cats = [
-			'features',     // big features like buildings, location availability, unlocks, etc
-			'stores',       // little stuff, items, weapons, etc
-			'character',    // this is for player's character stats such as perks
-			'income',
-			'timers',
-			'game',         // mostly location related: fire temp, workers, population, world map, etc
-			'playStats',    // anything play related: play time, loads, etc
-			'previous',     // prestige, score, trophies (in future), achievements (again, not yet), etc
-			'outfit',      	// used to temporarily store the items to be taken on the path
-			'config',
-			'wait',			// mysterious wanderers are coming back
-			'cooldown'      // residual values for cooldown buttons
+			'features',     // 重大功能解锁（建筑、地点可用性等）
+			'stores',       // 仓库物品（资源、武器、道具等）
+			'character',    // 玩家角色属性（如特长 Perk）
+			'income',       // 周期性收益配置
+			'timers',       // 游戏中的计时器状态
+			'game',         // 核心游戏逻辑状态（火堆、人口、地图数据等）
+			'playStats',    // 运行统计数据（游戏时长、加载次数等）
+			'previous',     // 前世数据（声望、二周目得分等）
+			'outfit',      	// 出行整备时的临时行囊状态
+			'config',       // 游戏设置（如音量、夜间模式等）
+			'wait',			// 延迟触发的事件（如流浪者回归）
+			'cooldown'      // 按钮冷却时间的残余值
 		];
 
 		for(var which in cats) {
 			if(!$SM.get(cats[which])) $SM.set(cats[which], {});
 		}
 
-		//subscribe to stateUpdates
+		// 订阅状态更新分发
 		$.Dispatch('stateUpdate').subscribe($SM.handleStateUpdates);
 	},
 
-	//create all parents and then set state
+	/**
+	 * 递归创建状态路径并设置值
+	 * 即使父级对象不存在，该函数也会自动创建中间路径。
+	 */
 	createState: function(stateName, value) {
 		var words = stateName.split(/[.\[\]'"]+/);
-		//for some reason there are sometimes empty strings
+		// 清理分割产生的空字符串
 		for (var j = 0; j < words.length; j++) {
 			if (words[j] === '') {
 				words.splice(j, 1);
@@ -71,22 +82,26 @@ var StateManager = {
 		return obj;
 	},
 
-	//set single state
-	//if noEvent is true, the update event won't trigger, useful for setting multiple states first
+	/**
+	 * 设置单个状态值
+	 * @param {string} stateName - 状态路径。
+	 * @param {*} value - 要设置的值。
+	 * @param {boolean} [noEvent] - 如果为 true，则不触发存盘和更新事件（用于批量操作）。
+	 */
 	set: function(stateName, value, noEvent) {
 		var fullPath = $SM.buildPath(stateName);
 
-		//make sure the value isn't over the engine maximum
+		// 数值封顶检查
 		if(typeof value == 'number' && value > $SM.MAX_STORE) value = $SM.MAX_STORE;
 
 		try{
 			eval('('+fullPath+') = value');
 		} catch (e) {
-			//parent doesn't exist, so make parent
+			// 如果路径不存在（eval 报错），则尝试递归创建
 			$SM.createState(stateName, value);
 		}
 
-		//stores values can not be negative
+		// 仓库资源不能为负数
 		if(stateName.indexOf('stores') === 0 && $SM.get(stateName, true) < 0) {
 			eval('('+fullPath+') = 0');
 			Engine.log('WARNING: state:' + stateName + ' can not be a negative value. Set to 0 instead.');
@@ -156,19 +171,23 @@ var StateManager = {
 		return err;
 	},
 
-	//return state, undefined or 0
+	/**
+	 * 获取状态值
+	 * @param {string} stateName - 状态路径。
+	 * @param {boolean} [requestZero] - 如果获取到的值为 undefined/null/empty，是否返回 0 而不是 undefined。
+	 */
 	get: function(stateName, requestZero) {
 		var whichState = null;
 		var fullPath = $SM.buildPath(stateName);
 
-		//catch errors if parent of state doesn't exist
+		// 捕获父级路径不存在时的错误
 		try{
 			eval('whichState = ('+fullPath+')');
 		} catch (e) {
 			whichState = undefined;
 		}
 
-		//prevents repeated if undefined, null, false or {}, then x = 0 situations
+		// 防止重复检查 undefined 并将其重置为 0 的情况
 		if((!whichState || whichState == {}) && requestZero) return 0;
 		else return whichState;
 	},
@@ -348,8 +367,13 @@ var StateManager = {
 		return {};
 	},
 
+	/**
+	 * 收益自动收集循环
+	 * 遍历 income 分类下的所有来源（如村民职业），按设定的延迟时间更新 stores 资源。
+	 */
 	collectIncome: function() {
 		var changed = false;
+		// 如果当前不是在太空战斗，则进行收益收集
 		if(typeof $SM.get('income') != 'undefined' && Engine.activeModule != Space) {
 			for(var source in $SM.get('income')) {
 				var income = $SM.get('income["'+source+'"]');
@@ -361,10 +385,12 @@ var StateManager = {
 
 				if(income.timeLeft <= 0) {
 					Engine.log('collection income from ' + source);
+					// 处理小偷扣除逻辑
 					if(source == 'thieves') $SM.addStolen(income.stores);
 
 					var cost = income.stores;
 					var ok = true;
+					// 只有在资源足够支付（即扣除后不为负）时才进行更新
 					if (source != 'thieves') {
 						for (var k in cost) {
 							var have = $SM.get('stores["' + k + '"]', true);
@@ -388,6 +414,7 @@ var StateManager = {
 		if(changed){
 			$SM.fireUpdate('income', true);
 		}
+		// 每一秒轮询一次
 		Engine._incomeTimeout = Engine.setTimeout($SM.collectIncome, 1000);
 	},
 

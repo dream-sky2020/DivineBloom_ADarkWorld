@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "DOM"],
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "sourceMap": true,
+    "declaration": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "types": ["jquery", "node"]
+  },
+  "include": [
+    "script/**/*.js",
+    "script/**/*.ts",
+    "dev-server.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

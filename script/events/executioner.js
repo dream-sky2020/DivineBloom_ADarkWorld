@@ -1,4 +1,14 @@
+/**
+ * Executioner 模块 - 定义了游戏中后期一个大型地点（毁坏的战列舰/Ravaged Battleship）的详细剧情和敌人。
+ * 这是一个类似于“地下城”的连续事件系统，包含：
+ * 1. 专属敌人定义 (Enemies.Executioner)：如机械守卫、自动炮台、医疗无人机等。
+ * 2. 复杂的剧本化场景 (Events.Executioner)：包含多步探索、分支选择、战斗触发和战利品获取。
+ */
 Enemies = window.Enemies ?? {};
+/**
+ * 专属敌人定义
+ * 这里的敌人通常比普通荒野遭遇战更强，且带有独特的机制（如医疗无人机的中毒效果）。
+ */
 Enemies.Executioner = {
   'guard': {
     combat: true,
@@ -114,8 +124,12 @@ Enemies.Executioner = {
   }
 };
 
+/**
+ * 战列舰探索事件定义
+ * 这是一个线性的或有分支的探索过程，玩家在失事的战列舰内部逐步推进。
+ */
 Events.Executioner = {
-  "executioner-intro": { /* Exploring a ravaged battleship */
+  "executioner-intro": { /* 探索毁坏的战列舰 */
     title: _('A Ravaged Battleship'),
     audio: AudioLibrary.LANDMARK_CRASHED_SHIP,
     scenes: {

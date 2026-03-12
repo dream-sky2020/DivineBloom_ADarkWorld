@@ -1,9 +1,12 @@
 /**
- * Events that can occur when wandering around the world
- **/
+ * Encounters 模块 - 定义了玩家在世界地图（World）探索时可能遇到的随机战斗事件。
+ * 所有的遭遇战都根据以下维度进行组织：
+ * 1. 阶段 (Tier)：根据距离村庄的远近分为 Tier 1, 2, 3，距离越远，敌人越强大。
+ * 2. 地形 (Terrain)：不同的敌人会出现在特定的地形中（森林、荒地、原野）。
+ */
 Events.Encounters = [
-	/* Tier 1 */
-	{ /* Snarling Beast */
+	/* 第一阶段 (Tier 1)：距离村庄 10 个单位以内 */
+	{ /* 咆哮的野兽 */
 		title: _('A Snarling Beast'),
 		isAvailable: function() {
 			return World.getDistance() <= 10 && World.getTerrain() == World.TILE.FOREST;
@@ -15,11 +18,11 @@ Events.Encounters = [
 				enemyName: _('snarling beast'),
 				deathMessage: _('the snarling beast is dead'),
 				chara: 'R',
-				damage: 1,
-				hit: 0.8,
-				attackDelay: 1,
-				health: 5,
-				loot: {
+				damage: 1, // 攻击伤害
+				hit: 0.8,  // 命中率
+				attackDelay: 1, // 攻击间隔
+				health: 5, // 生命值
+				loot: { // 战利品
 					'fur': {
 						min: 1,
 						max: 3,
@@ -40,7 +43,7 @@ Events.Encounters = [
 			}
 		}
 	},
-	{ /* Gaunt Man */
+	{ /* 憔悴的男人 */
 	title: _('A Gaunt Man'),
 		isAvailable: function() {
 			return World.getDistance() <= 10 && World.getTerrain() == World.TILE.BARRENS;
@@ -77,7 +80,7 @@ Events.Encounters = [
 			}
 		}
 	},
-	{ /* Strange Bird */
+	{ /* 奇怪的鸟 */
 	title: _('A Strange Bird'),
 		isAvailable: function() {
 			return World.getDistance() <= 10 && World.getTerrain() == World.TILE.FIELD;
@@ -114,7 +117,7 @@ Events.Encounters = [
 			}
 		}
 	},
-	{ /* Two-Headed Creature */
+	{ /* 双头生物 */
 	title: _('A Two-Headed Creature'),
 		isAvailable: function() {
 			return World.getDistance() <= 10 && World.getTerrain() == World.TILE.FIELD;
@@ -151,8 +154,8 @@ Events.Encounters = [
 			}
 		}
 	},
-	/* Tier 2*/
-	{ /* Shivering Man */
+	/* 第二阶段 (Tier 2)：距离村庄 10 到 20 个单位 */
+	{ /* 发抖的男人 */
 	title: _('A Shivering Man'),
 		isAvailable: function() {
 			return World.getDistance() > 10 && World.getDistance() <= 20 && World.getTerrain() == World.TILE.BARRENS;
@@ -194,7 +197,7 @@ Events.Encounters = [
 			}
 		}
 	},
-	{ /* Man-eater */
+	{ /* 食人怪 */
 		title: _('A Man-Eater'),
 		isAvailable: function() {
 			return World.getDistance() > 10 && World.getDistance() <= 20 && World.getTerrain() == World.TILE.FOREST;
@@ -231,7 +234,7 @@ Events.Encounters = [
 			}
 		}
 	},
-	{ /* Scavenger */
+	{ /* 拾荒者 */
 	title: _('A Scavenger'),
 		isAvailable: function() {
 			return World.getDistance() > 10 && World.getDistance() <= 20 && World.getTerrain() == World.TILE.BARRENS;
@@ -273,7 +276,7 @@ Events.Encounters = [
 			}
 		}
 	},
-	{ /* Huge Lizard */
+	{ /* 巨蜥 */
 	title: _('A Huge Lizard'),
 		isAvailable: function() {
 			return World.getDistance() > 10 && World.getDistance() <= 20 && World.getTerrain() == World.TILE.FIELD;
@@ -310,8 +313,8 @@ Events.Encounters = [
 			}
 		}
 	},
-	/* Tier 3*/
-	{ /* Feral Terror */
+	/* 第三阶段 (Tier 3)：距离村庄超过 20 个单位 */
+	{ /* 凶猛恐惧怪 */
 		title: _('A Feral Terror'),
 		isAvailable: function() {
 			return World.getDistance() > 20 && World.getTerrain() == World.TILE.FOREST;
@@ -348,7 +351,7 @@ Events.Encounters = [
 			}
 		}
 	},
-	{ /* Soldier */
+	{ /* 士兵 */
 	title: _('A Soldier'),
 		isAvailable: function() {
 			return World.getDistance() > 20 && World.getTerrain() == World.TILE.BARRENS;
@@ -359,7 +362,7 @@ Events.Encounters = [
 				enemy: 'soldier',
 				enemyName: _('soldier'),
 				deathMessage: _('the soldier is dead'),
-				ranged: true,
+				ranged: true, // 远程单位
 				chara: 'D',
 				damage: 8,
 				hit: 0.8,
@@ -391,7 +394,7 @@ Events.Encounters = [
 			}
 		}
 	},
-	{ /* Sniper */
+	{ /* 狙击手 */
 	title: _('A Sniper'),
 		isAvailable: function() {
 			return World.getDistance() > 20 && World.getTerrain() == World.TILE.FIELD;

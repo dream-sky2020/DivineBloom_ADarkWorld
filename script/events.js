@@ -1,18 +1,23 @@
 /**
- * Module that handles the random event system
+ * Events 模块 - 游戏的“事件与战斗引擎”。
+ * 它是《A Dark Room》最复杂的系统之一，负责：
+ * 1. 事件调度：随机或按条件触发各种剧情事件。
+ * 2. 剧本渲染：解析事件配置，渲染文字描述、分支按钮和奖励。
+ * 3. 战斗系统：实现即时/回合制结合的战斗机制，包括攻击、防御、治疗、状态效果和动画。
+ * 4. 技能进化：监控玩家行为（如出拳次数）来解锁相关特长（Perks）。
  */
 var Events = {
 
-	_EVENT_TIME_RANGE: [3, 6], // range, in minutes
-	_PANEL_FADE: 200,
-	_FIGHT_SPEED: 100,
-	_EAT_COOLDOWN: 5,
-	_MEDS_COOLDOWN: 7,
+	_EVENT_TIME_RANGE: [3, 6], // 随机事件发生的间隔范围（分钟）
+	_PANEL_FADE: 200,          // 面板淡入淡出速度
+	_FIGHT_SPEED: 100,         // 战斗逻辑更新速度
+	_EAT_COOLDOWN: 5,          // 吃肉的冷却时间
+	_MEDS_COOLDOWN: 7,         // 使用药物的冷却时间
 	_HYPO_COOLDOWN: 7,
 	_SHIELD_COOLDOWN: 10,
 	_STIM_COOLDOWN: 10,
-	_LEAVE_COOLDOWN: 1,
-	STUN_DURATION: 4000,
+	_LEAVE_COOLDOWN: 1,        // 战斗结束或离开后的冷却
+	STUN_DURATION: 4000,       // 晕眩时长
 	ENERGISE_MULTIPLIER: 4,
 	EXPLOSION_DURATION: 3000,
 	ENRAGE_DURATION: 4000,
@@ -21,13 +26,18 @@ var Events = {
 	BOOST_DAMAGE: 10,
 	DOT_TICK: 1000,
 	BLINK_INTERVAL: false,
+
+	/**
+	 * 初始化事件系统
+	 * 整合来自不同源的事件池，并启动第一个随机事件的计时器。
+	 */
 	init: function(options) {
 		this.options = $.extend(
 			this.options,
 			options
 		);
 
-		// Build the Event Pool
+		// 构建全局事件池
 		Events.EventPool = [].concat(
 			Events.Global,
 			Events.Room,
@@ -37,12 +47,13 @@ var Events = {
 
 		Events.eventStack = [];
 
+		// 开始调度下一个随机事件
 		Events.scheduleNextEvent();
 
-		//subscribe to stateUpdates
+		// 订阅状态更新
 		$.Dispatch('stateUpdate').subscribe(Events.handleStateUpdates);
 
-		//check for stored delayed events
+		// 检查是否有存储的延迟事件
 		Events.initDelay();
 	},
 
@@ -51,22 +62,28 @@ var Events = {
 	delayState: 'wait',
 	activeScene: null,
 
+	/**
+	 * 加载一个具体的事件场景
+	 * @param {string} name - 场景名称。
+	 * 处理场景加载时的 onLoad 回调、通知发放、资源奖励发放，
+	 * 并根据配置决定是进入“剧情描述”模式还是“战斗”模式。
+	 */
 	loadScene: function(name) {
 		Engine.log('loading scene: ' + name);
 		Events.activeScene = name;
 		var scene = Events.activeEvent().scenes[name];
 
-		// onLoad
+		// 执行场景加载回调
 		if(scene.onLoad) {
 			scene.onLoad();
 		}
 
-		// Notify the scene change
+		// 发送场景通知
 		if(scene.notification) {
 			Notifications.notify(null, scene.notification);
 		}
 
-		// Scene reward
+		// 发放场景奖励
 		if(scene.reward) {
 			$SM.addM('stores', scene.reward);
 		}
@@ -74,12 +91,19 @@ var Events = {
 		$('#description', Events.eventPanel()).empty();
 		$('#buttons', Events.eventPanel()).empty();
 		if(scene.combat) {
+			// 进入战斗模式
 			Events.startCombat(scene);
 		} else {
+			// 进入剧情模式
 			Events.startStory(scene);
 		}
 	},
 
+	/**
+	 * 开始一场战斗
+	 * @param {Object} scene - 包含敌人数据的场景对象。
+	 * 渲染战斗界面（血条、角色图标），生成攻击按钮和治疗按钮，并启动敌人 AI 计时器。
+	 */
 	startCombat: function(scene) {
 		Engine.event('game event', 'combat');
 		Events.fought = false;
@@ -88,43 +112,28 @@ var Events = {
 
 		$('<div>').text(scene.notification).appendTo(desc);
 
-		// Draw pause button
-		/* Disable for now, because it doesn't work and looks weird
-		var pauseBox = $('<div>').attr('id', 'pauseButton').appendTo(desc);
-		var pause = new Button.Button({
-			id: 'pause',
-			text: '',
-			cooldown: Events._PAUSE_COOLDOWN,
-			click: Events.togglePause
-		}).appendTo(pauseBox);
-		$('<span>').addClass('text').insertBefore(pause.children('.cooldown'));
-		$('<div>').addClass('clear').appendTo(pauseBox);
-		Events.setPause(pause, 'set');
-		Events.removePause(pause, 'set');
-		*/
-
 		var fightBox = $('<div>').attr('id', 'fight').appendTo(desc);
-		// Draw the wanderer
+		// 渲染玩家（流浪者 @）
 		Events.createFighterDiv('@', World.health, World.getMaxHealth()).attr('id', 'wanderer').appendTo(fightBox);
-		// Draw the enemy
+		// 渲染敌人
 		Events.createFighterDiv(scene.chara, scene.health, scene.health).attr('id', 'enemy').appendTo(fightBox);
 
-		// Draw the action buttons
+		// 渲染动作按钮
 		var btns = $('#buttons', Events.eventPanel());
 
+		// 1. 攻击类按钮
 		var attackBtns = $('<div>').appendTo(btns).attr('id','attackButtons');
 		var numWeapons = 0;
 		for(var k in World.Weapons) {
 			var weapon = World.Weapons[k];
 			if(typeof Path.outfit[k] == 'number' && Path.outfit[k] > 0) {
+				// 检查武器可用性（是否有伤害、是否有足够弹药）
 				if(typeof weapon.damage != 'number' || weapon.damage === 0) {
-					// Weapons that deal no damage don't count
 					numWeapons--;
 				} else if(weapon.cost){
 					for(var c in weapon.cost) {
 						var num = weapon.cost[c];
 						if(typeof Path.outfit[c] != 'number' || Path.outfit[c] < num) {
-							// Can't use this weapon, so don't count it
 							numWeapons--;
 						}
 					}
@@ -134,11 +143,12 @@ var Events = {
 			}
 		}
 		if(numWeapons === 0) {
-			// No weapons? You can punch stuff!
+			// 如果没有武器，默认显示“出拳”
 			Events.createAttackButton('fists').prependTo(attackBtns);
 		}
 		$('<div>').addClass('clear').appendTo(attackBtns);
 
+		// 2. 治疗与辅助类按钮
 		var healBtns = $('<div>').appendTo(btns).attr('id','healButtons');
 		Events.createEatMeatButton().appendTo(healBtns);
 		if((Path.outfit['medicine'] || 0) !== 0) {
@@ -156,8 +166,9 @@ var Events = {
 		$('<div>').addClass('clear').appendTo(healBtns);
 		Events.setHeal(healBtns);
 		
-		// Set up the enemy attack timers
+		// 启动敌人攻击循环
 		Events.startEnemyAttacks();
+		// 处理敌人的特殊周期性行为
 		Events._specialTimers = (scene.specials ?? []).map(s => Engine.setInterval(
 			() => {
 				const enemy = $('#enemy');

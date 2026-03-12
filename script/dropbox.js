@@ -1,3 +1,8 @@
+/**
+ * Dropbox 模块 - 负责处理游戏的云存档功能。
+ * 它允许玩家通过 Dropbox Datastore API 将游戏进度保存到自己的 Dropbox 账号中，
+ * 从而实现跨设备、跨浏览器的进度同步。
+ */
 (function (Engine, Events, Dropbox, $) {
 
   /**
@@ -27,8 +32,11 @@
     table: false,
     dropboxAccount: false,
     savegameKey: false,
-    savegames: {0: null, 1: null, 2: null, 3: null, 4: null},
+    savegames: {0: null, 1: null, 2: null, 3: null, 4: null}, // 预设 5 个存档槽位
 
+    /**
+     * 初始化 Dropbox 连接器
+     */
     init: function (options) {
       this.options = $.extend(
         this.options,
@@ -277,10 +285,7 @@
     },
 
     /**
-     * Saves a gamestate to a given slot in dbds
-     *
-     * @param slotnumber
-     * @param callback
+     * 将当前进度上传到指定的云端槽位
      */
     saveGameToDropbox: function (slotnumber, callback) {
 
@@ -290,7 +295,7 @@
       var id = DropboxConnector.prepareSavegameID(slotnumber);
 
       var saveGame = {
-        gameState: Engine.generateExport64(),
+        gameState: Engine.generateExport64(), // 获取当前的 Base64 编码进度
         timestamp: new Date().getTime()
       };
 

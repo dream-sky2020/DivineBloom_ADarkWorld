@@ -1,14 +1,25 @@
 /**
- * Module that registers the simple room functionality
+ * Room 模块 - 负责处理游戏初期的“房间”场景和后续的“村庄”管理功能。
+ * 它是游戏的核心逻辑之一，管理着：
+ * 1. 火堆的状态（温度、火势等级）。
+ * 2. 各种可制作/建造的项目（Craftables），如陷阱、小屋、车间等。
+ * 3. 各种可交易的商品（TradeGoods）。
+ * 4. 资源的显示、收益的计算以及“陌生人（建筑师）”的到来和互动。
  */
 var Room = {
-	// times in (minutes * seconds * milliseconds)
-	_FIRE_COOL_DELAY: 5 * 60 * 1000, // time after a stoke before the fire cools
-	_ROOM_WARM_DELAY: 30 * 1000, // time between room temperature updates
-	_BUILDER_STATE_DELAY: 0.5 * 60 * 1000, // time between builder state updates
-	_STOKE_COOLDOWN: 10, // cooldown to stoke the fire
-	_NEED_WOOD_DELAY: 15 * 1000, // from when the stranger shows up, to when you need wood
+	// 各种延迟时间常量 (分钟 * 秒 * 毫秒)
+	_FIRE_COOL_DELAY: 5 * 60 * 1000, // 火堆冷却的时间间隔
+	_ROOM_WARM_DELAY: 30 * 1000, // 房间温度更新的时间间隔
+	_BUILDER_STATE_DELAY: 0.5 * 60 * 1000, // 建筑师状态更新的时间间隔
+	_STOKE_COOLDOWN: 10, // 添火按钮的冷却时间
+	_NEED_WOOD_DELAY: 15 * 1000, // 从陌生人出现到需要木材的时间
+
 	buttons: {},
+	/**
+	 * 可制作/建造项目定义 (Craftables)
+	 * 包含建筑 (building)、工具 (tool)、武器 (weapon) 和升级 (upgrade)。
+	 * 每个项目都有名称、最大数量、解锁消息、建造消息、消耗成本等属性。
+	 */
 	Craftables: {
 		'trap': {
 			name: _('trap'),
@@ -356,6 +367,10 @@ var Room = {
 		}
 	},
 
+	/**
+	 * 贸易商品定义 (TradeGoods)
+	 * 包含可以在游牧民那里买到的各种物品和资源，有些是特殊物品（如指南针）。
+	 */
 	TradeGoods: {
 		'scales': {
 			type: 'good',
@@ -491,6 +506,10 @@ var Room = {
 	},
 
 	name: _("Room"),
+	/**
+	 * 初始化函数
+	 * 设置初始状态、界面容器、按钮、订阅状态更新以及启动各种计时器。
+	 */
 	init: function (options) {
 		this.options = $.extend(
 			this.options,
@@ -673,6 +692,11 @@ var Room = {
 
 	_fireTimer: null,
 	_tempTimer: null,
+
+	/**
+	 * 点燃火堆
+	 * 消耗 5 个木材来启动火堆。如果木材不足则点火失败。
+	 */
 	lightFire: function () {
 		var wood = $SM.get('stores.wood');
 		if (wood < 5) {
@@ -687,6 +711,10 @@ var Room = {
 		Room.onFireChange();
 	},
 
+	/**
+	 * 添火
+	 * 消耗 1 个木材来维持或增强火势。
+	 */
 	stokeFire: function () {
 		var wood = $SM.get('stores.wood');
 		if (wood === 0) {
@@ -704,6 +732,10 @@ var Room = {
 		Room.onFireChange();
 	},
 
+	/**
+	 * 当火势发生变化时的回调
+	 * 更新 UI、通知玩家，并重置火堆冷却计时器。
+	 */
 	onFireChange: function () {
 		if (Engine.activeModule != Room) {
 			Room.changed = true;
@@ -725,6 +757,10 @@ var Room = {
 		}
 	},
 
+	/**
+	 * 冷却火堆
+	 * 随时间降低火势。如果建筑师在场且有木材，她会自动添火。
+	 */
 	coolFire: function () {
 		var wood = $SM.get('stores.wood');
 		if ($SM.get('game.fire.value') <= Room.FireEnum.Flickering.value &&
@@ -740,6 +776,10 @@ var Room = {
 		}
 	},
 
+	/**
+	 * 调整温度
+	 * 房间温度会趋向于火势等级。
+	 */
 	adjustTemp: function () {
 		var old = $SM.get('game.temperature.value');
 		if ($SM.get('game.temperature.value') > 0 && $SM.get('game.temperature.value') > $SM.get('game.fire.value')) {

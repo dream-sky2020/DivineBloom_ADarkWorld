@@ -1,8 +1,10 @@
 /**
- * Events that can occur when the Outside module is active
- **/
+ * Outside Events 模块 - 定义了当玩家处于“户外 (Outside)”（即村庄/森林）场景时可能触发的随机事件。
+ * 这些事件通常会影响村庄的人口、建筑或资源，并带有一定的剧情描述。
+ */
 Events.Outside = [
-	{ /* Ruined traps */
+	/* 陷阱损毁 (Ruined traps) */
+	{ 
 	title: _('A Ruined Trap'),
 		isAvailable: function() {
 			return Engine.activeModule == Outside && $SM.get('game.buildings["trap"]', true) > 0;
@@ -10,10 +12,11 @@ Events.Outside = [
 		scenes: {
 			'start': {
 				text: [
-					_('some of the traps have been torn apart.'),
-					_('large prints lead away, into the forest.')
+					_('some of the traps have been torn apart.'), // 一些陷阱被撕碎了。
+					_('large prints lead away, into the forest.') // 巨大的足迹通向森林深处。
 				],
 				onLoad: function() {
+					// 随机损毁一定数量的陷阱
 					var numWrecked = Math.floor(Math.random() * $SM.get('game.buildings["trap"]', true)) + 1;
 					$SM.add('game.buildings["trap"]', -numWrecked);
 					Outside.updateVillage();
@@ -22,17 +25,17 @@ Events.Outside = [
 				notification: _('some traps have been destroyed'),
 				blink: true,
 				buttons: {
-					'track': {
+					'track': { // 追踪野兽
 						text: _('track them'),
 						nextScene: {0.5: 'nothing', 1: 'catch'}
 					},
-					'ignore': {
+					'ignore': { // 忽略
 						text: _('ignore them'),
 						nextScene: 'end'
 					}
 				}
 			},
-			'nothing': {
+			'nothing': { // 没追到
 				text: [
 					_('the tracks disappear after just a few minutes.'),
 					_('the forest is silent.')
@@ -45,7 +48,7 @@ Events.Outside = [
 					}
 				}
 			},
-			'catch': {
+			'catch': { // 追到了野兽，获得丰厚资源
 				text: [
 					_('not far from the village lies a large beast, its fur matted with blood.'),
 					_('it puts up little resistance before the knife.')
@@ -66,7 +69,8 @@ Events.Outside = [
 		},
 		audio: AudioLibrary.EVENT_RUINED_TRAP
 	},
-	{ /* Hut fire */
+	/* 小屋起火 (Hut fire) */
+	{ 
 		title: _('Fire'),
 		isAvailable: function() {
 			return Engine.activeModule == Outside && $SM.get('game.buildings["hut"]', true) > 0 && $SM.get('game.population', true) > 50;
@@ -80,7 +84,7 @@ Events.Outside = [
 				notification: _('a fire has started'),
 				blink: true,
 				onLoad: function() {
-					Outside.destroyHuts(1);
+					Outside.destroyHuts(1); // 销毁一个小屋并杀死其中的人口
 				},
 				buttons: {
 					'mourn': {
@@ -93,7 +97,8 @@ Events.Outside = [
 		},
 		audio: AudioLibrary.EVENT_HUT_FIRE
 	},
-	{ /* Sickness */
+	/* 疾病 (Sickness) */
+	{ 
 		title: _('Sickness'),
 		isAvailable: function() {
 			return Engine.activeModule == Outside && $SM.get('game.population', true) > 10 && $SM.get('game.population', true) < 50 && $SM.get('stores.medicine', true) > 0;
@@ -107,12 +112,12 @@ Events.Outside = [
 				notification: _('some villagers are ill'),
 				blink: true,
 				buttons: {
-					'heal': {
+					'heal': { // 使用药物治疗
 						text: _('1 medicine'),
 						cost: { 'medicine' : 1 },
 						nextScene: {1: 'healed'}
 					},
-					'ignore': {
+					'ignore': { // 忽略（会导致村民死亡）
 						text: _('ignore it'),
 						nextScene: {1: 'death'}
 					}
@@ -152,7 +157,8 @@ Events.Outside = [
 		audio: AudioLibrary.EVENT_SICKNESS
 	},
 
-	{ /* Plague */
+	/* 瘟疫 (Plague) - 更严重的人口危机 */
+	{ 
 		title: _('Plague'),
 		isAvailable: function() {
 			return Engine.activeModule == Outside && $SM.get('game.population', true) > 50 && $SM.get('stores.medicine', true) > 0;
@@ -166,7 +172,7 @@ Events.Outside = [
 				notification: _('a plague afflicts the village'),
 				blink: true,
 				buttons: {
-					/* Because there is a serious need for medicine, the price is raised. */
+					/* 这种场景下，黑商会出现并高价卖药 */
 					'buyMedicine': {
 						text: _('buy medicine'),
 						cost: { 'scales': 70,
@@ -224,7 +230,8 @@ Events.Outside = [
 		audio: AudioLibrary.EVENT_PLAGUE
 	},
 
-	{ /* Beast attack */
+	/* 野兽袭击 (Beast attack) */
+	{ 
 		title: _('A Beast Attack'),
 		isAvailable: function() {
 			return Engine.activeModule == Outside && $SM.get('game.population', true) > 0;
@@ -259,9 +266,11 @@ Events.Outside = [
 		audio: AudioLibrary.EVENT_BEAST_ATTACK
 	},
 
-	{ /* Soldier attack */
+	/* 军队突袭 (Soldier attack) - 后期事件 */
+	{ 
 		title: _('A Military Raid'),
 		isAvailable: function() {
+			// 只有在清理了城市之后才会触发
 			return Engine.activeModule == Outside && $SM.get('game.population', true) > 0 && $SM.get('game.cityCleared');
 		},
 		scenes: {

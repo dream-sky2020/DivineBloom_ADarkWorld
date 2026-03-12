@@ -1,15 +1,26 @@
 /**
- * Module that registers the outdoors functionality
+ * Outside 模块 - 负责处理游戏中的“户外”场景。
+ * 随着游戏的进行，这里会从“寂静的森林”演变为一个繁华的“村庄”。
+ * 主要功能包括：
+ * 1. 资源采集：最初的手动捡木头，到后来的自动陷阱。
+ * 2. 人口管理：管理小屋（Huts）能容纳的人口，以及新居民的到来。
+ * 3. 职业分配：将村民分配为采集者、猎人、陷阱师、矿工等各种职业。
+ * 4. 村庄产出：计算并定期增加各种职业产生的资源收益。
  */
 var Outside = {
 	name: _("Outside"),
 	
 	_STORES_OFFSET: 0,
-	_GATHER_DELAY: 60,
-	_TRAPS_DELAY: 90,
-	_POP_DELAY: [0.5, 3],
-	_HUT_ROOM: 4,
+	_GATHER_DELAY: 60, // 采木头的冷却时间
+	_TRAPS_DELAY: 90, // 检查陷阱的冷却时间
+	_POP_DELAY: [0.5, 3], // 人口增长的时间间隔范围
+	_HUT_ROOM: 4, // 每个小屋能住的人数
 	
+	/**
+	 * 职业收益定义 (_INCOME)
+	 * 定义了每种职业每 10 秒产生的资源变化情况。
+	 * 有些职业会消耗一种资源来产出另一种（例如：制革匠消耗毛皮产出皮革）。
+	 */
 	_INCOME: {
 		'gatherer': {
 			name: _('gatherer'),
@@ -94,6 +105,10 @@ var Outside = {
 			}
 		}
 	},
+	/**
+	 * 陷阱掉落定义 (TrapDrops)
+	 * 定义了检查陷阱时各种资源产出的概率分布。
+	 */
 	TrapDrops: [
 		{
 			rollUnder: 0.5,

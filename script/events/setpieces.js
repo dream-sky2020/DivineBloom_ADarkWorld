@@ -1,8 +1,11 @@
 /**
- * Events that only occur at specific times. Launched manually.
- **/
+ * Setpieces 模块 - 定义了游戏中那些固定的、预设好的“场景”或“地标”事件。
+ * 不同于随机的遭遇战，这些事件通常发生在世界地图上的特定地点（如城镇、洞穴、失事飞船等）。
+ * 它们通常包含多步剧情、复杂的选择分支、丰厚的奖励以及独特的战斗。
+ */
 Events.Setpieces = {
-	"outpost": { /* Friendly Outpost */
+	/* 前哨站 (Friendly Outpost) - 一个安全的补给点 */
+	"outpost": { 
 		title: _('An Outpost'),
 		scenes: {
 			'start': {
@@ -18,6 +21,7 @@ Events.Setpieces = {
 					}
 				},
 				onLoad: function() {
+					// 激活前哨站功能，允许玩家在此补给水分
 					World.useOutpost();
 				},
 				buttons: {
@@ -31,7 +35,8 @@ Events.Setpieces = {
 		},
 		audio: AudioLibrary.LANDMARK_FRIENDLY_OUTPOST
 	},
-	"swamp": { /* Swamp */
+	/* 沼泽 (Swamp) - 获取特殊特长的地点 */
+	"swamp": { 
 		title: _('A Murky Swamp'),
 		scenes: {
 			'start': {
@@ -58,7 +63,7 @@ Events.Setpieces = {
 				],
 				buttons: {
 					'talk': {
-						cost: {'charm': 1},
+						cost: {'charm': 1}, // 需要消耗“护身符”才能对话
 						text: _('talk'),
 						nextScene: {1: 'talk'}
 					},
@@ -76,6 +81,7 @@ Events.Setpieces = {
 					_('his time here, now, is his penance.')
 				],
 				onLoad: function() {
+					// 获得“美食家 (Gastronome)”特长，增加食物的回血量
 					$SM.addPerk('gastronome');
 					World.markVisited(World.curPos[0], World.curPos[1]);
 				},
@@ -89,7 +95,8 @@ Events.Setpieces = {
 		},
 		audio: AudioLibrary.LANDMARK_SWAMP
 	},
-	"cave": { /* Cave */
+	/* 洞穴 (Cave) - 经典的地下探索/迷宫场景 */
+	"cave": { 
 		title: _('A Damp Cave'),
 		scenes: {
 			'start': {
@@ -101,7 +108,7 @@ Events.Setpieces = {
 				buttons: {
 					'enter': {
 						text: _('go inside'),
-						cost: { torch: 1 },
+						cost: { torch: 1 }, // 进入洞穴通常需要消耗火把
 						nextScene: {0.3: 'a1', 0.6: 'a2', 1: 'a3'}
 					},
 					'leave': {

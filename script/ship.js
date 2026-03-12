@@ -1,13 +1,19 @@
 /**
- * Module that registers the starship!
+ * Ship 模块 - 负责管理游戏大后期的“古老星舰” (Old Starship)。
+ * 这是玩家通往游戏最终章的桥梁。在发现失事飞船后，玩家需要修复它以离开这个荒芜的星球。
  */
 var Ship = {
-	LIFTOFF_COOLDOWN: 120,
-	ALLOY_PER_HULL: 1,
-	ALLOY_PER_THRUSTER: 1,
-	BASE_HULL: 0,
-	BASE_THRUSTERS: 1,
+	LIFTOFF_COOLDOWN: 120, // 起飞按钮的冷却时间
+	ALLOY_PER_HULL: 1,     // 强化一单位外壳消耗的合金数量
+	ALLOY_PER_THRUSTER: 1, // 升级一单位引擎消耗的合金数量
+	BASE_HULL: 0,          // 初始外壳强度
+	BASE_THRUSTERS: 1,     // 初始引擎等级
 	name: _("Ship"),
+	
+	/**
+	 * 初始化星舰模块
+	 * 设置初始的外壳和引擎状态，并在 UI 上渲染对应的显示行和功能按钮。
+	 */
 	init: function(options) {
 		this.options = $.extend(
 			this.options,
@@ -22,29 +28,29 @@ var Ship = {
 			});
 		}
 		
-		// Create the Ship tab
+		// 向顶部导航栏添加“星舰”标签
 		this.tab = Header.addLocation(_("An Old Starship"), "ship", Ship);
 		
-		// Create the Ship panel
+		// 创建星舰控制面板
 		this.panel = $('<div>').attr('id', "shipPanel")
 			.addClass('location')
 			.appendTo('div#locationSlider');
 		
 		Engine.updateSlider();
 		
-		// Draw the hull label
+		// 1. 渲染外壳强度行 (Hull)
 		var hullRow = $('<div>').attr('id', 'hullRow').appendTo('div#shipPanel');
 		$('<div>').addClass('row_key').text(_('hull:')).appendTo(hullRow);
 		$('<div>').addClass('row_val').text($SM.get('game.spaceShip.hull')).appendTo(hullRow);
 		$('<div>').addClass('clear').appendTo(hullRow);
 		
-		// Draw the thrusters label
+		// 2. 渲染引擎等级行 (Engine)
 		var engineRow = $('<div>').attr('id', 'engineRow').appendTo('div#shipPanel');
 		$('<div>').addClass('row_key').text(_('engine:')).appendTo(engineRow);
 		$('<div>').addClass('row_val').text($SM.get('game.spaceShip.thrusters')).appendTo(engineRow);
 		$('<div>').addClass('clear').appendTo(engineRow);
 		
-		// Draw the reinforce button
+		// 3. 强化外壳按钮
 		new Button.Button({
 			id: 'reinforceButton',
 			text: _('reinforce hull'),
@@ -53,7 +59,7 @@ var Ship = {
 			cost: {'alien alloy': Ship.ALLOY_PER_HULL}
 		}).appendTo('div#shipPanel');
 		
-		// Draw the engine button
+		// 4. 升级引擎按钮
 		new Button.Button({
 			id: 'engineButton',
 			text: _('upgrade engine'),
@@ -62,7 +68,7 @@ var Ship = {
 			cost: {'alien alloy': Ship.ALLOY_PER_THRUSTER}
 		}).appendTo('div#shipPanel');
 		
-		// Draw the lift off button
+		// 5. 起飞按钮 (Lift off)
 		var b = new Button.Button({
 			id: 'liftoffButton',
 			text: _('lift off'),
@@ -71,19 +77,21 @@ var Ship = {
 			cooldown: Ship.LIFTOFF_COOLDOWN
 		}).appendTo('div#shipPanel');
 		
+		// 如果外壳为 0，则无法起飞
 		if($SM.get('game.spaceShip.hull') <= 0) {
 			Button.setDisabled(b, true);
 		}
 		
-		// Init Space
+		// 同时初始化“太空 (Space)”模块，为起飞做准备
 		Space.init();
 		
-		//subscribe to stateUpdates
 		$.Dispatch('stateUpdate').subscribe(Ship.handleStateUpdates);
 	},
 	
-	options: {}, // Nothing for now
-	
+	/**
+	 * 到达星舰界面的回调
+	 * 处理首次发现的剧情通知和背景音乐切换。
+	 */
 	onArrival: function(transition_diff) {
 		Ship.setTitle();
 		if(!$SM.get('game.spaceShip.seenShip')) {
@@ -95,12 +103,10 @@ var Ship = {
 		Engine.moveStoresView(null, transition_diff);
 	},
 	
-	setTitle: function() {
-		if(Engine.activeModule == this) {
-			document.title = _("An Old Starship");
-		}
-	},
-	
+	/**
+	 * 强化外壳
+	 * 消耗外星合金提升 Hull 值。Hull 越高，在最终章空战中越耐打。
+	 */
 	reinforceHull: function() {
 		if($SM.get('stores["alien alloy"]', true) < Ship.ALLOY_PER_HULL) {
 			Notifications.notify(Ship, _("not enough alien alloy"));
@@ -115,6 +121,10 @@ var Ship = {
 		AudioEngine.playSound(AudioLibrary.REINFORCE_HULL);
 	},
 	
+	/**
+	 * 升级引擎
+	 * 消耗外星合金提升 Thrusters 值。影响飞船的机动性。
+	 */
 	upgradeEngine: function() {
 		if($SM.get('stores["alien alloy"]', true) < Ship.ALLOY_PER_THRUSTER) {
 			Notifications.notify(Ship, _("not enough alien alloy"));
@@ -126,10 +136,10 @@ var Ship = {
 		AudioEngine.playSound(AudioLibrary.UPGRADE_ENGINE);
 	},
 	
-	getMaxHull: function() {
-		return $SM.get('game.spaceShip.hull');
-	},
-	
+	/**
+	 * 检查并执行起飞
+	 * 如果是第一次起飞，会弹出一个不可逆的警告确认框。
+	 */
 	checkLiftOff: function() {
 		if(!$SM.get('game.spaceShip.seenWarning')) {
 			Events.startEvent({
@@ -164,14 +174,14 @@ var Ship = {
 		}
 	},
 	
+	/**
+	 * 正式起飞
+	 * 将游戏切换到“太空 (Space)”模块，开始最后的通关挑战。
+	 */
 	liftOff: function () {
 		$('#outerSlider').animate({top: '700px'}, 300);
 		Space.onArrival();
 		Engine.activeModule = Space;
 		AudioEngine.playSound(AudioLibrary.LIFT_OFF);
-	},
-	
-	handleStateUpdates: function(e){
-		
 	}
 };

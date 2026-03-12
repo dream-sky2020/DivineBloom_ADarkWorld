@@ -1,15 +1,17 @@
 /**
- * Module that registers spaaaaaaaaace!
+ * Space 模块 - 游戏的最终章：太空小游戏。
+ * 当玩家从星球起飞后，会进入这个实时避障小游戏。
+ * 玩家需要操控飞船（@）躲避从上方掉落的陨石，直到飞船穿过大气层进入太空。
  */
 var Space = {	
-	SHIP_SPEED: 3,
-	BASE_ASTEROID_DELAY: 500,
-	BASE_ASTEROID_SPEED: 1500,
-	FTB_SPEED: 60000,
-	STAR_WIDTH: 3000,
-	STAR_HEIGHT: 3000,
-	NUM_STARS: 200,
-	STAR_SPEED: 60000,
+	SHIP_SPEED: 3,             // 基础飞行速度
+	BASE_ASTEROID_DELAY: 500,  // 陨石生成的间隔时间
+	BASE_ASTEROID_SPEED: 1500, // 陨石掉落的基础速度
+	FTB_SPEED: 60000,          // 整个上升过程的时间（毫秒），也是颜色渐变的时长
+	STAR_WIDTH: 3000,          // 背景星空的宽度
+	STAR_HEIGHT: 3000,         // 背景星空的高度
+	NUM_STARS: 200,            // 背景星星的数量
+	STAR_SPEED: 60000,         // 星空滚动的速度
 	FRAME_DELAY: 100,
 	stars: null,
 	backStars: null,
@@ -19,39 +21,47 @@ var Space = {
 	shipX: null,
 	shipY: null,
 	
-	hull: 0,
+	hull: 0,                   // 飞船当前外壳完整度
 	
 	name: "Space",
+	/**
+	 * 初始化太空场景
+	 * 创建面板、飞船图标 (@) 和血条显示。
+	 */
 	init: function(options) {
 		this.options = $.extend(
 			this.options,
 			options
 		);
 		
-		// Create the Space panel
+		// 创建太空面板
 		this.panel = $('<div>').attr('id', "spacePanel")
 			.addClass('location')
 			.appendTo('#outerSlider');
 		
-		// Create the ship
+		// 创建飞船 (@)
 		Space.ship = $('<div>').text("@").attr('id', 'ship').appendTo(this.panel);
 		
-		// Create the hull display
+		// 创建外壳血条显示
 		var h = $('<div>').attr('id', 'hullRemaining').appendTo(this.panel);
 		$('<div>').addClass('row_key').text(_('hull: ')).appendTo(h);
 		$('<div>').addClass('row_val').appendTo(h);
 		
-		//subscribe to stateUpdates
+		// 订阅状态更新
 		$.Dispatch('stateUpdate').subscribe(Space.handleStateUpdates);
 	},
 	
-	options: {}, // Nothing for now
+	options: {}, // 暂无
 	
+	/**
+	 * 到达（开始飞行）时的回调
+	 * 初始化飞行状态、血量、高度，启动飞行和音量计时器。
+	 */
 	onArrival: function() {
 		Space.done = false;
 		Engine.keyLock = false;
-		Space.hull = Ship.getMaxHull();
-		Space.altitude = 0;
+		Space.hull = Ship.getMaxHull(); // 从 Ship 模块获取最高血量
+		Space.altitude = 0;             // 初始高度
 		Space.setTitle();
 		AudioEngine.playBackgroundMusic(AudioLibrary.MUSIC_SPACE);
 		Space.updateHull();
@@ -61,16 +71,21 @@ var Space = {
 		Space.left = 
 		Space.right = false;
 		
+		// 飞船居中起始位置
 		Space.ship.css({
 			top: '350px',
 			left: '350px'
 		});
-		Space.startAscent();
-		Space._shipTimer = setInterval(Space.moveShip, 33);
+		Space.startAscent(); // 开始上升动画
+		Space._shipTimer = setInterval(Space.moveShip, 33); // 约 30 FPS 的移动更新
 		Space._volumeTimer = setInterval(Space.lowerVolume, 1000);
 		AudioEngine.playBackgroundMusic(AudioLibrary.MUSIC_SPACE);
 	},
 	
+	/**
+	 * 设置页面标题
+	 * 随着高度增加，标题会从“对流层 (Troposphere)”一直变为“太空 (Space)”。
+	 */
 	setTitle: function() {
 		if(Engine.activeModule == this) {
 			var t;
@@ -91,14 +106,26 @@ var Space = {
 		}
 	},
 	
+	/**
+	 * 获取当前飞船移动速度
+	 * 速度 = 基础速度 + Ship 模块中升级的引擎数量。
+	 */
 	getSpeed: function() {
 		return Space.SHIP_SPEED + $SM.get('game.spaceShip.thrusters');
 	},
 	
+	/**
+	 * 更新血条 UI
+	 */
 	updateHull: function() {
 		$('div#hullRemaining div.row_val', Space.panel).text(Space.hull + '/' + Ship.getMaxHull());
 	},
 	
+	/**
+	 * 生成陨石
+	 * 随机选择一个符号 (#, $, %, &, H) 作为陨石，并从顶部随机位置掉落。
+	 * 包含碰撞检测逻辑。
+	 */
 	createAsteroid: function(noNext) {
 		var r = Math.random();
 		var c;
@@ -120,27 +147,27 @@ var Space = {
 			xMax: x + a.width(),
 			height: a.height()
 		});
+		// 陨石掉落动画
 		a.animate({
 			top: '740px'
 		}, {
 			duration: Space.BASE_ASTEROID_SPEED - Math.floor(Math.random() * (Space.BASE_ASTEROID_SPEED * 0.65)),
 			easing: 'linear', 
 			progress: function() {
-				// Collision detection
+				// 实时碰撞检测
 				var t = $(this);
 				if(t.data('xMin') <= Space.shipX && t.data('xMax') >= Space.shipX) {
 					var aY = t.css('top');
 					aY = parseFloat(aY.substring(0, aY.length - 2));
 					
 					if(aY <= Space.shipY && aY + t.data('height') >= Space.shipY) {
-						// Collision
+						// 发生碰撞
 						Engine.log('collision');
 						t.remove();
-						Space.hull--;
+						Space.hull--; // 扣除血量
 						Space.updateHull();
 
-						// play audio on asteroid hit
-						// higher altitudes play higher frequency hits
+						// 播放撞击声效
 						var r = Math.floor(Math.random() * 2);
 						if(Space.altitude > 40) {
 							r += 6;
@@ -153,6 +180,7 @@ var Space = {
 							AudioEngine.playSound(AudioLibrary['ASTEROID_HIT_' + r]);
 						}
 
+						// 检查是否坠毁
 						if(Space.hull === 0) {
 							Space.crash();
 						}
@@ -160,34 +188,37 @@ var Space = {
 				}
 			},
 			complete: function() {
-				$(this).remove();
+				$(this).remove(); // 陨石飞出屏幕后移除
 			}
 		});
 		if(!noNext) {
 			
-			// Harder
+			// 随着高度增加，难度（陨石密度）逐渐加大
 			if(Space.altitude > 10) {
 				Space.createAsteroid(true);
 			}
 			
-			// HARDER
 			if(Space.altitude > 20) {
 				Space.createAsteroid(true);
 				Space.createAsteroid(true);
 			}
 			
-			// HAAAAAARDERRRRR!!!!1
 			if(Space.altitude > 40) {
 				Space.createAsteroid(true);
 				Space.createAsteroid(true);
 			}
 			
+			// 循环调用生成下一个陨石
 			if(!Space.done) {
 				Engine.setTimeout(Space.createAsteroid, 1000 - (Space.altitude * 10), true);
 			}
 		}
 	},
 	
+	/**
+	 * 控制飞船移动
+	 * 根据当前的方向标志位（up, down, left, right）更新飞船坐标。
+	 */
 	moveShip: function() {
 		var x = Space.ship.css('left');
 		x = parseFloat(x.substring(0, x.length - 2));
@@ -207,11 +238,13 @@ var Space = {
 			dx += Space.getSpeed();
 		}
 		
+		// 斜向移动时的速度修正
 		if(dx !== 0 && dy !== 0) {
 			dx = dx / Math.sqrt(2);
 			dy = dy / Math.sqrt(2);
 		}
 		
+		// 基于时间的平滑移动处理
 		if(Space.lastMove != null) {
 			var dt = Date.now() - Space.lastMove;
 			dx *= dt / 33;
@@ -220,6 +253,7 @@ var Space = {
 		
 		x = x + dx;
 		y = y + dy;
+		// 边界检测
 		if(x < 10) {
 			x = 10;
 		} else if(x > 690) {

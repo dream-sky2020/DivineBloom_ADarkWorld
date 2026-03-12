@@ -1,8 +1,10 @@
 /**
- * Events that can occur when the Room module is active
- **/
+ * Room Events 模块 - 定义了当玩家处于“房间 (Room)”界面时可能触发的随机事件。
+ * 这里的事件主要涉及贸易、赌博、获取技能特长以及一些背景叙事。
+ */
 Events.Room = [
-	{ /* The Nomad  --  Merchant */
+	/* 游牧商 (The Nomad) - 基础贸易商 */
+	{ 
 		title: _('The Nomad'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('stores.fur', true) > 0;
@@ -32,7 +34,7 @@ Events.Room = [
 						reward: { 'bait': 1 },
 						notification: _('traps are more effective with bait.')
 					},
-					'buyCompass': {
+					'buyCompass': { // 核心剧情道具：指南针
 						available: function() {
 							return $SM.get('stores.compass', true) < 1;
 						},
@@ -50,7 +52,8 @@ Events.Room = [
 		},
 		audio: AudioLibrary.EVENT_NOMAD
 	},
-	{ /* Noises Outside  --  gain wood/fur */
+	/* 室外响动 (Noises Outside) - 免费获取少量资源 */
+	{ 
 		title: _('Noises'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('stores.wood');
@@ -86,7 +89,7 @@ Events.Room = [
 					}
 				}
 			},
-			'stuff': {
+			'stuff': { // 运气好能捡到木材和毛皮
 				reward: { wood: 100, fur: 10 },
 				text: [
 					_('a bundle of sticks lies just beyond the threshold, wrapped in coarse furs.'),
@@ -102,7 +105,8 @@ Events.Room = [
 		},
 		audio: AudioLibrary.EVENT_NOISES_OUTSIDE
 	},
-	{ /* Noises Inside  --  trade wood for better good */
+	/* 室内响动 (Noises Inside) - 损耗木头换取稀有资源（被啃食/交换） */
+	{ 
 		title: _('Noises'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('stores.wood');
@@ -189,7 +193,8 @@ Events.Room = [
 		},
 		audio: AudioLibrary.EVENT_NOISES_INSIDE
 	},
-	{ /* The Beggar  --  trade fur for better good */
+	/* 乞丐 (The Beggar) - 毛皮换资源 */
+	{ 
 		title: _('The Beggar'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('stores.fur');
@@ -261,7 +266,8 @@ Events.Room = [
 		},
 		audio: AudioLibrary.EVENT_BEGGAR
 	},
-	{/* The Shady Builder */
+	/* 可疑的建筑师 (The Shady Builder) - 廉价小屋但有被骗风险 */
+	{
 		title: _('The Shady Builder'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('game.buildings["hut"]', true) >= 5 && $SM.get('game.buildings["hut"]', true) < 20;
@@ -319,7 +325,8 @@ Events.Room = [
 		audio: AudioLibrary.EVENT_SHADY_BUILDER
 	},
 
-	{ /* Mysterious Wanderer  --  wood gambling */
+	/* 神秘的流浪者 (Mysterious Wanderer) - 木材赌博 */
+	{ 
 		title: _('The Mysterious Wanderer'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('stores.wood');
@@ -399,7 +406,8 @@ Events.Room = [
 		audio: AudioLibrary.EVENT_MYSTERIOUS_WANDERER
 	},
 
-	{ /* Mysterious Wanderer  --  fur gambling */
+	/* 神秘的流浪者 (Mysterious Wanderer) - 毛皮赌博 */
+	{ 
 		title: _('The Mysterious Wanderer'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('stores.fur');
@@ -479,7 +487,8 @@ Events.Room = [
 		audio: AudioLibrary.EVENT_MYSTERIOUS_WANDERER
 	},
 
-	{ /* The Scout  --  Map Merchant */
+	/* 侦察兵 (The Scout) - 地图商人 */
+	{ 
 		title: _('The Scout'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('features.location.world');
@@ -522,7 +531,8 @@ Events.Room = [
 		audio: AudioLibrary.EVENT_SCOUT
 	},
 
-	{ /* The Wandering Master */
+	/* 游荡的大师 (The Wandering Master) - 提供战斗技能特长 */
+	{ 
 		title: _('The Master'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('features.location.world');
@@ -596,7 +606,8 @@ Events.Room = [
 		audio: AudioLibrary.EVENT_WANDERING_MASTER
 	},
 
-	{ /* The Sick Man */
+	/* 生病的人 (The Sick Man) - 医疗施舍换取丰厚/特殊奖励 */
+	{ 
 		title: _('The Sick Man'),
 		isAvailable: function() {
 			return Engine.activeModule == Room && $SM.get('stores.medicine', true) > 0;
