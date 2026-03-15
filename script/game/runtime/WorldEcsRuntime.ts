@@ -1,5 +1,5 @@
 import { world, DataSpace } from '../DataSpace';
-import { ComponentBit } from '../core/ECSCore';
+import { ComponentBit } from '../definitions/ComponentBit';
 import { PlayerEntity } from '../definitions/entities/Player';
 
 /**
@@ -10,14 +10,6 @@ export class WorldEcsRuntime {
     private playerEid: number = -1;
 
     public init() {
-        // 1. 使用预制体创建玩家实体，包含所有必要组件
-        this.playerEid = PlayerEntity.create(0n, 0n, 100n);
-        
-        // 3. 初始化一些大数数据进行测试
-        DataSpace.inventory.wood[this.playerEid] = 1000000000000000000n; // 1E
-        
-        console.log('ECS Runtime Ready. Player Wood:', DataSpace.inventory.getFormatted(this.playerEid, 'wood'));
-        
         this.tick();
     }
 
@@ -48,8 +40,8 @@ export class WorldEcsRuntime {
         const ents = world.query(ComponentBit.Inventory);
         for (const eid of ents) {
             // 每秒产生大量木材
-            if (dt > 0.01) { 
-                DataSpace.inventory.add(eid, 'wood', 5000000n);
+            if (dt > 0.01) {
+                DataSpace.inventory.add(eid, ItemTypeMap.STICK_WOOD, 5000000n);
                 DataSpace.uiDirty[eid] = 1; // 标记 UI 刷新
             }
         }

@@ -1,9 +1,9 @@
 import { world } from '../../DataSpace';
-import { ComponentBit } from '../../core/ECSCore';
+import { ComponentBit } from '../ComponentBit';
 import { Position } from '../components/Position';
 import { Location } from '../components/Location';
 import { Inventory } from '../components/Inventory';
-import { LocationType } from '../enums/LocationType';
+import { LocationType } from '../maps/LocationMap';
 
 /**
  * Location 实体预制体
@@ -28,9 +28,9 @@ export const LocationEntity = {
         Location.set(eid, type);
         
         // 初始地点资源设为 0n
-        Inventory.add(eid, 'wood', 0n);
-        Inventory.add(eid, 'fur', 0n);
-        Inventory.add(eid, 'meat', 0n);
+        Inventory.add(eid, ItemTypeMap.STICK_WOOD, 0n);
+        Inventory.add(eid, ItemTypeMap.FUR_RABBIT, 0n);
+        Inventory.add(eid, ItemTypeMap.BEEF_RAW_NORMAL, 0n);
 
         return eid;
     }

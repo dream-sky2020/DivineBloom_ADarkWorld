@@ -1,8 +1,9 @@
 import { world } from '../../DataSpace';
-import { ComponentBit } from '../../core/ECSCore';
+import { ComponentBit } from '../ComponentBit';
 import { Inventory } from '../components/Inventory';
 import { Health } from '../components/Health';
 import { Position } from '../components/Position';
+import { ItemTypeMap } from '../maps/ItemMap';
 
 /**
  * Player 实体预制体
@@ -32,9 +33,9 @@ export const PlayerEntity = {
         Health.init(eid, hp);
         
         // 初始资源设置为 0n
-        Inventory.add(eid, 'wood', 0n);
-        Inventory.add(eid, 'fur', 0n);
-        Inventory.add(eid, 'meat', 0n);
+        Inventory.add(eid, ItemTypeMap.STICK_WOOD, 0n);
+        Inventory.add(eid, ItemTypeMap.FUR_RABBIT, 0n);
+        Inventory.add(eid, ItemTypeMap.BEEF_RAW_NORMAL, 0n);
 
         return eid;
     }
