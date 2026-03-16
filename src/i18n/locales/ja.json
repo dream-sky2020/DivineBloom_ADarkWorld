@@ -1,0 +1,84 @@
+{
+  "tabs": {
+    "room": "ROOM",
+    "world": "WORLD",
+    "settings": "SETTINGS",
+    "dev": "DEV PANEL"
+  },
+  "room": {
+    "status": "部屋は冷え切っている。",
+    "actions": {
+      "stoke": "火をくべる",
+      "traps": "罠を確認する"
+    }
+  },
+  "world": {
+    "placeholder": "地図は白紙だ。羅針盤が必要だ。"
+  },
+  "settings": {
+    "title": "エンジン設定",
+    "sections": {
+      "audio": "オーディオ＆ビジュアル",
+      "localization": "ローカライズ",
+      "data": "データ永続化"
+    },
+    "items": {
+      "sound": {
+        "name": "サウンドエフェクト",
+        "desc": "環境音とUIフィードバックを有効にします。"
+      },
+      "hyper": {
+        "name": "ハイパーモード",
+        "desc": "すべてのエンジン計算速度を2倍にします。"
+      },
+      "language": {
+        "name": "言語",
+        "desc": "優先するインターフェース言語を選択します。"
+      },
+      "save": {
+        "name": "セーブ管理",
+        "desc": "現在の進行状況をエクスポートまたはインポートします。"
+      },
+      "wipe": {
+        "name": "全データ消去",
+        "desc": "この操作は取り消せません。すべてが灰に帰します。"
+      }
+    },
+    "actions": {
+      "on": "オン",
+      "off": "オフ",
+      "export": "エクスポート",
+      "import": "インポート",
+      "restart": "再起動"
+    }
+  },
+  "dev": {
+    "title": "デベロッパーコンソール (ECS監視)",
+    "world_status": "ワールド状態",
+    "runtime": "ランタイム制御",
+    "components": "コンポーネントレジストリ",
+    "entities": "エンティティ数: {count}",
+    "max_entities": "最大エンティティ数: {max}",
+    "loop": {
+      "start": "ループ開始",
+      "stop": "ループ停止"
+    },
+    "create_test": "テストエンティティ作成"
+  },
+  "logs": {
+    "cold": "部屋が寒い。",
+    "dead": "火が消えている。",
+    "roaring": "火が勢いよく燃えている。",
+    "traps_empty": "罠は空だ。"
+  },
+  "stores": {
+    "title": "在庫",
+    "wood": "薪",
+    "furs": "毛皮",
+    "meat": "肉"
+  },
+  "theme": {
+    "light": "点灯",
+    "dark": "消灯"
+  }
+}

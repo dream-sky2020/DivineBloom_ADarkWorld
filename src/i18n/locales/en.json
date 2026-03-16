@@ -1,0 +1,84 @@
+{
+  "tabs": {
+    "room": "ROOM",
+    "world": "WORLD",
+    "settings": "SETTINGS",
+    "dev": "DEV PANEL"
+  },
+  "room": {
+    "status": "the fire is flickering.",
+    "actions": {
+      "stoke": "stoke fire",
+      "traps": "check traps"
+    }
+  },
+  "world": {
+    "placeholder": "the map is blank. you need a compass."
+  },
+  "settings": {
+    "title": "ENGINE SETTINGS",
+    "sections": {
+      "audio": "AUDIO & VISUAL",
+      "localization": "LOCALIZATION",
+      "data": "DATA PERSISTENCE"
+    },
+    "items": {
+      "sound": {
+        "name": "SOUND EFFECTS",
+        "desc": "enable ambient sounds and UI feedback."
+      },
+      "hyper": {
+        "name": "HYPER MODE",
+        "desc": "double the speed of all engine calculations."
+      },
+      "language": {
+        "name": "LANGUAGE",
+        "desc": "select your preferred interface language."
+      },
+      "save": {
+        "name": "SAVE MANAGEMENT",
+        "desc": "export or import your current progress."
+      },
+      "wipe": {
+        "name": "WIPE ALL DATA",
+        "desc": "this action is irreversible. everything will burn."
+      }
+    },
+    "actions": {
+      "on": "ON",
+      "off": "OFF",
+      "export": "EXPORT",
+      "import": "IMPORT",
+      "restart": "RESTART"
+    }
+  },
+  "dev": {
+    "title": "Developer Console (ECS Monitor)",
+    "world_status": "World Status",
+    "runtime": "Runtime Control",
+    "components": "Component Registry",
+    "entities": "Entities: {count}",
+    "max_entities": "Max Entities: {max}",
+    "loop": {
+      "start": "START LOOP",
+      "stop": "STOP LOOP"
+    },
+    "create_test": "CREATE TEST ENTITY"
+  },
+  "logs": {
+    "cold": "the room is cold.",
+    "dead": "the fire is dead.",
+    "roaring": "the fire is roaring.",
+    "traps_empty": "the traps are empty."
+  },
+  "stores": {
+    "title": "STORES",
+    "wood": "wood",
+    "furs": "furs",
+    "meat": "meat"
+  },
+  "theme": {
+    "light": "LIGHTS ON",
+    "dark": "LIGHTS OFF"
+  }
+}

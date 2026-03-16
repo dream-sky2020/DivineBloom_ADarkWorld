@@ -14,12 +14,21 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "types": ["jquery", "node"]
+    "types": ["jquery", "node", "vite/client"],
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
   },
   "include": [
     "script/**/*.js",
     "script/**/*.ts",
-    "dev-server.js"
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts"
   ],
   "exclude": [
     "node_modules",

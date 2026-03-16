@@ -4,7 +4,7 @@ import { ECSWorld } from '../../core/ECSCore';
  * Action 组件 - 行为核心关联组件
  * 作为一个实体拥有此组件，即代表它是一个“行为”实体。
  * 它仅存储行为最基础的元数据：谁发起了这个行为。
- * 具体的行动结果（伤害、治疗等）由独立的组件（Damage, Heal等）定义。
+ * 具体的行动结果（血量变化、行为变化、资源变化等）由独立的组件（HealthChange, ActionChange, InventoryChange等）定义。
  */
 export const Action = {
     // 1. 行为从属数据

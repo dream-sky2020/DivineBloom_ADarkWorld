@@ -1,4 +1,4 @@
-import { world } from '../../DataSpace';
+import { world } from '../../Data';
 import { ComponentBit } from '../ComponentBit';
 import { Position } from '../components/Position';
 import { Location } from '../components/Location';
@@ -27,11 +27,6 @@ export const LocationEntity = {
         Position.set(eid, x, y);
         Location.set(eid, type);
         
-        // 初始地点资源设为 0n
-        Inventory.add(eid, ItemTypeMap.STICK_WOOD, 0n);
-        Inventory.add(eid, ItemTypeMap.FUR_RABBIT, 0n);
-        Inventory.add(eid, ItemTypeMap.BEEF_RAW_NORMAL, 0n);
-
         return eid;
     }
 };

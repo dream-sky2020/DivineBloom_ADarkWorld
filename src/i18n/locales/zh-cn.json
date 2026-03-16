@@ -1,0 +1,84 @@
+{
+  "tabs": {
+    "room": "房间",
+    "world": "世界",
+    "settings": "设置",
+    "dev": "开发者面板"
+  },
+  "room": {
+    "status": "火堆正在闪烁。",
+    "actions": {
+      "stoke": "添柴",
+      "traps": "检查陷阱"
+    }
+  },
+  "world": {
+    "placeholder": "地图是一片空白。你需要一个罗盘。"
+  },
+  "settings": {
+    "title": "引擎设置",
+    "sections": {
+      "audio": "音效与视觉",
+      "localization": "本地化",
+      "data": "数据持久化"
+    },
+    "items": {
+      "sound": {
+        "name": "音效开关",
+        "desc": "启用环境音效和 UI 反馈。"
+      },
+      "hyper": {
+        "name": "极速模式",
+        "desc": "加倍所有引擎计算速度。"
+      },
+      "language": {
+        "name": "语言切换",
+        "desc": "选择您偏好的界面语言。"
+      },
+      "save": {
+        "name": "存档管理",
+        "desc": "导出或导入您当前的进度。"
+      },
+      "wipe": {
+        "name": "清空所有数据",
+        "desc": "此操作不可撤销。一切都将付之一炬。"
+      }
+    },
+    "actions": {
+      "on": "开启",
+      "off": "关闭",
+      "export": "导出",
+      "import": "导入",
+      "restart": "重置游戏"
+    }
+  },
+  "dev": {
+    "title": "开发者控制台 (ECS 监控)",
+    "world_status": "世界状态",
+    "runtime": "运行时控制",
+    "components": "组件注册表",
+    "entities": "实体数: {count}",
+    "max_entities": "最大实体数: {max}",
+    "loop": {
+      "start": "开始循环",
+      "stop": "停止循环"
+    },
+    "create_test": "创建测试实体"
+  },
+  "logs": {
+    "cold": "房间里很冷。",
+    "dead": "火堆熄灭了。",
+    "roaring": "火堆正熊熊燃烧。",
+    "traps_empty": "陷阱里空空如也。"
+  },
+  "stores": {
+    "title": "库存",
+    "wood": "木材",
+    "furs": "毛皮",
+    "meat": "肉类"
+  },
+  "theme": {
+    "light": "开灯",
+    "dark": "熄灯"
+  }
+}

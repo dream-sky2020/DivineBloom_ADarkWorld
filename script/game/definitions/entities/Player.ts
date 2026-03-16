@@ -1,4 +1,4 @@
-import { world } from '../../DataSpace';
+import { world } from '../../Data';
 import { ComponentBit } from '../ComponentBit';
 import { Inventory } from '../components/Inventory';
 import { Health } from '../components/Health';
@@ -32,11 +32,6 @@ export const PlayerEntity = {
         Position.set(eid, x, y);
         Health.init(eid, hp);
         
-        // 初始资源设置为 0n
-        Inventory.add(eid, ItemTypeMap.STICK_WOOD, 0n);
-        Inventory.add(eid, ItemTypeMap.FUR_RABBIT, 0n);
-        Inventory.add(eid, ItemTypeMap.BEEF_RAW_NORMAL, 0n);
-
         return eid;
     }
 };
