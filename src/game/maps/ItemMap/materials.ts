@@ -36,7 +36,7 @@ export const MaterialItemData: Record<string, ItemDefinition> = {
     [MaterialItems.IRON]: {
         id: MaterialItems.IRON,
         name: '铁',
-        description: '坚固耐用的基础金属。',
+        description: '血的沉淀物,是一切制造工具的基石',
         volume: 1,
     },
     [MaterialItems.COPPER]: {

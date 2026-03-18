@@ -69,6 +69,19 @@ export interface ActionDefinition {
         hp?: number;
     };
     /**
+     * 行为触发要求（例如：力量差距、特定状态）
+     */
+    requirements?: {
+        /**
+         * 力量差距要求 (例如：玩家力量 / 敌人力量 >= N)
+         */
+        strengthRatio?: number;
+        /**
+         * 最小力量值要求
+         */
+        minStrength?: number;
+    };
+    /**
      * 行为标签
      */
     tags?: string[];

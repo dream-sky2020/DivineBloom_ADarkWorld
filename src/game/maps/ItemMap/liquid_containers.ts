@@ -22,7 +22,7 @@ export const LiquidContainerItemData: Record<string, ItemDefinition> = {
     [LiquidContainerItems.QING_BOTTLE]: {
         id: LiquidContainerItems.QING_BOTTLE,
         name: '青瓶',
-        description: '帝王颁布的标准化液体容器之一，便于携行与精细分装。',
+        description: '帝王颁布的标准化液体容器之一，容量更大，便于携行与精细分装。',
         volume: 1.5
     },
     [LiquidContainerItems.RED_BOX]: {

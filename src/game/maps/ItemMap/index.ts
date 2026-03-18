@@ -7,6 +7,7 @@ import { BreadItems, BreadItemData } from './breads';
 import { SteakItems, SteakItemData } from './steaks';
 import { SteelSwordItems, SteelSwordItemData } from './steel_swords';
 import { LiquidContainerItems, LiquidContainerItemData } from './liquid_containers';
+import { PrecipitationCatalystItems, PrecipitationCatalystItemData } from './precipitation_catalyst_bases';
 
 export * from './types';
 export * from './materials';
@@ -17,6 +18,7 @@ export * from './breads';
 export * from './steaks';
 export * from './steel_swords';
 export * from './liquid_containers';
+export * from './precipitation_catalyst_bases';
 
 /**
  * 物品 ID 映射表 (基础 ID)
@@ -30,6 +32,7 @@ export const ItemTypeMap = {
     ...SteakItems,
     ...SteelSwordItems,
     ...LiquidContainerItems,
+    ...PrecipitationCatalystItems,
 } as const;
 
 /**
@@ -49,4 +52,5 @@ export const ItemDataMap: Record<ItemID, ItemDefinition> = {
     ...SteakItemData,
     ...SteelSwordItemData,
     ...LiquidContainerItemData,
+    ...PrecipitationCatalystItemData,
 } as Record<ItemID, ItemDefinition>;
