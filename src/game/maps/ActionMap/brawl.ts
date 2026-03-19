@@ -1,5 +1,5 @@
 import { ActionTriggerModeMap } from '../ActionTriggerModeMap';
-import type { ActionDefinition } from './types';
+import type { Action } from '../../interface';
 
 /**
  * 肉搏系列行为 ID 映射表
@@ -15,13 +15,14 @@ export const BrawlActions = {
     THROW: 'throw', // 抛投
     RIP_HEAD_OFF: 'rip_head_off', // 拔掉头颅
     RIP_ARM_OFF: 'rip_arm_off', // 拔掉胳膊
-    CRUSH_STOMP: 'crush_stomp' // 踩爆
+    CRUSH_STOMP: 'crush_stomp', // 踩爆
+    CRUSH_SKULL: 'crush_skull' // 握碎头颅
 } as const;
 
 /**
  * 肉搏系列行为详细数据表
  */
-export const BrawlActionData: Record<string, ActionDefinition> = {
+export const BrawlActionData: Record<string, Action> = {
     [BrawlActions.FLYING_KICK]: {
         id: BrawlActions.FLYING_KICK,
         name: '飞踹',
@@ -226,5 +227,25 @@ export const BrawlActionData: Record<string, ActionDefinition> = {
             strengthRatio: 4.5
         },
         tags: ['attack', 'melee', 'finisher', 'heavy', 'impact']
+    },
+    [BrawlActions.CRUSH_SKULL]: {
+        id: BrawlActions.CRUSH_SKULL,
+        name: '握碎头颅',
+        description: '单手扣住敌人的面门并以恐怖的握力将其颅骨捏碎。仅在实力存在绝对鸿沟时可执行。',
+        triggerStrategy: {
+            mode: ActionTriggerModeMap.MANUAL_ONLY,
+            allowManual: true,
+            allowAuto: false,
+            manualThreshold: 1
+        },
+        cooldown: 75.0,
+        cost: {
+            stamina: 90,
+            hp: 5
+        },
+        requirements: {
+            strengthRatio: 5.5
+        },
+        tags: ['attack', 'melee', 'finisher', 'extreme', 'bloody']
     }
 };

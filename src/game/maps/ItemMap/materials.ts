@@ -1,4 +1,4 @@
-import type { ItemDefinition } from './types';
+import type { Item } from '../../interface';
 
 /**
  * 材料物品 ID 映射表
@@ -32,7 +32,7 @@ export const MaterialItems = {
 /**
  * 材料详细数据表
  */
-export const MaterialItemData: Record<string, ItemDefinition> = {
+export const MaterialItemData: Record<string, Item> = {
     [MaterialItems.IRON]: {
         id: MaterialItems.IRON,
         name: '铁',

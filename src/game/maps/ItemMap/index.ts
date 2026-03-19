@@ -1,4 +1,4 @@
-import type { ItemDefinition } from './types';
+import type { Item } from '../../interface';
 import { MaterialItems, MaterialItemData } from './materials';
 import { BrownSugarItems, BrownSugarItemData } from './brown_sugar';
 import { ProtectionTalismanItems, ProtectionTalismanItemData } from './protection_talisman';
@@ -9,7 +9,7 @@ import { SteelSwordItems, SteelSwordItemData } from './steel_swords';
 import { LiquidContainerItems, LiquidContainerItemData } from './liquid_containers';
 import { PrecipitationCatalystItems, PrecipitationCatalystItemData } from './precipitation_catalyst_bases';
 
-export * from './types';
+export * from '../../interface';
 export * from './materials';
 export * from './brown_sugar';
 export * from './protection_talisman';
@@ -43,7 +43,7 @@ export type ItemID = typeof ItemTypeMap[keyof typeof ItemTypeMap];
 /**
  * 物品详细数据表
  */
-export const ItemDataMap: Record<ItemID, ItemDefinition> = {
+export const ItemDataMap: Record<ItemID, Item> = {
     ...MaterialItemData,
     ...BrownSugarItemData,
     ...ProtectionTalismanItemData,
@@ -53,4 +53,4 @@ export const ItemDataMap: Record<ItemID, ItemDefinition> = {
     ...SteelSwordItemData,
     ...LiquidContainerItemData,
     ...PrecipitationCatalystItemData,
-} as Record<ItemID, ItemDefinition>;
+} as Record<ItemID, Item>;

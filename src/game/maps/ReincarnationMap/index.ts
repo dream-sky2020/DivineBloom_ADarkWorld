@@ -1,8 +1,8 @@
-import type { ReincarnationUpgradeDefinition } from './types';
+import type { ReincarnationUpgrade } from '../../interface';
 import { PhysicalToughnessUpgrades, PhysicalToughnessData } from './physical_toughness';
 import { PhysicalStrengthUpgrades, PhysicalStrengthData } from './physical_strength';
 
-export * from './types';
+export * from '../../interface';
 export * from './physical_toughness';
 export * from './physical_strength';
 
@@ -22,7 +22,7 @@ export type ReincarnationUpgradeID = typeof ReincarnationUpgradeItems[keyof type
 /**
  * 转生升级详细数据表
  */
-export const ReincarnationUpgradeData: Record<string, ReincarnationUpgradeDefinition> = {
+export const ReincarnationUpgradeData: Record<string, ReincarnationUpgrade> = {
     ...PhysicalToughnessData,
     ...PhysicalStrengthData,
-} as Record<string, ReincarnationUpgradeDefinition>;
+} as Record<string, ReincarnationUpgrade>;

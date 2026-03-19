@@ -1,4 +1,4 @@
-import type { ItemDefinition } from './types';
+import type { Item } from '../../interface';
 
 /**
  * 面包物品 ID 映射表
@@ -23,7 +23,7 @@ export const BreadItems = {
 /**
  * 面包详细数据表
  */
-export const BreadItemData: Record<string, ItemDefinition> = {
+export const BreadItemData: Record<string, Item> = {
     [BreadItems.FOAMY_BROWN_BREAD]: {
         id: BreadItems.FOAMY_BROWN_BREAD,
         name: '泡沫黑面包',

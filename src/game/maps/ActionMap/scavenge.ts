@@ -1,5 +1,5 @@
 import { ActionTriggerModeMap } from '../ActionTriggerModeMap';
-import type { ActionDefinition } from './types';
+import type { Action } from '../../interface';
 
 /**
  * 翻找系列行为 ID 映射表
@@ -15,7 +15,7 @@ export const ScavengeActions = {
 /**
  * 翻找系列行为详细数据表
  */
-export const ScavengeActionData: Record<string, ActionDefinition> = {
+export const ScavengeActionData: Record<string, Action> = {
     [ScavengeActions.SCAVENGE_RUINS]: {
         id: ScavengeActions.SCAVENGE_RUINS,
         name: '翻找废墟',
@@ -32,7 +32,7 @@ export const ScavengeActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 2,
         cost: {
-            stamina: 10
+            stamina: 10n
         },
         tags: ['collect', 'scavenge', 'ruins']
     },
@@ -50,7 +50,7 @@ export const ScavengeActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: false,
         maxCooldownAccumulateCharges: 1,
         cost: {
-            stamina: 12
+            stamina: 12n
         },
         tags: ['collect', 'scavenge', 'corpse']
     },
@@ -68,8 +68,8 @@ export const ScavengeActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: false,
         maxCooldownAccumulateCharges: 1,
         cost: {
-            stamina: 18,
-            hp: 2
+            stamina: 18n,
+            hp: 2n
         },
         tags: ['collect', 'scavenge', 'flesh_mountain', 'high_risk']
     },
@@ -89,7 +89,7 @@ export const ScavengeActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 3,
         cost: {
-            stamina: 9
+            stamina: 9n
         },
         tags: ['collect', 'scavenge', 'shop']
     },
@@ -109,7 +109,7 @@ export const ScavengeActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 2,
         cost: {
-            stamina: 11
+            stamina: 11n
         },
         tags: ['collect', 'scavenge', 'sawmill', 'materials']
     },

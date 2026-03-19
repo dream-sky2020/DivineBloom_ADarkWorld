@@ -1,4 +1,4 @@
-import type { ItemDefinition } from './types';
+import type { Item } from '../../interface';
 
 /**
  * 液体容器系列物品 ID 映射表
@@ -12,7 +12,7 @@ export const LiquidContainerItems = {
 /**
  * 液体容器系列详细数据表
  */
-export const LiquidContainerItemData: Record<string, ItemDefinition> = {
+export const LiquidContainerItemData: Record<string, Item> = {
     [LiquidContainerItems.WHITE_CAN]: {
         id: LiquidContainerItems.WHITE_CAN,
         name: '白罐',

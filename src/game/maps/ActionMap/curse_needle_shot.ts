@@ -1,5 +1,5 @@
 import { ActionTriggerModeMap } from '../ActionTriggerModeMap';
-import type { ActionDefinition } from './types';
+import type { Action } from '../../interface';
 
 /**
  * 咒杀击发系列行为 ID 映射表
@@ -17,7 +17,7 @@ export const CurseNeedleShotActions = {
 /**
  * 咒杀击发系列行为详细数据表
  */
-export const CurseNeedleShotActionData: Record<string, ActionDefinition> = {
+export const CurseNeedleShotActionData: Record<string, Action> = {
     [CurseNeedleShotActions.MANUAL_PRESS]: {
         id: CurseNeedleShotActions.MANUAL_PRESS,
         name: '咒杀击发:手动按压',

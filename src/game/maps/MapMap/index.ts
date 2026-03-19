@@ -1,6 +1,6 @@
-import type { MapAreaDefinition } from './types';
+import type { MapArea } from '../../interface';
 
-export * from './types';
+export * from '../../interface';
 
 /**
  * 地图区域 ID 映射表 (基础 ID)
@@ -18,7 +18,7 @@ export type MapAreaID = typeof MapAreaItems[keyof typeof MapAreaItems];
 /**
  * 地图区域详细数据表
  */
-export const MapAreaDataMap: Record<string, MapAreaDefinition> = {
+export const MapAreaDataMap: Record<string, MapArea> = {
     // 示例:
     /*
     [MapAreaItems.ABANDONED_VILLAGE]: {
@@ -40,4 +40,4 @@ export const MapAreaDataMap: Record<string, MapAreaDefinition> = {
         }
     },
     */
-} as Record<string, MapAreaDefinition>;
+} as Record<string, MapArea>;

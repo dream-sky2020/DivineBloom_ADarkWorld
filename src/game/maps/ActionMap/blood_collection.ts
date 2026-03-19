@@ -1,5 +1,5 @@
 import { ActionTriggerModeMap } from '../ActionTriggerModeMap';
-import type { ActionDefinition } from './types';
+import type { Action } from '../../interface';
 
 /**
  * 采集血液系列行为 ID 映射表
@@ -16,7 +16,7 @@ export const BloodCollectionActions = {
 /**
  * 采集血液系列行为详细数据表
  */
-export const BloodCollectionActionData: Record<string, ActionDefinition> = {
+export const BloodCollectionActionData: Record<string, Action> = {
     [BloodCollectionActions.BLOOD_COLLECTION_ALL]: {
         id: BloodCollectionActions.BLOOD_COLLECTION_ALL,
         name: '采集血液:全部采集',
@@ -33,7 +33,7 @@ export const BloodCollectionActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 2,
         cost: {
-            stamina: 9
+            stamina: 9n
         },
         tags: ['collect', 'blood', 'all', 'gateway']
     },
@@ -53,7 +53,7 @@ export const BloodCollectionActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 2,
         cost: {
-            stamina: 6
+            stamina: 6n
         },
         tags: ['collect', 'blood', 'white_gate']
     },
@@ -73,7 +73,7 @@ export const BloodCollectionActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 2,
         cost: {
-            stamina: 7
+            stamina: 7n
         },
         tags: ['collect', 'blood', 'black_stone_gate']
     },
@@ -93,7 +93,7 @@ export const BloodCollectionActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 2,
         cost: {
-            stamina: 8
+            stamina: 8n
         },
         tags: ['collect', 'blood', 'steel_gate']
     },
@@ -113,7 +113,7 @@ export const BloodCollectionActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 2,
         cost: {
-            stamina: 8
+            stamina: 8n
         },
         tags: ['collect', 'blood', 'rust_gate']
     },
@@ -133,7 +133,7 @@ export const BloodCollectionActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 2,
         cost: {
-            stamina: 9
+            stamina: 9n
         },
         tags: ['collect', 'blood', 'bloodstain_gate']
     }

@@ -1,4 +1,4 @@
-import type { ItemDefinition } from './types';
+import type { Item } from '../../interface';
 
 /**
  * 钢剑系列物品 ID 映射表
@@ -28,7 +28,7 @@ export const SteelSwordItems = {
 /**
  * 钢剑系列详细数据表
  */
-export const SteelSwordItemData: Record<string, ItemDefinition> = {
+export const SteelSwordItemData: Record<string, Item> = {
     [SteelSwordItems.SOFT_STEEL_SWORD]: {
         id: SteelSwordItems.SOFT_STEEL_SWORD,
         name: '软钢剑',

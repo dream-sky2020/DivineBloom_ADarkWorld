@@ -1,4 +1,4 @@
-import type { ReincarnationUpgradeDefinition } from './types';
+import type { ReincarnationUpgrade } from '../../interface';
 
 /**
  * 肉体力量强度强化系列 ID 映射表
@@ -13,13 +13,13 @@ export const PhysicalStrengthUpgrades = {
 /**
  * 肉体力量强度强化系列详细数据表
  */
-export const PhysicalStrengthData: Record<string, ReincarnationUpgradeDefinition> = {
+export const PhysicalStrengthData: Record<string, ReincarnationUpgrade> = {
     [PhysicalStrengthUpgrades.TYPE_1]: {
         id: PhysicalStrengthUpgrades.TYPE_1,
         name: '1类肉体力量强度强化',
         description: '永久强化肌肉，每级增加 5 点力量',
         maxLevel: 20,
-        calculateCost: (level) => level * 15, // 消耗稍微设高一点，因为力量更关键
+        calculateCost: (level) => BigInt(level) * 15n,
         getEffectDescription: (level) => `力量 +${level * 5}`,
     },
     [PhysicalStrengthUpgrades.TYPE_2]: {
@@ -27,7 +27,7 @@ export const PhysicalStrengthData: Record<string, ReincarnationUpgradeDefinition
         name: '2类肉体力量强度强化',
         description: '进一步强化肌肉，每级增加 10 点力量',
         maxLevel: 20,
-        calculateCost: (level) => level * 30,
+        calculateCost: (level) => BigInt(level) * 30n,
         getEffectDescription: (level) => `力量 +${level * 10}`,
     },
     [PhysicalStrengthUpgrades.TYPE_3]: {
@@ -35,7 +35,7 @@ export const PhysicalStrengthData: Record<string, ReincarnationUpgradeDefinition
         name: '3类肉体力量强度强化',
         description: '深度强化肌肉，每级增加 25 点力量',
         maxLevel: 20,
-        calculateCost: (level) => level * 60,
+        calculateCost: (level) => BigInt(level) * 60n,
         getEffectDescription: (level) => `力量 +${level * 25}`,
     },
     [PhysicalStrengthUpgrades.TYPE_4]: {
@@ -43,7 +43,7 @@ export const PhysicalStrengthData: Record<string, ReincarnationUpgradeDefinition
         name: '4类肉体力量强度强化',
         description: '终极强化肌肉，每级增加 50 点力量',
         maxLevel: 100,
-        calculateCost: (level) => level * 150,
+        calculateCost: (level) => BigInt(level) * 150n,
         getEffectDescription: (level) => `力量 +${level * 50}`,
     },
 };

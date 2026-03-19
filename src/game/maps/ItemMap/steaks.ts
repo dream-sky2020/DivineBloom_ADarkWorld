@@ -1,4 +1,4 @@
-import type { ItemDefinition } from './types';
+import type { Item } from '../../interface';
 
 /**
  * 肉排物品 ID 映射表
@@ -23,7 +23,7 @@ export const SteakItems = {
 /**
  * 肉排详细数据表
  */
-export const SteakItemData: Record<string, ItemDefinition> = {
+export const SteakItemData: Record<string, Item> = {
     [SteakItems.BEGGAR_STEAK]: {
         id: SteakItems.BEGGAR_STEAK,
         name: '乞丐肉排',

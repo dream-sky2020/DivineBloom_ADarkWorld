@@ -1,5 +1,5 @@
 import { ActionTriggerModeMap } from '../ActionTriggerModeMap';
-import type { ActionDefinition } from './types';
+import type { Action } from '../../interface';
 
 /**
  * 挥砍系列行为 ID 映射表
@@ -18,7 +18,7 @@ export const BladeActions = {
 /**
  * 挥砍系列行为详细数据表
  */
-export const BladeActionData: Record<string, ActionDefinition> = {
+export const BladeActionData: Record<string, Action> = {
     [BladeActions.THRUST]: {
         id: BladeActions.THRUST,
         name: '直刺',
@@ -31,7 +31,7 @@ export const BladeActionData: Record<string, ActionDefinition> = {
         },
         cooldown: 0.7,
         cost: {
-            stamina: 8
+            stamina: 8n
         },
         tags: ['attack', 'melee', 'sword', 'thrust']
     },
@@ -51,7 +51,7 @@ export const BladeActionData: Record<string, ActionDefinition> = {
         autoCooldownAccumulate: true,
         maxCooldownAccumulateCharges: 1,
         cost: {
-            stamina: 14
+            stamina: 14n
         },
         tags: ['attack', 'melee', 'sword', 'sweep', 'aoe']
     },
@@ -67,7 +67,7 @@ export const BladeActionData: Record<string, ActionDefinition> = {
         },
         cooldown: 1.1,
         cost: {
-            stamina: 12
+            stamina: 12n
         },
         tags: ['attack', 'melee', 'sword', 'slash']
     },
@@ -83,7 +83,7 @@ export const BladeActionData: Record<string, ActionDefinition> = {
         },
         cooldown: 25.0,
         cost: {
-            stamina: 40
+            stamina: 40n
         },
         requirements: {
             strengthRatio: 3.5
@@ -102,7 +102,7 @@ export const BladeActionData: Record<string, ActionDefinition> = {
         },
         cooldown: 45.0,
         cost: {
-            stamina: 60
+            stamina: 60n
         },
         requirements: {
             strengthRatio: 4.5
@@ -121,7 +121,7 @@ export const BladeActionData: Record<string, ActionDefinition> = {
         },
         cooldown: 55.0,
         cost: {
-            stamina: 75
+            stamina: 75n
         },
         requirements: {
             strengthRatio: 5.5
@@ -140,7 +140,7 @@ export const BladeActionData: Record<string, ActionDefinition> = {
         },
         cooldown: 35.0,
         cost: {
-            stamina: 35
+            stamina: 35n
         },
         requirements: {
             strengthRatio: 4.0
@@ -159,7 +159,7 @@ export const BladeActionData: Record<string, ActionDefinition> = {
         },
         cooldown: 50.0,
         cost: {
-            stamina: 65
+            stamina: 65n
         },
         requirements: {
             strengthRatio: 5.0

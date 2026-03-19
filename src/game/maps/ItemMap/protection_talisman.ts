@@ -1,4 +1,4 @@
-import type { ItemDefinition } from './types';
+import type { Item } from '../../interface';
 
 /**
  * 护符物品 ID 映射表
@@ -31,7 +31,7 @@ export const ProtectionTalismanItems = {
 /**
  * 护符详细数据表
  */
-export const ProtectionTalismanItemData: Record<string, ItemDefinition> = {
+export const ProtectionTalismanItemData: Record<string, Item> = {
     // 防护护符数据
     [ProtectionTalismanItems.VAGRANT_PROTECTION_TALISMAN]: {
         id: ProtectionTalismanItems.VAGRANT_PROTECTION_TALISMAN,

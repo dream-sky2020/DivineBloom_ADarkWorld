@@ -1,11 +1,12 @@
-import type { ActionDefinition } from './types';
+import type { Action } from '../../interface';
+
 import { ScavengeActions, ScavengeActionData } from './scavenge';
 import { BloodCollectionActions, BloodCollectionActionData } from './blood_collection';
 import { CurseNeedleShotActions, CurseNeedleShotActionData } from './curse_needle_shot';
 import { BladeActions, BladeActionData } from './blade';
 import { BrawlActions, BrawlActionData } from './brawl';
 
-export * from './types';
+export * from '../../interface';
 export * from './scavenge';
 export * from './blood_collection';
 export * from './curse_needle_shot';
@@ -31,10 +32,10 @@ export type ActionID = typeof ActionTypeMap[keyof typeof ActionTypeMap];
 /**
  * 行为详细数据表
  */
-export const ActionDataMap: Record<ActionID, ActionDefinition> = {
+export const ActionDataMap: Record<ActionID, Action> = {
     ...ScavengeActionData,
     ...BloodCollectionActionData,
     ...CurseNeedleShotActionData,
     ...BladeActionData,
     ...BrawlActionData
-} as Record<ActionID, ActionDefinition>;
+} as Record<ActionID, Action>;
