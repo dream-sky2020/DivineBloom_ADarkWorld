@@ -3,11 +3,29 @@ import { BaseAttributes, BaseAttributeData } from './base';
 import { ResourceAttributes, ResourceAttributeData } from './resources';
 import { ReflectionAttributes, ReflectionAttributeData } from './reflection';
 import { DodgeAttributes, DodgeAttributeData } from './dodge';
+import { DamageAttributes, DamageAttributeData } from './damage';
+import { ActionAttributes, ActionAttributeData } from './action';
+import { HealingAttributes, HealingAttributeData } from './healing';
+import { StatisticsAttributes, StatisticsAttributeData } from './statistics';
+import { ResurrectionAttributes, ResurrectionAttributeData } from './resurrection';
+import { BleedingAttributes, BleedingAttributeData } from './bleeding';
+import { ReductionAttributes, ReductionAttributeData } from './reduction';
+import { HPAttributes, HPAttributeData } from './hp';
+import { CritAttributes, CritAttributeData } from './crit';
 
 export * from './base';
 export * from './resources';
 export * from './reflection';
 export * from './dodge';
+export * from './damage';
+export * from './action';
+export * from './healing';
+export * from './statistics';
+export * from './resurrection';
+export * from './bleeding';
+export * from './reduction';
+export * from './hp';
+export * from './crit';
 
 /**
  * 属性 ID 映射表 (全量 ID)
@@ -17,6 +35,15 @@ export const AttributeTypeMap = {
     ...ResourceAttributes,
     ...ReflectionAttributes,
     ...DodgeAttributes,
+    ...DamageAttributes,
+    ...ActionAttributes,
+    ...HealingAttributes,
+    ...StatisticsAttributes,
+    ...ResurrectionAttributes,
+    ...BleedingAttributes,
+    ...ReductionAttributes,
+    ...HPAttributes,
+    ...CritAttributes,
 } as const;
 
 /**
@@ -32,4 +59,13 @@ export const AttributeDataMap: Record<AttributeID, Attribute> = {
     ...ResourceAttributeData,
     ...ReflectionAttributeData,
     ...DodgeAttributeData,
+    ...DamageAttributeData,
+    ...ActionAttributeData,
+    ...HealingAttributeData,
+    ...StatisticsAttributeData,
+    ...ResurrectionAttributeData,
+    ...BleedingAttributeData,
+    ...ReductionAttributeData,
+    ...HPAttributeData,
+    ...CritAttributeData,
 } as Record<AttributeID, Attribute>;
