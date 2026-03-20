@@ -23,6 +23,7 @@ export const HPAttributeData: Record<string, Attribute> = {
         defaultValue: 100n,
         minValue: 0n,
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [HPAttributes.HP_MAX]: {
         id: HPAttributes.HP_MAX,
@@ -31,6 +32,7 @@ export const HPAttributeData: Record<string, Attribute> = {
         defaultValue: 100n,
         minValue: 1n,
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [HPAttributes.HP_REMOVED_MAX]: {
         id: HPAttributes.HP_REMOVED_MAX,
@@ -39,5 +41,6 @@ export const HPAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        isDefaultLoaded: true,
     },
 };

@@ -23,6 +23,7 @@ export const DamageAttributeData: Record<string, Attribute> = {
         defaultValue: 10n,
         minValue: 0n,
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [DamageAttributes.PERCENT_DAMAGE]: {
         id: DamageAttributes.PERCENT_DAMAGE,
@@ -33,6 +34,7 @@ export const DamageAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [DamageAttributes.DAMAGE_MIN_LIMIT]: {
         id: DamageAttributes.DAMAGE_MIN_LIMIT,
@@ -41,5 +43,6 @@ export const DamageAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 0n,
         category: 'combat',
+        isDefaultLoaded: true,
     },
 };

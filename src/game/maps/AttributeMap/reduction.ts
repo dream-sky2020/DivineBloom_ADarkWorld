@@ -27,6 +27,7 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [ReductionAttributes.REDUCTION_PERCENT]: {
         id: ReductionAttributes.REDUCTION_PERCENT,
@@ -37,6 +38,7 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [ReductionAttributes.REDUCTION_PERCENT_MAX]: {
         id: ReductionAttributes.REDUCTION_PERCENT_MAX,
@@ -48,6 +50,7 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [ReductionAttributes.REDUCTION_DIVISOR]: {
         id: ReductionAttributes.REDUCTION_DIVISOR,
@@ -56,6 +59,7 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         defaultValue: 1.0,
         minValue: 1.0,
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [ReductionAttributes.OVERFLOW_REDUCTION_PERCENT_TO_DIVISOR_CONVERSION]: {
         id: ReductionAttributes.OVERFLOW_REDUCTION_PERCENT_TO_DIVISOR_CONVERSION,

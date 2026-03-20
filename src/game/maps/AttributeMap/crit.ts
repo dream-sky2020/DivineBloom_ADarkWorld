@@ -12,6 +12,8 @@ export const CritAttributes = {
     CRIT_RATE_MAX: 'crit_rate_max',
     /** 溢出暴击率转化为暴击伤害的比例 */
     OVERFLOW_CRIT_RATE_TO_DAMAGE_CONVERSION: 'overflow_crit_rate_to_damage_conversion',
+    /** 暴击伤害固定值加成 */
+    CRIT_DAMAGE_FIXED: 'crit_damage_fixed',
 } as const;
 
 /**
@@ -28,6 +30,7 @@ export const CritAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [CritAttributes.CRIT_DAMAGE]: {
         id: CritAttributes.CRIT_DAMAGE,
@@ -38,6 +41,7 @@ export const CritAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [CritAttributes.CRIT_RATE_MAX]: {
         id: CritAttributes.CRIT_RATE_MAX,
@@ -49,6 +53,7 @@ export const CritAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [CritAttributes.OVERFLOW_CRIT_RATE_TO_DAMAGE_CONVERSION]: {
         id: CritAttributes.OVERFLOW_CRIT_RATE_TO_DAMAGE_CONVERSION,
@@ -56,6 +61,14 @@ export const CritAttributeData: Record<string, Attribute> = {
         description: '当暴击率超过最大暴击率时，溢出部分按比例转化为额外的暴击伤害。',
         defaultValue: 1.0,
         minValue: 0,
+        category: 'combat',
+    },
+    [CritAttributes.CRIT_DAMAGE_FIXED]: {
+        id: CritAttributes.CRIT_DAMAGE_FIXED,
+        name: '暴击伤害固定加成',
+        description: '暴击时造成的固定额外伤害数值。',
+        defaultValue: 0n,
+        minValue: 0n,
         category: 'combat',
     },
 };

@@ -2,26 +2,37 @@ import type { Attribute } from '../../interface';
 
 /**
  * 流血相关属性 ID 映射表
+ * 
+ * 重构说明：为了简化逻辑，流血不再作为独立的状态队列叠加，
+ * 而是直接通过角色身上的这些属性来代表当前的流血状态。
  */
 export const BleedingAttributes = {
     /** 攻击施加流血概率 */
     BLEED_CHANCE: 'bleed_chance',
-    /** 流血伤害触发间隔 (秒) */
-    BLEED_INTERVAL: 'bleed_interval',
-    /** 流血基础伤害 */
+    /** 攻击施加流血时的基础伤害 */
+    BLEED_APPLY_BASE_DAMAGE: 'bleed_apply_base_damage',
+    /** 攻击施加流血时的百分比伤害加成 */
+    BLEED_APPLY_PERCENT_DAMAGE: 'bleed_apply_percent_damage',
+    /** 攻击施加流血时的伤害触发次数 */
+    BLEED_APPLY_TRIGGER_COUNT: 'bleed_apply_trigger_count',
+    /** 攻击施加流血时的伤害间隔 (秒) */
+    BLEED_APPLY_INTERVAL: 'bleed_apply_interval',
+
+    /** 角色当前受到的流血基础伤害 (每跳) */
     BLEED_BASE_DAMAGE: 'bleed_base_damage',
-    /** 流血百分比伤害加成 */
+    /** 角色当前受到的流血百分比伤害加成 */
     BLEED_PERCENT_DAMAGE: 'bleed_percent_damage',
-    /** 流血伤害触发次数 */
-    BLEED_TRIGGER_COUNT: 'bleed_trigger_count',
-    /** 流血引爆概率 */
+    /** 角色当前受到的流血剩余触发次数 */
+    BLEED_TRIGGER_COUNT_REMAINING: 'bleed_trigger_count_remaining',
+    /** 角色当前受到的流血伤害触发间隔 (秒) */
+    BLEED_INTERVAL: 'bleed_interval',
+
+    /** 流血引爆概率 (立即结算剩余所有伤害) */
     BLEED_DETONATION_CHANCE: 'bleed_detonation_chance',
     /** 流血引爆次数 */
     BLEED_DETONATION_COUNT: 'bleed_detonation_count',
     /** 溢出流血引爆概率转化为引爆次数的比例 */
     OVERFLOW_BLEED_DETONATION_CHANCE_TO_COUNT_CONVERSION: 'overflow_bleed_detonation_chance_to_count_conversion',
-    /** 最大流血状态数量 */
-    BLEED_MAX_STACKS: 'bleed_max_stacks',
 } as const;
 
 /**
@@ -38,6 +49,71 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        isDefaultLoaded: true,
+    },
+    [BleedingAttributes.BLEED_APPLY_BASE_DAMAGE]: {
+        id: BleedingAttributes.BLEED_APPLY_BASE_DAMAGE,
+        name: '施加流血基础伤害',
+        description: '攻击成功施加流血时，赋予目标的流血基础伤害。重复施加时通常取最高值。',
+        defaultValue: 0n,
+        minValue: 0n,
+        category: 'combat',
+        isDefaultLoaded: true,
+    },
+    [BleedingAttributes.BLEED_APPLY_PERCENT_DAMAGE]: {
+        id: BleedingAttributes.BLEED_APPLY_PERCENT_DAMAGE,
+        name: '施加流血百分比伤害',
+        description: '攻击成功施加流血时，赋予目标的流血百分比伤害加成。重复施加时通常取最高值。',
+        defaultValue: 0,
+        minValue: 0,
+        isPercent: true,
+        unit: '%',
+        category: 'combat',
+        isDefaultLoaded: true,
+    },
+    [BleedingAttributes.BLEED_APPLY_TRIGGER_COUNT]: {
+        id: BleedingAttributes.BLEED_APPLY_TRIGGER_COUNT,
+        name: '施加流血触发次数',
+        description: '攻击成功施加流血时，赋予目标的流血总触发次数。',
+        defaultValue: 3n,
+        minValue: 1n,
+        category: 'combat',
+        isDefaultLoaded: true,
+    },
+    [BleedingAttributes.BLEED_APPLY_INTERVAL]: {
+        id: BleedingAttributes.BLEED_APPLY_INTERVAL,
+        name: '施加流血伤害间隔',
+        description: '攻击成功施加流血时，赋予目标的流血触发间隔（秒）。重复施加时通常取最小值。',
+        defaultValue: 1.0,
+        minValue: 0.1,
+        category: 'combat',
+        isDefaultLoaded: true,
+    },
+    [BleedingAttributes.BLEED_BASE_DAMAGE]: {
+        id: BleedingAttributes.BLEED_BASE_DAMAGE,
+        name: '流血基础伤害',
+        description: '当前流血状态下，每次触发时造成的固定数值伤害。',
+        defaultValue: 0n,
+        minValue: 0n,
+        category: 'combat',
+    },
+    [BleedingAttributes.BLEED_PERCENT_DAMAGE]: {
+        id: BleedingAttributes.BLEED_PERCENT_DAMAGE,
+        name: '流血百分比伤害加成',
+        description: '当前流血状态下的额外伤害比例。',
+        defaultValue: 0,
+        minValue: 0,
+        isPercent: true,
+        unit: '%',
+        category: 'combat',
+    },
+    [BleedingAttributes.BLEED_TRIGGER_COUNT_REMAINING]: {
+        id: BleedingAttributes.BLEED_TRIGGER_COUNT_REMAINING,
+        name: '流血剩余触发次数',
+        description: '当前流血状态在消失前，还会触发多少次伤害。',
+        defaultValue: 0n,
+        minValue: 0n,
+        category: 'combat',
     },
     [BleedingAttributes.BLEED_INTERVAL]: {
         id: BleedingAttributes.BLEED_INTERVAL,
@@ -47,42 +123,17 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         minValue: 0.1,
         category: 'combat',
     },
-    [BleedingAttributes.BLEED_BASE_DAMAGE]: {
-        id: BleedingAttributes.BLEED_BASE_DAMAGE,
-        name: '流血基础伤害',
-        description: '流血状态每次触发时造成的固定数值伤害。',
-        defaultValue: 0n,
-        minValue: 0n,
-        category: 'combat',
-    },
-    [BleedingAttributes.BLEED_PERCENT_DAMAGE]: {
-        id: BleedingAttributes.BLEED_PERCENT_DAMAGE,
-        name: '流血百分比伤害加成',
-        description: '基于某种基础属性计算出的额外流血伤害比例。',
-        defaultValue: 0,
-        minValue: 0,
-        isPercent: true,
-        unit: '%',
-        category: 'combat',
-    },
-    [BleedingAttributes.BLEED_TRIGGER_COUNT]: {
-        id: BleedingAttributes.BLEED_TRIGGER_COUNT,
-        name: '流血伤害触发次数',
-        description: '施加流血状态后，该状态在消失前总计会触发多少次伤害。',
-        defaultValue: 3n,
-        minValue: 1n,
-        category: 'combat',
-    },
     [BleedingAttributes.BLEED_DETONATION_CHANCE]: {
         id: BleedingAttributes.BLEED_DETONATION_CHANCE,
         name: '流血引爆概率',
-        description: '每次攻击后，有概率立即结算目标身上所有流血状态的剩余总伤害（引爆）。',
+        description: '每次攻击后，有概率立即结算目标当前受到的流血状态的所有剩余伤害。',
         defaultValue: 0,
         minValue: 0,
         maxValue: 1,
         isPercent: true,
         unit: '%',
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [BleedingAttributes.BLEED_DETONATION_COUNT]: {
         id: BleedingAttributes.BLEED_DETONATION_COUNT,
@@ -91,6 +142,7 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 1n,
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [BleedingAttributes.OVERFLOW_BLEED_DETONATION_CHANCE_TO_COUNT_CONVERSION]: {
         id: BleedingAttributes.OVERFLOW_BLEED_DETONATION_CHANCE_TO_COUNT_CONVERSION,
@@ -99,13 +151,6 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 0n,
         category: 'combat',
-    },
-    [BleedingAttributes.BLEED_MAX_STACKS]: {
-        id: BleedingAttributes.BLEED_MAX_STACKS,
-        name: '最大流血状态数量',
-        description: '目标身上可同时存在的最大流血层数。如果超过该范围，队列最前面的状态将被引爆（造成：流血触发次数 * 流血伤害）。',
-        defaultValue: 5n,
-        minValue: 1n,
-        category: 'combat',
+        isDefaultLoaded: true,
     },
 };

@@ -16,4 +16,6 @@ export interface Attribute extends IData {
     unit?: string;
     /** 属性所属分类 (如：'primary' 基础属性, 'combat' 战斗属性) */
     category?: string;
+    /** 是否默认加载此属性 (默认为 false) */
+    isDefaultLoaded?: boolean;
 }

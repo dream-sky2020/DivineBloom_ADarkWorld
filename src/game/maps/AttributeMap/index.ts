@@ -1,5 +1,5 @@
 import type { Attribute } from '../../interface';
-import { BaseAttributes, BaseAttributeData } from './base';
+import { BaseAttributes, BaseAttributeData } from './fear';
 import { ResourceAttributes, ResourceAttributeData } from './resources';
 import { ReflectionAttributes, ReflectionAttributeData } from './reflection';
 import { DodgeAttributes, DodgeAttributeData } from './dodge';
@@ -13,7 +13,7 @@ import { ReductionAttributes, ReductionAttributeData } from './reduction';
 import { HPAttributes, HPAttributeData } from './hp';
 import { CritAttributes, CritAttributeData } from './crit';
 
-export * from './base';
+export * from './fear';
 export * from './resources';
 export * from './reflection';
 export * from './dodge';

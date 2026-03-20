@@ -36,6 +36,7 @@ export const ActionAttributeData: Record<string, Attribute> = {
         minValue: 0,
         isPercent: false, // 这是一个倍率
         category: 'combat',
+        isDefaultLoaded: true,
     },
     [ActionAttributes.MAX_ACTION_SPEED_MULTIPLIER]: {
         id: ActionAttributes.MAX_ACTION_SPEED_MULTIPLIER,
