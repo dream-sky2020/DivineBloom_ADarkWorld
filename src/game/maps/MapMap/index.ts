@@ -1,6 +1,4 @@
-import type { MapArea } from '../../interface';
-
-export * from '../../interface';
+import type { IMapPrefab } from '../../interface/IMapPrefab';
 
 /**
  * 地图区域 ID 映射表 (基础 ID)
@@ -17,27 +15,20 @@ export type MapAreaID = typeof MapAreaItems[keyof typeof MapAreaItems];
 
 /**
  * 地图区域详细数据表
+ * 使用 IMapPrefab 接口
  */
-export const MapAreaDataMap: Record<string, MapArea> = {
-    // 示例:
-    /*
+export const MapAreaDataMap: Record<string, IMapPrefab> = {
+    /* 
     [MapAreaItems.ABANDONED_VILLAGE]: {
         id: MapAreaItems.ABANDONED_VILLAGE,
         name: '荒废村庄',
         description: '曾经宁静的村落，现在只有游荡的亡灵和破碎的瓦砾。',
         dangerLevel: 5,
-        tags: ['village', 'ruins'],
         possibleEnemies: [
-            { enemyId: 'zombie', weight: 70 },
-            { enemyId: 'ghost', weight: 30 }
+            { enemyId: 'zombie' as any, weight: 70 },
+            { enemyId: 'ghost' as any, weight: 30 }
         ],
         availableActions: ['scavenge_ruins', 'search_well'],
-        discovery: {
-            items: [
-                { itemId: 'rusty_nail', probability: 0.4 },
-                { itemId: 'old_coin', probability: 0.1 }
-            ]
-        }
     },
     */
-} as Record<string, MapArea>;
+} as Record<string, IMapPrefab>;

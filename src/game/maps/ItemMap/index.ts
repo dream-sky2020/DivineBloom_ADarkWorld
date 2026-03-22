@@ -1,4 +1,4 @@
-import type { Item } from '../../interface';
+import type { IItemPrefab } from '../../interface/IItemPrefab';
 import { MaterialItems, MaterialItemData } from './materials';
 import { BrownSugarItems, BrownSugarItemData } from './brown_sugar';
 import { ProtectionTalismanItems, ProtectionTalismanItemData } from './protection_talisman';
@@ -8,17 +8,6 @@ import { SteakItems, SteakItemData } from './steaks';
 import { SteelSwordItems, SteelSwordItemData } from './steel_swords';
 import { LiquidContainerItems, LiquidContainerItemData } from './liquid_containers';
 import { PrecipitationCatalystItems, PrecipitationCatalystItemData } from './precipitation_catalyst_bases';
-
-export * from '../../interface';
-export * from './materials';
-export * from './brown_sugar';
-export * from './protection_talisman';
-export * from './curse_needles';
-export * from './breads';
-export * from './steaks';
-export * from './steel_swords';
-export * from './liquid_containers';
-export * from './precipitation_catalyst_bases';
 
 /**
  * 物品 ID 映射表 (基础 ID)
@@ -42,8 +31,9 @@ export type ItemID = typeof ItemTypeMap[keyof typeof ItemTypeMap];
 
 /**
  * 物品详细数据表
+ * 使用 IItemPrefab 接口
  */
-export const ItemDataMap: Record<ItemID, Item> = {
+export const ItemDataMap: Record<ItemID, IItemPrefab> = {
     ...MaterialItemData,
     ...BrownSugarItemData,
     ...ProtectionTalismanItemData,
@@ -53,4 +43,4 @@ export const ItemDataMap: Record<ItemID, Item> = {
     ...SteelSwordItemData,
     ...LiquidContainerItemData,
     ...PrecipitationCatalystItemData,
-} as Record<ItemID, Item>;
+} as unknown as Record<ItemID, IItemPrefab>;

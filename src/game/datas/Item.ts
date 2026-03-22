@@ -1,4 +1,4 @@
-import type { IData } from '../interface/IData';
+import type { IAttribute } from '../interface/IAttribute';
 
 /**
  * 转换触发条件位掩码
@@ -12,8 +12,9 @@ export const ItemTransformTrigger = {
 
 /**
  * 物品详细定义接口
+ * 继承自 IAttribute，包含 id, name, description 等基础信息
  */
-export interface Item extends IData {
+export interface Item extends IAttribute {
     /**
      * 占用体积 (物品所占空间)
      */

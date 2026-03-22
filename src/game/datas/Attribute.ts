@@ -1,9 +1,9 @@
-import type { IData } from '../interface/IData';
+import type { IAttribute } from '../interface/IAttribute';
 /**
  * 属性定义接口
  * 用于定义玩家或敌人的各类数值属性 (如：力量、敏捷、精神等)
  */
-export interface Attribute extends IData {
+export interface Attribute extends IAttribute {
     /** 属性默认值 (增量游戏中使用 bigint 以支持超大数值) */
     defaultValue: bigint | number;
     /** 属性最小值 (可选) */

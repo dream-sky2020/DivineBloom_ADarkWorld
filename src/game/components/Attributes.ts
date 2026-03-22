@@ -1,7 +1,7 @@
 import type { IComponentDefinition } from '../interface/IComponent';
 import { AttributeDataMap } from '../maps/AttributeMap';
 import type { AttributeID } from '../maps/AttributeMap';
-import { AttributeModifierType } from '../datas/AttributeModifier';
+import { AttributeModifierTypes } from '../maps/AttributeModifierMap';
 import type { AttributeModifier, AttributeModifierSet } from '../datas/AttributeModifier';
 
 /**
@@ -90,54 +90,54 @@ export const AttributeUtils = {
      * - OVERRIDE: 强制覆盖为 value
      */
     applyModifier(component: AttributesComponent, modifier: AttributeModifier): void {
-        const { id, type, value } = modifier;
-        const current = this.get(component, id);
+        const { targetId, type, value } = modifier;
+        const current = this.get(component, targetId);
 
         switch (type) {
-            case AttributeModifierType.ADD:
-                this.add(component, id, value);
+            case AttributeModifierTypes.ADD:
+                this.add(component, targetId, value);
                 break;
 
-            case AttributeModifierType.PERCENT_ADD:
+            case AttributeModifierTypes.PERCENT_ADD:
                 if (typeof current === 'bigint') {
                     // 对于 bigint 的百分比计算，我们将 value 视为一个小数 (如 0.1 表示 10%)
                     // 使用 1,000,000 作为精度基准
                     const ratio = BigInt(Math.floor(Number(value) * 1000000));
-                    component.values[id] = current + (current * ratio / 1000000n);
+                    component.values[targetId] = current + (current * ratio / 1000000n);
                 } else {
-                    component.values[id] = (current as number) * (1 + Number(value));
+                    component.values[targetId] = (current as number) * (1 + Number(value));
                 }
                 break;
 
-            case AttributeModifierType.MULTIPLY:
+            case AttributeModifierTypes.MULTIPLY:
                 if (typeof current === 'bigint') {
                     const ratio = BigInt(Math.floor(Number(value) * 1000000));
-                    component.values[id] = current * ratio / 1000000n;
+                    component.values[targetId] = current * ratio / 1000000n;
                 } else {
-                    component.values[id] = (current as number) * Number(value);
+                    component.values[targetId] = (current as number) * Number(value);
                 }
                 break;
 
-            case AttributeModifierType.MAX:
+            case AttributeModifierTypes.MAX:
                 if (typeof current === 'bigint') {
                     const valBig = BigInt(value);
-                    component.values[id] = current > valBig ? current : valBig;
+                    component.values[targetId] = current > valBig ? current : valBig;
                 } else {
-                    component.values[id] = Math.max(current as number, Number(value));
+                    component.values[targetId] = Math.max(current as number, Number(value));
                 }
                 break;
 
-            case AttributeModifierType.MIN:
+            case AttributeModifierTypes.MIN:
                 if (typeof current === 'bigint') {
                     const valBig = BigInt(value);
-                    component.values[id] = current < valBig ? current : valBig;
+                    component.values[targetId] = current < valBig ? current : valBig;
                 } else {
-                    component.values[id] = Math.min(current as number, Number(value));
+                    component.values[targetId] = Math.min(current as number, Number(value));
                 }
                 break;
 
-            case AttributeModifierType.OVERRIDE:
-                this.set(component, id, value);
+            case AttributeModifierTypes.OVERRIDE:
+                this.set(component, targetId, value);
                 break;
         }
     },

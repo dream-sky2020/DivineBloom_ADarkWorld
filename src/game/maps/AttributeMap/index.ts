@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface/IAttribute';
 import { BaseAttributes, BaseAttributeData } from './fear';
 import { ResourceAttributes, ResourceAttributeData } from './resources';
 import { ReflectionAttributes, ReflectionAttributeData } from './reflection';
@@ -54,7 +54,7 @@ export type AttributeID = typeof AttributeTypeMap[keyof typeof AttributeTypeMap]
 /**
  * 属性详细数据表 (全量数据)
  */
-export const AttributeDataMap: Record<AttributeID, Attribute> = {
+export const AttributeDataMap: Record<AttributeID, IAttribute> = {
     ...BaseAttributeData,
     ...ResourceAttributeData,
     ...ReflectionAttributeData,
@@ -68,4 +68,4 @@ export const AttributeDataMap: Record<AttributeID, Attribute> = {
     ...ReductionAttributeData,
     ...HPAttributeData,
     ...CritAttributeData,
-} as Record<AttributeID, Attribute>;
+} as unknown as Record<AttributeID, IAttribute>;

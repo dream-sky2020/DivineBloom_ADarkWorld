@@ -1,10 +1,11 @@
-import type { IData } from '../interface/IData';
+import type { IAttribute } from '../interface/IAttribute';
 import type { TriggerStrategy } from './TriggerStrategy';
 
 /**
  * 行为详细定义接口
+ * 继承自 IAttribute，包含 id, name, description 等基础信息
  */
-export interface Action extends IData {
+export interface Action extends IAttribute {
     triggerStrategy: TriggerStrategy;
 
     /**

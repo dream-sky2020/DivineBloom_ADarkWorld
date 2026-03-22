@@ -1,8 +1,7 @@
-import type { ReincarnationUpgrade } from '../../interface';
+import type { IReincarnationUpgradePrefab } from '../../interface/IReincarnationUpgradePrefab';
 import { PhysicalToughnessUpgrades, PhysicalToughnessData } from './physical_toughness';
 import { PhysicalStrengthUpgrades, PhysicalStrengthData } from './physical_strength';
 
-export * from '../../interface';
 export * from './physical_toughness';
 export * from './physical_strength';
 
@@ -21,8 +20,9 @@ export type ReincarnationUpgradeID = typeof ReincarnationUpgradeItems[keyof type
 
 /**
  * 转生升级详细数据表
+ * 使用 IReincarnationUpgradePrefab 接口
  */
-export const ReincarnationUpgradeData: Record<string, ReincarnationUpgrade> = {
+export const ReincarnationUpgradeDataMap: Record<ReincarnationUpgradeID, IReincarnationUpgradePrefab> = {
     ...PhysicalToughnessData,
     ...PhysicalStrengthData,
-} as Record<string, ReincarnationUpgrade>;
+} as unknown as Record<ReincarnationUpgradeID, IReincarnationUpgradePrefab>;

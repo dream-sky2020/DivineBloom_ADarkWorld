@@ -1,8 +1,8 @@
 /**
- * 基础数据接口
- * 规定了所有核心定义对象必须具备的基础属性
+ * 基础属性定义接口
+ * 所有具有唯一 ID、名称和描述的游戏对象（如属性项、预制体、判定规则）都应继承此接口
  */
-export interface IData {
+export interface IAttribute {
     /** 唯一标识符 */
     id: string;
     /** 显示名称 */

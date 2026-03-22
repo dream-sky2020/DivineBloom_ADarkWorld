@@ -1,63 +1,22 @@
+import type { IAttribute } from '../interface/IAttribute';
 import type { AttributeID } from '../maps/AttributeMap';
-
-/**
- * 属性修改类型枚举
- */
-export enum AttributeModifierType {
-    /** 
-     * 固定值加法 (Flat Add)
-     * 计算公式: current + value
-     */
-    ADD = 'add',
-
-    /** 
-     * 百分比加法 (Percent Add)
-     * 通常用于多个同类加成相加后再作用于基础值
-     * 计算公式: current * (1 + value)
-     */
-    PERCENT_ADD = 'percent_add',
-
-    /** 
-     * 最终乘法 (Final Multiplier)
-     * 直接对最终结果进行乘法运算
-     * 计算公式: current * value
-     */
-    MULTIPLY = 'multiply',
-
-    /** 
-     * 取最大值 (Max)
-     * 计算公式: Math.max(current, value)
-     */
-    MAX = 'max',
-
-    /** 
-     * 取最小值 (Min)
-     * 计算公式: Math.min(current, value)
-     */
-    MIN = 'min',
-
-    /** 
-     * 覆盖 (Override)
-     * 直接强制设置为该值
-     * 计算公式: value
-     */
-    OVERRIDE = 'override'
-}
+import type { AttributeModifierTypeID } from '../maps/AttributeModifierMap';
 
 /**
  * 属性修改器数据结构
  * 用于定义对某个特定属性的单次修改行为
+ * 继承自 IAttribute，包含 id, name, description 等基础信息
  */
-export interface AttributeModifier {
+export interface AttributeModifier extends IAttribute {
     /**
      * 目标属性 ID
      */
-    id: AttributeID;
+    targetId: AttributeID;
 
     /**
-     * 修改类型
+     * 修改类型 ID (对应 AttributeModifierMap 中的定义)
      */
-    type: AttributeModifierType;
+    type: AttributeModifierTypeID;
 
     /**
      * 修改数值 (支持 bigint 或 number)

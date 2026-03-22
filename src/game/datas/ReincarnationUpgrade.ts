@@ -1,9 +1,10 @@
-import type { IData } from '../interface/IData';
+import type { IAttribute } from '../interface/IAttribute';
 
 /**
  * 转生升级详细定义接口
+ * 继承自 IAttribute，包含 id, name, description 等基础信息
  */
-export interface ReincarnationUpgrade extends IData {
+export interface ReincarnationUpgrade extends IAttribute {
     maxLevel: number;
     /**
      * 计算特定等级的消耗 (增量游戏中使用 bigint | number 支持超大数值)
