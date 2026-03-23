@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 闪避与闪避反击相关属性 ID 映射表
@@ -23,7 +23,7 @@ export const DodgeAttributes = {
 /**
  * 闪避与闪避反击相关属性详细数据表
  */
-export const DodgeAttributeData: Record<string, Attribute> = {
+export const DodgeAttributeData: Record<string, IAttribute> = {
     [DodgeAttributes.DODGE_RATE]: {
         id: DodgeAttributes.DODGE_RATE,
         name: '闪避率',
@@ -34,6 +34,8 @@ export const DodgeAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '闪避/反击'],
+        tags: ['战斗', '防御', '闪避', '概率'],
     },
     [DodgeAttributes.DODGE_RATE_LIMIT]: {
         id: DodgeAttributes.DODGE_RATE_LIMIT,
@@ -45,6 +47,8 @@ export const DodgeAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '闪避/反击'],
+        tags: ['战斗', '防御', '闪避', '上限'],
     },
     [DodgeAttributes.DODGE_COUNTER_CHANCE]: {
         id: DodgeAttributes.DODGE_COUNTER_CHANCE,
@@ -56,6 +60,8 @@ export const DodgeAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '闪避/反击'],
+        tags: ['战斗', '闪避', '反击', '概率'],
     },
     [DodgeAttributes.DODGE_COUNTER_BASE_DAMAGE]: {
         id: DodgeAttributes.DODGE_COUNTER_BASE_DAMAGE,
@@ -64,6 +70,8 @@ export const DodgeAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '闪避/反击'],
+        tags: ['战斗', '闪避', '反击', '基础伤害'],
     },
     [DodgeAttributes.DODGE_COUNTER_PERCENT_DAMAGE]: {
         id: DodgeAttributes.DODGE_COUNTER_PERCENT_DAMAGE,
@@ -74,6 +82,8 @@ export const DodgeAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '闪避/反击'],
+        tags: ['战斗', '闪避', '反击', '百分比伤害'],
     },
     [DodgeAttributes.OVERFLOW_DODGE_TO_BASE_CONVERSION]: {
         id: DodgeAttributes.OVERFLOW_DODGE_TO_BASE_CONVERSION,
@@ -82,6 +92,8 @@ export const DodgeAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '闪避/反击'],
+        tags: ['战斗', '闪避', '转化', '基础伤害'],
     },
     [DodgeAttributes.OVERFLOW_DODGE_TO_PERCENT_CONVERSION]: {
         id: DodgeAttributes.OVERFLOW_DODGE_TO_PERCENT_CONVERSION,
@@ -92,5 +104,7 @@ export const DodgeAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '闪避/反击'],
+        tags: ['战斗', '闪避', '转化', '百分比伤害'],
     },
 };

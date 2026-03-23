@@ -1,5 +1,5 @@
 import type { IPrefab } from './IPrefab';
-import type { EnemyID } from '../maps/EnemyMap';
+import type { EnemyID } from '../maps/PrefabMap/EnemyMap';
 
 /**
  * 地图/区域预制体接口

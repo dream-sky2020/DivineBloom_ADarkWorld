@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 伤害相关属性 ID 映射表
@@ -15,7 +15,7 @@ export const DamageAttributes = {
 /**
  * 伤害相关属性详细数据表
  */
-export const DamageAttributeData: Record<string, Attribute> = {
+export const DamageAttributeData: Record<string, IAttribute> = {
     [DamageAttributes.BASE_DAMAGE]: {
         id: DamageAttributes.BASE_DAMAGE,
         name: '基础伤害',
@@ -23,7 +23,9 @@ export const DamageAttributeData: Record<string, Attribute> = {
         defaultValue: 10n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '伤害'],
         isDefaultLoaded: true,
+        tags: ['战斗', '攻击', '基础'],
     },
     [DamageAttributes.PERCENT_DAMAGE]: {
         id: DamageAttributes.PERCENT_DAMAGE,
@@ -34,7 +36,9 @@ export const DamageAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '伤害'],
         isDefaultLoaded: true,
+        tags: ['战斗', '攻击', '加成'],
     },
     [DamageAttributes.DAMAGE_MIN_LIMIT]: {
         id: DamageAttributes.DAMAGE_MIN_LIMIT,
@@ -43,6 +47,8 @@ export const DamageAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '伤害'],
         isDefaultLoaded: true,
+        tags: ['战斗', '攻击', '保底'],
     },
 };

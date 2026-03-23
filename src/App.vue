@@ -1,24 +1,34 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import GameCanvas from './components/GameCanvas.vue'
+import DatabaseManager from './components/DatabaseManager.vue'
+import SettingsManager from './components/SettingsManager.vue'
 import { useGameStore } from './store/game'
 import {
-  AppstoreOutlined,
   PlayCircleOutlined,
   SettingOutlined,
   DatabaseOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   DashboardOutlined,
+  FullscreenOutlined,
+  FullscreenExitOutlined,
 } from '@ant-design/icons-vue'
+import { message } from 'ant-design-vue'
 
 const gameStore = useGameStore()
 const collapsed = ref(false)
 const selectedKeys = ref(['game'])
+const isGameFullscreen = ref(false)
 
 const onMenuSelect = (info: { key: string | number }) => {
   selectedKeys.value = [String(info.key)]
 }
+
+const toggleGameFullscreen = () => {
+  isGameFullscreen.value = !isGameFullscreen.value
+}
+
 </script>
 
 <template>
@@ -68,15 +78,11 @@ const onMenuSelect = (info: { key: string | number }) => {
         >
           <a-menu-item key="game">
             <template #icon><PlayCircleOutlined /></template>
-            游戏主界面
+            2d渲染界面测试
           </a-menu-item>
           <a-menu-item key="database">
             <template #icon><DatabaseOutlined /></template>
-            属性库管理
-          </a-menu-item>
-          <a-menu-item key="strategy">
-            <template #icon><AppstoreOutlined /></template>
-            触发策略
+            数据库管理
           </a-menu-item>
           <a-menu-item key="settings">
             <template #icon><SettingOutlined /></template>
@@ -95,7 +101,7 @@ const onMenuSelect = (info: { key: string | number }) => {
 
       <!-- 主内容区 -->
       <a-layout-content class="admin-content">
-        <div v-if="selectedKeys[0] === 'game'" id="game-container">
+        <div v-if="selectedKeys[0] === 'game'" id="game-container" :class="{ 'is-fullscreen': isGameFullscreen }">
           <!-- 游戏画布 -->
           <a-card class="panel-card" :bordered="false" :body-style="{ padding: '0' }">
             <div class="canvas-wrapper">
@@ -105,12 +111,30 @@ const onMenuSelect = (info: { key: string | number }) => {
           
           <!-- HUD 悬浮层 -->
           <div class="hud-overlay" v-if="gameStore.initialized">
-            <a-card class="hud-card" size="small">
-              <template #title>游戏状态</template>
-              <p>当前得分: <strong>{{ gameStore.score }}</strong></p>
-              <a-tag v-if="gameStore.isGameOver" color="error">游戏结束</a-tag>
-            </a-card>
+            <a-space direction="vertical">
+              <a-card class="hud-card" size="small">
+                <template #title>游戏状态</template>
+                <p>当前得分: <strong>{{ gameStore.score }}</strong></p>
+                <a-tag v-if="gameStore.isGameOver" color="error">游戏结束</a-tag>
+              </a-card>
+              
+              <a-button type="primary" class="fullscreen-btn" @click="toggleGameFullscreen">
+                <template #icon>
+                  <FullscreenExitOutlined v-if="isGameFullscreen" />
+                  <FullscreenOutlined v-else />
+                </template>
+                {{ isGameFullscreen ? '退出全屏' : '全屏游戏' }}
+              </a-button>
+            </a-space>
           </div>
+        </div>
+
+        <div v-else-if="selectedKeys[0] === 'database'">
+          <DatabaseManager />
+        </div>
+
+        <div v-else-if="selectedKeys[0] === 'settings'">
+          <SettingsManager />
         </div>
 
         <div v-else>
@@ -139,6 +163,20 @@ const onMenuSelect = (info: { key: string | number }) => {
   overflow: hidden;
 }
 
+#game-container.is-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  border-radius: 0;
+}
+
+#game-container.is-fullscreen .canvas-wrapper {
+  height: 100vh;
+}
+
 .canvas-wrapper {
   width: 100%;
   height: calc(100vh - 120px);
@@ -156,11 +194,19 @@ const onMenuSelect = (info: { key: string | number }) => {
   z-index: 10;
 }
 
+.hud-card, .fullscreen-btn {
+  pointer-events: auto;
+}
+
 .hud-card {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(4px);
   width: 180px;
-  pointer-events: auto;
+}
+
+.fullscreen-btn {
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .admin-layout :deep(.ant-layout-sider-children) {

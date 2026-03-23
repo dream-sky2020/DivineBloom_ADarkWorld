@@ -68,4 +68,4 @@ export const AttributeDataMap: Record<AttributeID, IAttribute> = {
     ...ReductionAttributeData,
     ...HPAttributeData,
     ...CritAttributeData,
-} as unknown as Record<AttributeID, IAttribute>;
+} as Record<AttributeID, IAttribute>;

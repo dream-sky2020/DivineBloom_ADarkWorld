@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 流血相关属性 ID 映射表
@@ -38,7 +38,7 @@ export const BleedingAttributes = {
 /**
  * 流血相关属性详细数据表
  */
-export const BleedingAttributeData: Record<string, Attribute> = {
+export const BleedingAttributeData: Record<string, IAttribute> = {
     [BleedingAttributes.BLEED_CHANCE]: {
         id: BleedingAttributes.BLEED_CHANCE,
         name: '流血施加概率',
@@ -49,7 +49,9 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
         isDefaultLoaded: true,
+        tags: ['战斗', '攻击', '流血', '概率'],
     },
     [BleedingAttributes.BLEED_APPLY_BASE_DAMAGE]: {
         id: BleedingAttributes.BLEED_APPLY_BASE_DAMAGE,
@@ -58,7 +60,9 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
         isDefaultLoaded: true,
+        tags: ['战斗', '攻击', '流血', '基础伤害'],
     },
     [BleedingAttributes.BLEED_APPLY_PERCENT_DAMAGE]: {
         id: BleedingAttributes.BLEED_APPLY_PERCENT_DAMAGE,
@@ -69,7 +73,9 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
         isDefaultLoaded: true,
+        tags: ['战斗', '攻击', '流血', '百分比伤害'],
     },
     [BleedingAttributes.BLEED_APPLY_TRIGGER_COUNT]: {
         id: BleedingAttributes.BLEED_APPLY_TRIGGER_COUNT,
@@ -78,7 +84,9 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 3n,
         minValue: 1n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
         isDefaultLoaded: true,
+        tags: ['战斗', '攻击', '流血', '次数'],
     },
     [BleedingAttributes.BLEED_APPLY_INTERVAL]: {
         id: BleedingAttributes.BLEED_APPLY_INTERVAL,
@@ -87,7 +95,9 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 1.0,
         minValue: 0.1,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
         isDefaultLoaded: true,
+        tags: ['战斗', '攻击', '流血', '间隔'],
     },
     [BleedingAttributes.BLEED_BASE_DAMAGE]: {
         id: BleedingAttributes.BLEED_BASE_DAMAGE,
@@ -96,6 +106,8 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
+        tags: ['战斗', '状态', '流血', '基础伤害'],
     },
     [BleedingAttributes.BLEED_PERCENT_DAMAGE]: {
         id: BleedingAttributes.BLEED_PERCENT_DAMAGE,
@@ -106,6 +118,8 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
+        tags: ['战斗', '状态', '流血', '百分比伤害'],
     },
     [BleedingAttributes.BLEED_TRIGGER_COUNT_REMAINING]: {
         id: BleedingAttributes.BLEED_TRIGGER_COUNT_REMAINING,
@@ -114,6 +128,8 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
+        tags: ['战斗', '状态', '流血', '次数'],
     },
     [BleedingAttributes.BLEED_INTERVAL]: {
         id: BleedingAttributes.BLEED_INTERVAL,
@@ -122,6 +138,8 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 1.0,
         minValue: 0.1,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
+        tags: ['战斗', '状态', '流血', '间隔'],
     },
     [BleedingAttributes.BLEED_DETONATION_CHANCE]: {
         id: BleedingAttributes.BLEED_DETONATION_CHANCE,
@@ -133,7 +151,9 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
         isDefaultLoaded: true,
+        tags: ['战斗', '流血', '引爆', '概率'],
     },
     [BleedingAttributes.BLEED_DETONATION_COUNT]: {
         id: BleedingAttributes.BLEED_DETONATION_COUNT,
@@ -142,7 +162,9 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 1n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
         isDefaultLoaded: true,
+        tags: ['战斗', '流血', '引爆', '次数'],
     },
     [BleedingAttributes.OVERFLOW_BLEED_DETONATION_CHANCE_TO_COUNT_CONVERSION]: {
         id: BleedingAttributes.OVERFLOW_BLEED_DETONATION_CHANCE_TO_COUNT_CONVERSION,
@@ -151,6 +173,8 @@ export const BleedingAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '流血'],
         isDefaultLoaded: true,
+        tags: ['战斗', '流血', '引爆', '转化'],
     },
 };

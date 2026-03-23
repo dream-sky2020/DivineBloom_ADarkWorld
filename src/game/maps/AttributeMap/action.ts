@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 行动速度与额外攻击相关属性 ID 映射表
@@ -27,7 +27,7 @@ export const ActionAttributes = {
 /**
  * 行动速度与额外攻击相关属性详细数据表
  */
-export const ActionAttributeData: Record<string, Attribute> = {
+export const ActionAttributeData: Record<string, IAttribute> = {
     [ActionAttributes.ACTION_SPEED_MULTIPLIER]: {
         id: ActionAttributes.ACTION_SPEED_MULTIPLIER,
         name: '全体行动速度倍率',
@@ -36,7 +36,9 @@ export const ActionAttributeData: Record<string, Attribute> = {
         minValue: 0,
         isPercent: false, // 这是一个倍率
         category: 'combat',
+        categoryPath: ['属性', '战斗', '效率/速度'],
         isDefaultLoaded: true,
+        tags: ['战斗', '速度', '基础'],
     },
     [ActionAttributes.MAX_ACTION_SPEED_MULTIPLIER]: {
         id: ActionAttributes.MAX_ACTION_SPEED_MULTIPLIER,
@@ -46,6 +48,8 @@ export const ActionAttributeData: Record<string, Attribute> = {
         minValue: 1.0,
         isPercent: false,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '效率/速度'],
+        tags: ['战斗', '速度', '上限'],
     },
     [ActionAttributes.EXTRA_ATTACK_CHANCE]: {
         id: ActionAttributes.EXTRA_ATTACK_CHANCE,
@@ -56,6 +60,8 @@ export const ActionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '连击'],
+        tags: ['战斗', '连击', '概率'],
     },
     [ActionAttributes.EXTRA_ATTACK_COUNT]: {
         id: ActionAttributes.EXTRA_ATTACK_COUNT,
@@ -64,6 +70,8 @@ export const ActionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '连击'],
+        tags: ['战斗', '连击', '次数'],
     },
     [ActionAttributes.EXTRA_ATTACK_COUNT_LIMIT]: {
         id: ActionAttributes.EXTRA_ATTACK_COUNT_LIMIT,
@@ -72,6 +80,8 @@ export const ActionAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 1n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '连击'],
+        tags: ['战斗', '连击', '上限'],
     },
     [ActionAttributes.OVERFLOW_EXTRA_ATTACK_CHANCE_TO_COUNT_CONVERSION]: {
         id: ActionAttributes.OVERFLOW_EXTRA_ATTACK_CHANCE_TO_COUNT_CONVERSION,
@@ -80,6 +90,8 @@ export const ActionAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '连击'],
+        tags: ['战斗', '连击', '转化'],
     },
     [ActionAttributes.OVERFLOW_EXTRA_ATTACK_COUNT_TO_DAMAGE_CONVERSION]: {
         id: ActionAttributes.OVERFLOW_EXTRA_ATTACK_COUNT_TO_DAMAGE_CONVERSION,
@@ -90,6 +102,8 @@ export const ActionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '连击'],
+        tags: ['战斗', '连击', '转化', '伤害'],
     },
     [ActionAttributes.OVERFLOW_SPEED_TO_BASE_DAMAGE_CONVERSION]: {
         id: ActionAttributes.OVERFLOW_SPEED_TO_BASE_DAMAGE_CONVERSION,
@@ -98,6 +112,8 @@ export const ActionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '效率/速度'],
+        tags: ['战斗', '速度', '转化', '基础伤害'],
     },
     [ActionAttributes.OVERFLOW_SPEED_TO_PERCENT_DAMAGE_CONVERSION]: {
         id: ActionAttributes.OVERFLOW_SPEED_TO_PERCENT_DAMAGE_CONVERSION,
@@ -108,5 +124,7 @@ export const ActionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '效率/速度'],
+        tags: ['战斗', '速度', '转化', '百分比伤害'],
     },
 };

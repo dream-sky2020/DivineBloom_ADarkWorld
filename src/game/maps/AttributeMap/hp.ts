@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 血量相关属性 ID 映射表
@@ -15,7 +15,7 @@ export const HPAttributes = {
 /**
  * 血量相关属性详细数据表
  */
-export const HPAttributeData: Record<string, Attribute> = {
+export const HPAttributeData: Record<string, IAttribute> = {
     [HPAttributes.HP]: {
         id: HPAttributes.HP,
         name: '生命值',
@@ -23,7 +23,9 @@ export const HPAttributeData: Record<string, Attribute> = {
         defaultValue: 100n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '生存', '生命值'],
         isDefaultLoaded: true,
+        tags: ['生存', '基础', '消耗品'],
     },
     [HPAttributes.HP_MAX]: {
         id: HPAttributes.HP_MAX,
@@ -32,7 +34,9 @@ export const HPAttributeData: Record<string, Attribute> = {
         defaultValue: 100n,
         minValue: 1n,
         category: 'combat',
+        categoryPath: ['属性', '生存', '生命值'],
         isDefaultLoaded: true,
+        tags: ['生存', '基础', '上限'],
     },
     [HPAttributes.HP_REMOVED_MAX]: {
         id: HPAttributes.HP_REMOVED_MAX,
@@ -41,6 +45,8 @@ export const HPAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '生存', '生命值'],
         isDefaultLoaded: true,
+        tags: ['生存', '减益', '上限'],
     },
 };

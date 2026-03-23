@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 资源储备属性 ID 映射表
@@ -23,7 +23,7 @@ export const ResourceAttributes = {
 /**
  * 资源储备属性详细数据表
  */
-export const ResourceAttributeData: Record<string, Attribute> = {
+export const ResourceAttributeData: Record<string, IAttribute> = {
     [ResourceAttributes.BLOOD_RESERVE]: {
         id: ResourceAttributes.BLOOD_RESERVE,
         name: '血液储备量',
@@ -31,7 +31,9 @@ export const ResourceAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'resource',
+        categoryPath: ['属性', '资源', '基础资源'],
         unit: 'ml',
+        tags: ['资源', '基础', '生命'],
     },
     [ResourceAttributes.RUSTY_IRON_RESERVE]: {
         id: ResourceAttributes.RUSTY_IRON_RESERVE,
@@ -40,7 +42,9 @@ export const ResourceAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'resource',
+        categoryPath: ['属性', '资源', '基础资源'],
         unit: 'kg',
+        tags: ['资源', '材料', '锻造'],
     },
     [ResourceAttributes.BONE_FRAGMENT_RESERVE]: {
         id: ResourceAttributes.BONE_FRAGMENT_RESERVE,
@@ -49,7 +53,9 @@ export const ResourceAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'resource',
+        categoryPath: ['属性', '资源', '基础资源'],
         unit: 'pcs',
+        tags: ['资源', '材料', '强化'],
     },
     [ResourceAttributes.HAIR_RESERVE]: {
         id: ResourceAttributes.HAIR_RESERVE,
@@ -58,7 +64,9 @@ export const ResourceAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'resource',
+        categoryPath: ['属性', '资源', '基础资源'],
         unit: 'g',
+        tags: ['资源', '材料', '催化'],
     },
     [ResourceAttributes.SUGAR_POWDER_RESERVE]: {
         id: ResourceAttributes.SUGAR_POWDER_RESERVE,
@@ -67,7 +75,9 @@ export const ResourceAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'resource',
+        categoryPath: ['属性', '资源', '基础资源'],
         unit: 'g',
+        tags: ['资源', '交易', '成瘾'],
     },
     [ResourceAttributes.MINCED_MEAT_RESERVE]: {
         id: ResourceAttributes.MINCED_MEAT_RESERVE,
@@ -76,7 +86,9 @@ export const ResourceAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'resource',
+        categoryPath: ['属性', '资源', '基础资源'],
         unit: 'kg',
+        tags: ['资源', '生存', '生物'],
     },
     [ResourceAttributes.BLACK_CRYSTAL_RESERVE]: {
         id: ResourceAttributes.BLACK_CRYSTAL_RESERVE,
@@ -85,6 +97,8 @@ export const ResourceAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'resource',
+        categoryPath: ['属性', '资源', '稀有资源'],
         unit: 'ct',
+        tags: ['资源', '稀有', '黑暗'],
     },
 };

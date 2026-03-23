@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 治疗相关属性 ID 映射表
@@ -29,7 +29,7 @@ export const HealingAttributes = {
 /**
  * 治疗相关属性详细数据表
  */
-export const HealingAttributeData: Record<string, Attribute> = {
+export const HealingAttributeData: Record<string, IAttribute> = {
     [HealingAttributes.BASE_HEALING]: {
         id: HealingAttributes.BASE_HEALING,
         name: '基础治疗量',
@@ -37,6 +37,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '生存', '治疗', '基础'],
     },
     [HealingAttributes.PERCENT_HEALING]: {
         id: HealingAttributes.PERCENT_HEALING,
@@ -47,6 +49,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '生存', '治疗', '加成'],
     },
     [HealingAttributes.INCOMING_HEALING_BONUS]: {
         id: HealingAttributes.INCOMING_HEALING_BONUS,
@@ -57,6 +61,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '生存', '治疗', '被动'],
     },
     [HealingAttributes.CONSUMABLE_BASE_HEALING_BONUS]: {
         id: HealingAttributes.CONSUMABLE_BASE_HEALING_BONUS,
@@ -65,6 +71,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '生存', '消耗品', '治疗'],
     },
     [HealingAttributes.CONSUMABLE_PERCENT_HEALING_BONUS]: {
         id: HealingAttributes.CONSUMABLE_PERCENT_HEALING_BONUS,
@@ -75,6 +83,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '生存', '消耗品', '治疗', '加成'],
     },
     [HealingAttributes.OVERFLOW_HEALING_TOTAL]: {
         id: HealingAttributes.OVERFLOW_HEALING_TOTAL,
@@ -83,6 +93,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '治疗', '溢出'],
     },
     [HealingAttributes.OVERFLOW_HEALING_TO_AOE_DAMAGE_RATIO]: {
         id: HealingAttributes.OVERFLOW_HEALING_TO_AOE_DAMAGE_RATIO,
@@ -91,6 +103,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '治疗', '溢出', '转化', '伤害'],
     },
     [HealingAttributes.OVERFLOW_HEALING_DISTANCE_TO_NEXT_AOE]: {
         id: HealingAttributes.OVERFLOW_HEALING_DISTANCE_TO_NEXT_AOE,
@@ -99,6 +113,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         defaultValue: 100n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '治疗', '溢出', '计数'],
     },
     [HealingAttributes.OVERFLOW_HEALING_TO_BASE_DAMAGE_BONUS]: {
         id: HealingAttributes.OVERFLOW_HEALING_TO_BASE_DAMAGE_BONUS,
@@ -107,6 +123,8 @@ export const HealingAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '治疗', '溢出', '转化', '基础伤害'],
     },
     [HealingAttributes.OVERFLOW_HEALING_TO_PERCENT_DAMAGE_BONUS]: {
         id: HealingAttributes.OVERFLOW_HEALING_TO_PERCENT_DAMAGE_BONUS,
@@ -117,5 +135,7 @@ export const HealingAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '治疗'],
+        tags: ['战斗', '治疗', '溢出', '转化', '百分比伤害'],
     },
 };

@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 复活相关属性 ID 映射表
@@ -33,7 +33,7 @@ export const ResurrectionAttributes = {
 /**
  * 复活相关属性详细数据表
  */
-export const ResurrectionAttributeData: Record<string, Attribute> = {
+export const ResurrectionAttributeData: Record<string, IAttribute> = {
     [ResurrectionAttributes.RESURRECTION_COUNT]: {
         id: ResurrectionAttributes.RESURRECTION_COUNT,
         name: '死亡后复活次数',
@@ -41,6 +41,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['战斗', '生存', '复活', '次数'],
     },
     [ResurrectionAttributes.RESURRECTION_CHANCE_WITHOUT_REMAINING]: {
         id: ResurrectionAttributes.RESURRECTION_CHANCE_WITHOUT_REMAINING,
@@ -52,6 +54,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['战斗', '生存', '复活', '概率'],
     },
     [ResurrectionAttributes.MAX_RESURRECTION_CHANCE]: {
         id: ResurrectionAttributes.MAX_RESURRECTION_CHANCE,
@@ -63,6 +67,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['战斗', '生存', '复活', '上限'],
     },
     [ResurrectionAttributes.RESURRECTION_CHANCE_REDUCTION_PENALTY]: {
         id: ResurrectionAttributes.RESURRECTION_CHANCE_REDUCTION_PENALTY,
@@ -74,6 +80,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['战斗', '生存', '复活', '惩罚'],
     },
     [ResurrectionAttributes.RESURRECTION_HP_RECOVERY_PERCENT]: {
         id: ResurrectionAttributes.RESURRECTION_HP_RECOVERY_PERCENT,
@@ -85,6 +93,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['战斗', '生存', '复活', '回复'],
     },
     [ResurrectionAttributes.RESURRECTION_CLEAR_STATUS_EFFECTS]: {
         id: ResurrectionAttributes.RESURRECTION_CLEAR_STATUS_EFFECTS,
@@ -94,6 +104,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         minValue: 0n,
         maxValue: 1n,
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['战斗', '生存', '复活', '净化'],
     },
     [ResurrectionAttributes.OVERFLOW_RESURRECTION_CHANCE_TO_COUNT_CONVERSION]: {
         id: ResurrectionAttributes.OVERFLOW_RESURRECTION_CHANCE_TO_COUNT_CONVERSION,
@@ -102,6 +114,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         defaultValue: 1n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['战斗', '生存', '复活', '转化'],
     },
     [ResurrectionAttributes.TOTAL_RESURRECTED_COUNT]: {
         id: ResurrectionAttributes.TOTAL_RESURRECTED_COUNT,
@@ -110,6 +124,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '复活', '累计'],
     },
     [ResurrectionAttributes.CURRENT_RESURRECTION_CHANCE_PENALTY]: {
         id: ResurrectionAttributes.CURRENT_RESURRECTION_CHANCE_PENALTY,
@@ -121,6 +137,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['状态', '生存', '复活', '惩罚'],
     },
     [ResurrectionAttributes.OVERFLOW_RESURRECTION_COUNT_BONUS]: {
         id: ResurrectionAttributes.OVERFLOW_RESURRECTION_COUNT_BONUS,
@@ -129,6 +147,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['战斗', '生存', '复活', '加成'],
     },
     [ResurrectionAttributes.REMAINING_RESURRECTION_COUNT]: {
         id: ResurrectionAttributes.REMAINING_RESURRECTION_COUNT,
@@ -137,6 +157,8 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['状态', '生存', '复活', '剩余'],
     },
     [ResurrectionAttributes.FINAL_RESURRECTION_CHANCE]: {
         id: ResurrectionAttributes.FINAL_RESURRECTION_CHANCE,
@@ -148,5 +170,7 @@ export const ResurrectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '生存', '复活'],
+        tags: ['状态', '生存', '复活', '最终概率'],
     },
 };

@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 伤害反射相关属性 ID 映射表
@@ -19,7 +19,7 @@ export const ReflectionAttributes = {
 /**
  * 伤害反射相关属性详细数据表
  */
-export const ReflectionAttributeData: Record<string, Attribute> = {
+export const ReflectionAttributeData: Record<string, IAttribute> = {
     [ReflectionAttributes.REFLECTION_RATIO]: {
         id: ReflectionAttributes.REFLECTION_RATIO,
         name: '伤害反射比例',
@@ -28,6 +28,8 @@ export const ReflectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '反击/反伤'],
+        tags: ['战斗', '防御', '反伤', '比例'],
     },
     [ReflectionAttributes.REFLECTION_CHANCE]: {
         id: ReflectionAttributes.REFLECTION_CHANCE,
@@ -39,6 +41,8 @@ export const ReflectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '反击/反伤'],
+        tags: ['战斗', '防御', '反伤', '概率'],
     },
     [ReflectionAttributes.REFLECTION_CHANCE_LIMIT]: {
         id: ReflectionAttributes.REFLECTION_CHANCE_LIMIT,
@@ -50,6 +54,8 @@ export const ReflectionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '反击/反伤'],
+        tags: ['战斗', '防御', '反伤', '上限'],
     },
     [ReflectionAttributes.REFLECTION_BASE_BONUS]: {
         id: ReflectionAttributes.REFLECTION_BASE_BONUS,
@@ -58,6 +64,8 @@ export const ReflectionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '反击/反伤'],
+        tags: ['战斗', '防御', '反伤', '基础伤害'],
     },
     [ReflectionAttributes.OVERFLOW_REFLECTION_CHANCE_TO_BASE_BONUS_CONVERSION]: {
         id: ReflectionAttributes.OVERFLOW_REFLECTION_CHANCE_TO_BASE_BONUS_CONVERSION,
@@ -66,5 +74,7 @@ export const ReflectionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '反击/反伤'],
+        tags: ['战斗', '防御', '反伤', '转化'],
     },
 };

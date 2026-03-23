@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 统计数据相关属性 ID 映射表
@@ -40,7 +40,7 @@ export const StatisticsAttributes = {
 /**
  * 统计数据相关属性详细数据表
  */
-export const StatisticsAttributeData: Record<string, Attribute> = {
+export const StatisticsAttributeData: Record<string, IAttribute> = {
     // --- 治疗统计 ---
     [StatisticsAttributes.HEALING_TOTAL_ARCHIVE]: {
         id: StatisticsAttributes.HEALING_TOTAL_ARCHIVE,
@@ -49,6 +49,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '治疗', '累计'],
     },
     [StatisticsAttributes.HEALING_TOTAL_CYCLE]: {
         id: StatisticsAttributes.HEALING_TOTAL_CYCLE,
@@ -57,6 +59,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '治疗', '累计'],
     },
     [StatisticsAttributes.HEALING_TOTAL_EXPLORATION]: {
         id: StatisticsAttributes.HEALING_TOTAL_EXPLORATION,
@@ -65,6 +69,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '治疗', '累计'],
     },
     [StatisticsAttributes.HEALING_TOTAL_FLOOR]: {
         id: StatisticsAttributes.HEALING_TOTAL_FLOOR,
@@ -73,6 +79,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '治疗', '累计'],
     },
     [StatisticsAttributes.HEALING_TOTAL_COMBAT]: {
         id: StatisticsAttributes.HEALING_TOTAL_COMBAT,
@@ -81,6 +89,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '治疗', '累计'],
     },
 
     // --- 伤害统计 ---
@@ -91,6 +101,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '战斗累计'],
+        tags: ['统计', '战斗', '伤害', '累计'],
     },
     [StatisticsAttributes.DAMAGE_TOTAL_CYCLE]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_CYCLE,
@@ -99,6 +111,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '战斗累计'],
+        tags: ['统计', '战斗', '伤害', '累计'],
     },
     [StatisticsAttributes.DAMAGE_TOTAL_EXPLORATION]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_EXPLORATION,
@@ -107,6 +121,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '战斗累计'],
+        tags: ['统计', '战斗', '伤害', '累计'],
     },
     [StatisticsAttributes.DAMAGE_TOTAL_FLOOR]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_FLOOR,
@@ -115,6 +131,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '战斗累计'],
+        tags: ['统计', '战斗', '伤害', '累计'],
     },
     [StatisticsAttributes.DAMAGE_TOTAL_COMBAT]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_COMBAT,
@@ -123,6 +141,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '战斗累计'],
+        tags: ['统计', '战斗', '伤害', '累计'],
     },
 
     // --- 死亡统计 ---
@@ -133,6 +153,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '死亡', '累计'],
     },
     [StatisticsAttributes.DEATH_COUNT_CYCLE]: {
         id: StatisticsAttributes.DEATH_COUNT_CYCLE,
@@ -141,6 +163,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '死亡', '累计'],
     },
     [StatisticsAttributes.DEATH_COUNT_EXPLORATION]: {
         id: StatisticsAttributes.DEATH_COUNT_EXPLORATION,
@@ -149,6 +173,8 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '死亡', '累计'],
     },
     [StatisticsAttributes.DEATH_COUNT_FLOOR]: {
         id: StatisticsAttributes.DEATH_COUNT_FLOOR,
@@ -157,5 +183,7 @@ export const StatisticsAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'statistics',
+        categoryPath: ['属性', '统计', '生存累计'],
+        tags: ['统计', '生存', '死亡', '累计'],
     },
 };

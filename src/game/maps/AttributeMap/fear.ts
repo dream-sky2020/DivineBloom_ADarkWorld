@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 恐惧相关属性 ID 映射表
@@ -17,7 +17,7 @@ export const BaseAttributes = {
 /**
  * 恐惧相关属性详细数据表
  */
-export const BaseAttributeData: Record<string, Attribute> = {
+export const BaseAttributeData: Record<string, IAttribute> = {
     [BaseAttributes.FEAR_MAJESTY]: {
         id: BaseAttributes.FEAR_MAJESTY,
         name: '恐惧威仪',
@@ -25,7 +25,9 @@ export const BaseAttributeData: Record<string, Attribute> = {
         defaultValue: 10n,
         minValue: 0n,
         category: 'primary',
+        categoryPath: ['属性', '战斗', '精神/恐惧'],
         isDefaultLoaded: true,
+        tags: ['恐惧', '攻击', '精神'],
     },
     [BaseAttributes.FEAR_RESISTANCE]: {
         id: BaseAttributes.FEAR_RESISTANCE,
@@ -34,7 +36,9 @@ export const BaseAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'primary',
+        categoryPath: ['属性', '战斗', '精神/恐惧'],
         isDefaultLoaded: true,
+        tags: ['恐惧', '防御', '精神'],
     },
     [BaseAttributes.FEAR_DAMAGE_REDUCTION]: {
         id: BaseAttributes.FEAR_DAMAGE_REDUCTION,
@@ -46,6 +50,8 @@ export const BaseAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '精神/恐惧'],
+        tags: ['恐惧', '减益', '伤害'],
     },
     [BaseAttributes.FEAR_INCAPACITATE_CHANCE]: {
         id: BaseAttributes.FEAR_INCAPACITATE_CHANCE,
@@ -57,5 +63,7 @@ export const BaseAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '精神/恐惧'],
+        tags: ['恐惧', '减益', '控制'],
     },
 };

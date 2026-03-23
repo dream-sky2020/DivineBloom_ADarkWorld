@@ -1,8 +1,9 @@
 import type { IComponentDefinition } from '../interface/IComponent';
 import { AttributeDataMap } from '../maps/AttributeMap';
 import type { AttributeID } from '../maps/AttributeMap';
-import { AttributeModifierTypes } from '../maps/AttributeModifierMap';
-import type { AttributeModifier, AttributeModifierSet } from '../datas/AttributeModifier';
+import type { IAttribute } from '../interface/IAttribute';
+import { AttributeModifierTypes } from '../maps/IEnumMap';
+import type { IAttributeModifier, AttributeModifierSet } from '../interface/IAttributeModifier';
 
 /**
  * 属性组件数据
@@ -32,7 +33,7 @@ export const AttributeUtils = {
      */
     get(component: AttributesComponent, id: AttributeID): bigint | number {
         if (component.values[id] === undefined) {
-            const def = AttributeDataMap[id];
+            const def = AttributeDataMap[id] as IAttribute;
             if (!def) {
                 console.warn(`[AttributeUtils] Attribute ID "${id}" not found in AttributeDataMap.`);
                 return 0; // 或者抛出错误，取决于项目风格
@@ -89,7 +90,7 @@ export const AttributeUtils = {
      * - MAX/MIN: 取当前值与 value 的最大/最小值
      * - OVERRIDE: 强制覆盖为 value
      */
-    applyModifier(component: AttributesComponent, modifier: AttributeModifier): void {
+    applyModifier(component: AttributesComponent, modifier: IAttributeModifier): void {
         const { targetId, type, value } = modifier;
         const current = this.get(component, targetId);
 
@@ -160,7 +161,7 @@ const defaultAttributesComponentData = (): AttributesComponentData => {
     
     // 遍历所有已定义的属性数据
     (Object.keys(AttributeDataMap) as AttributeID[]).forEach(id => {
-        const attribute = AttributeDataMap[id];
+        const attribute = AttributeDataMap[id] as IAttribute;
         // 只有标记为默认加载的属性才会进入初始 values 列表
         if (attribute.isDefaultLoaded) {
             values[id] = attribute.defaultValue;

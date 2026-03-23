@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 伤害减免相关属性 ID 映射表
@@ -19,7 +19,7 @@ export const ReductionAttributes = {
 /**
  * 伤害减免相关属性详细数据表
  */
-export const ReductionAttributeData: Record<string, Attribute> = {
+export const ReductionAttributeData: Record<string, IAttribute> = {
     [ReductionAttributes.REDUCTION_FIXED]: {
         id: ReductionAttributes.REDUCTION_FIXED,
         name: '伤害固定值减免',
@@ -27,7 +27,9 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '防御/减免'],
         isDefaultLoaded: true,
+        tags: ['战斗', '防御', '减免', '固定值'],
     },
     [ReductionAttributes.REDUCTION_PERCENT]: {
         id: ReductionAttributes.REDUCTION_PERCENT,
@@ -38,7 +40,9 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '防御/减免'],
         isDefaultLoaded: true,
+        tags: ['战斗', '防御', '减免', '百分比'],
     },
     [ReductionAttributes.REDUCTION_PERCENT_MAX]: {
         id: ReductionAttributes.REDUCTION_PERCENT_MAX,
@@ -50,7 +54,9 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '防御/减免'],
         isDefaultLoaded: true,
+        tags: ['战斗', '防御', '减免', '上限'],
     },
     [ReductionAttributes.REDUCTION_DIVISOR]: {
         id: ReductionAttributes.REDUCTION_DIVISOR,
@@ -59,7 +65,9 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         defaultValue: 1.0,
         minValue: 1.0,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '防御/减免'],
         isDefaultLoaded: true,
+        tags: ['战斗', '防御', '减免', '除数'],
     },
     [ReductionAttributes.OVERFLOW_REDUCTION_PERCENT_TO_DIVISOR_CONVERSION]: {
         id: ReductionAttributes.OVERFLOW_REDUCTION_PERCENT_TO_DIVISOR_CONVERSION,
@@ -68,5 +76,7 @@ export const ReductionAttributeData: Record<string, Attribute> = {
         defaultValue: 1.0,
         minValue: 0,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '防御/减免'],
+        tags: ['战斗', '防御', '转化', '除数'],
     },
 };

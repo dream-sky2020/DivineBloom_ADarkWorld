@@ -1,4 +1,4 @@
-import type { Attribute } from '../../interface';
+import type { IAttribute } from '../../interface';
 
 /**
  * 暴击相关属性 ID 映射表
@@ -19,7 +19,7 @@ export const CritAttributes = {
 /**
  * 暴击相关属性详细数据表
  */
-export const CritAttributeData: Record<string, Attribute> = {
+export const CritAttributeData: Record<string, IAttribute> = {
     [CritAttributes.CRIT_RATE]: {
         id: CritAttributes.CRIT_RATE,
         name: '暴击率',
@@ -30,7 +30,9 @@ export const CritAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '暴击'],
         isDefaultLoaded: true,
+        tags: ['战斗', '暴击', '概率'],
     },
     [CritAttributes.CRIT_DAMAGE]: {
         id: CritAttributes.CRIT_DAMAGE,
@@ -41,7 +43,9 @@ export const CritAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '暴击'],
         isDefaultLoaded: true,
+        tags: ['战斗', '暴击', '倍率'],
     },
     [CritAttributes.CRIT_RATE_MAX]: {
         id: CritAttributes.CRIT_RATE_MAX,
@@ -53,7 +57,9 @@ export const CritAttributeData: Record<string, Attribute> = {
         isPercent: true,
         unit: '%',
         category: 'combat',
+        categoryPath: ['属性', '战斗', '暴击'],
         isDefaultLoaded: true,
+        tags: ['战斗', '暴击', '上限'],
     },
     [CritAttributes.OVERFLOW_CRIT_RATE_TO_DAMAGE_CONVERSION]: {
         id: CritAttributes.OVERFLOW_CRIT_RATE_TO_DAMAGE_CONVERSION,
@@ -62,6 +68,8 @@ export const CritAttributeData: Record<string, Attribute> = {
         defaultValue: 1.0,
         minValue: 0,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '暴击'],
+        tags: ['战斗', '暴击', '转化'],
     },
     [CritAttributes.CRIT_DAMAGE_FIXED]: {
         id: CritAttributes.CRIT_DAMAGE_FIXED,
@@ -70,5 +78,7 @@ export const CritAttributeData: Record<string, Attribute> = {
         defaultValue: 0n,
         minValue: 0n,
         category: 'combat',
+        categoryPath: ['属性', '战斗', '暴击'],
+        tags: ['战斗', '暴击', '固定值'],
     },
 };
