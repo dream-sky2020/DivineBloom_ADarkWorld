@@ -1,5 +1,5 @@
 import { ActionTriggerModes } from '../../IEnumMap';
-import type { IAction } from '../../../interface';
+import type { IActionPrefab } from '../../../interface';
 
 /**
  * 挥砍系列行为 ID 映射表
@@ -18,7 +18,7 @@ export const BladeActions = {
 /**
  * 挥砍系列行为详细数据表
  */
-export const BladeActionData: Record<string, IAction> = {
+export const BladeActionData: Record<string, IActionPrefab> = {
     [BladeActions.THRUST]: {
         id: BladeActions.THRUST,
         name: '直刺',

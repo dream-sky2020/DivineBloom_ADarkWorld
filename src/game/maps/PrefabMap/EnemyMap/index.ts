@@ -33,9 +33,8 @@ export const EnemyDataMap: Record<EnemyID, IEnemyPrefab> = {
         stats: {
             [AttributeTypeMap.HP]: 20n,
             [AttributeTypeMap.HP_MAX]: 20n,
-            // 注意：此处使用了 AttributeTypeMap 中的 key，确保类型安全
         },
-        metadata: {
+        rewards: {
             exp: 10n,
         }
     },
@@ -48,7 +47,7 @@ export const EnemyDataMap: Record<EnemyID, IEnemyPrefab> = {
             [AttributeTypeMap.HP]: 50n,
             [AttributeTypeMap.HP_MAX]: 50n,
         },
-        metadata: {
+        rewards: {
             exp: 30n,
         }
     },
@@ -61,7 +60,7 @@ export const EnemyDataMap: Record<EnemyID, IEnemyPrefab> = {
             [AttributeTypeMap.HP]: 80n,
             [AttributeTypeMap.HP_MAX]: 80n,
         },
-        metadata: {
+        rewards: {
             exp: 50n,
         }
     },
@@ -74,7 +73,7 @@ export const EnemyDataMap: Record<EnemyID, IEnemyPrefab> = {
             [AttributeTypeMap.HP]: 40n,
             [AttributeTypeMap.HP_MAX]: 40n,
         },
-        metadata: {
+        rewards: {
             exp: 25n,
         }
     },

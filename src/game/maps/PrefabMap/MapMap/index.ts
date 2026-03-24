@@ -1,4 +1,4 @@
-import type { IMapPrefab } from '../../interface/IMapPrefab';
+import type { IMapPrefab } from '../../../interface/IMapPrefab';
 
 /**
  * 地图区域 ID 映射表 (基础 ID)

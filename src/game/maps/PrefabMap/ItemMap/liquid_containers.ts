@@ -1,4 +1,4 @@
-import type { IItem } from '../../../interface';
+import type { IItemPrefab } from '../../../interface';
 
 /**
  * 液体容器系列物品 ID 映射表
@@ -12,7 +12,7 @@ export const LiquidContainerItems = {
 /**
  * 液体容器系列详细数据表
  */
-export const LiquidContainerItemData: Record<string, IItem> = {
+export const LiquidContainerItemData: Record<string, IItemPrefab> = {
     [LiquidContainerItems.WHITE_CAN]: {
         id: LiquidContainerItems.WHITE_CAN,
         name: '白罐',

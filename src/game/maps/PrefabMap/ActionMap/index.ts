@@ -1,4 +1,4 @@
-import type { IAction } from '../../../interface';
+import type { IActionPrefab } from '../../../interface';
 
 import { ScavengeActions, ScavengeActionData } from './scavenge';
 import { BloodCollectionActions, BloodCollectionActionData } from './blood_collection';
@@ -32,10 +32,10 @@ export type ActionID = typeof ActionTypeMap[keyof typeof ActionTypeMap];
 /**
  * 行为详细数据表
  */
-export const ActionDataMap: Record<ActionID, IAction> = {
+export const ActionDataMap: Record<ActionID, IActionPrefab> = {
     ...ScavengeActionData,
     ...BloodCollectionActionData,
     ...CurseNeedleShotActionData,
     ...BladeActionData,
     ...BrawlActionData
-} as Record<ActionID, IAction>;
+} as Record<ActionID, IActionPrefab>;

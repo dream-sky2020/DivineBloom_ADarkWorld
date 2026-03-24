@@ -26,6 +26,7 @@ export const DamageAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '伤害'],
         isDefaultLoaded: true,
         tags: ['战斗', '攻击', '基础'],
+        scope: ['player', 'enemy'],
     },
     [DamageAttributes.PERCENT_DAMAGE]: {
         id: DamageAttributes.PERCENT_DAMAGE,
@@ -39,6 +40,7 @@ export const DamageAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '伤害'],
         isDefaultLoaded: true,
         tags: ['战斗', '攻击', '加成'],
+        scope: ['player', 'enemy'],
     },
     [DamageAttributes.DAMAGE_MIN_LIMIT]: {
         id: DamageAttributes.DAMAGE_MIN_LIMIT,
@@ -50,5 +52,6 @@ export const DamageAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '伤害'],
         isDefaultLoaded: true,
         tags: ['战斗', '攻击', '保底'],
+        scope: ['player', 'enemy'],
     },
 };

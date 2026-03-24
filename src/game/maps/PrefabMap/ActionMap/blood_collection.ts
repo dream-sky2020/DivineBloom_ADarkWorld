@@ -1,5 +1,5 @@
 import { ActionTriggerModes } from '../../IEnumMap';
-import type { IAction } from '../../../interface';
+import type { IActionPrefab } from '../../../interface';
 
 /**
  * 采集血液系列行为 ID 映射表
@@ -16,7 +16,7 @@ export const BloodCollectionActions = {
 /**
  * 采集血液系列行为详细数据表
  */
-export const BloodCollectionActionData: Record<string, IAction> = {
+export const BloodCollectionActionData: Record<string, IActionPrefab> = {
     [BloodCollectionActions.BLOOD_COLLECTION_ALL]: {
         id: BloodCollectionActions.BLOOD_COLLECTION_ALL,
         name: '采集血液:全部采集',

@@ -1,5 +1,5 @@
 import { ActionTriggerModes } from '../../IEnumMap';
-import type { IAction } from '../../../interface';
+import type { IActionPrefab } from '../../../interface';
 
 /**
  * 翻找系列行为 ID 映射表
@@ -15,7 +15,7 @@ export const ScavengeActions = {
 /**
  * 翻找系列行为详细数据表
  */
-export const ScavengeActionData: Record<string, IAction> = {
+export const ScavengeActionData: Record<string, IActionPrefab> = {
     [ScavengeActions.SCAVENGE_RUINS]: {
         id: ScavengeActions.SCAVENGE_RUINS,
         name: '翻找废墟',

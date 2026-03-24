@@ -1,4 +1,4 @@
-import type { IItem } from '../../../interface';
+import type { IItemPrefab } from '../../../interface';
 
 /**
  * 肉排物品 ID 映射表
@@ -23,7 +23,7 @@ export const SteakItems = {
 /**
  * 肉排详细数据表
  */
-export const SteakItemData: Record<string, IItem> = {
+export const SteakItemData: Record<string, IItemPrefab> = {
     [SteakItems.BEGGAR_STEAK]: {
         id: SteakItems.BEGGAR_STEAK,
         name: '乞丐肉排',

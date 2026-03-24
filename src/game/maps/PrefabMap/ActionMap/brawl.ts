@@ -1,5 +1,5 @@
 import { ActionTriggerModes } from '../../IEnumMap';
-import type { IAction } from '../../../interface';
+import type { IActionPrefab } from '../../../interface';
 
 /**
  * 肉搏系列行为 ID 映射表
@@ -22,7 +22,7 @@ export const BrawlActions = {
 /**
  * 肉搏系列行为详细数据表
  */
-export const BrawlActionData: Record<string, IAction> = {
+export const BrawlActionData: Record<string, IActionPrefab> = {
     [BrawlActions.FLYING_KICK]: {
         id: BrawlActions.FLYING_KICK,
         name: '飞踹',

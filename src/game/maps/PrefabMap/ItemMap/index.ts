@@ -46,4 +46,4 @@ export const ItemDataMap: Record<ItemID, IItemPrefab> = {
     ...PrecipitationCatalystItemData,
     ...PhysicalStrengthData,
     ...PhysicalToughnessData,
-} as unknown as Record<ItemID, IItemPrefab>;
+} as Record<ItemID, IItemPrefab>;

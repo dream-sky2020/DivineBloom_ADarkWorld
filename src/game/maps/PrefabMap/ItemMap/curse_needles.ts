@@ -1,4 +1,4 @@
-import type { IItem } from '../../../interface';
+import type { IItemPrefab } from '../../../interface';
 
 /**
  * 诅咒射针 ID 映射表
@@ -30,7 +30,7 @@ export const CurseNeedleItems = {
 /**
  * 诅咒射针详细数据表
  */
-export const CurseNeedleItemData: Record<string, IItem> = {
+export const CurseNeedleItemData: Record<string, IItemPrefab> = {
     [CurseNeedleItems.VAGRANT_CURSE_NEEDLE]: {
         id: CurseNeedleItems.VAGRANT_CURSE_NEEDLE,
         name: '流浪民售卖的诅咒射针',

@@ -1,11 +1,11 @@
-import type { IData } from './IData';
+import type { IPrefab } from './IPrefab';
 import type { TriggerStrategy } from './TriggerStrategy';
 
 /**
  * 行为详细定义接口
  * 继承自 IData，包含 id, name, description 等基础信息
  */
-export interface IAction extends IData {
+export interface IActionPrefab extends IPrefab {
     triggerStrategy: TriggerStrategy;
 
     /**

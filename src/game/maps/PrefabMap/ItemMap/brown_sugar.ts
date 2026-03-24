@@ -1,4 +1,4 @@
-import type { IItem } from '../../../interface';
+import type { IItemPrefab } from '../../../interface';
 
 /**
  * 红糖物品 ID 映射表
@@ -19,7 +19,7 @@ export const BrownSugarItems = {
 /**
  * 红糖详细数据表
  */
-export const BrownSugarItemData: Record<string, IItem> = {
+export const BrownSugarItemData: Record<string, IItemPrefab> = {
     [BrownSugarItems.SALTY_BITTER_BROWN_SUGAR]: {
         id: BrownSugarItems.SALTY_BITTER_BROWN_SUGAR,
         name: '咸苦红糖',

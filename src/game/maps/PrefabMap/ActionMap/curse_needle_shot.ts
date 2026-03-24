@@ -1,5 +1,5 @@
 import { ActionTriggerModes } from '../../IEnumMap';
-import type { IAction } from '../../../interface';
+import type { IActionPrefab } from '../../../interface';
 
 /**
  * 咒杀击发系列行为 ID 映射表
@@ -17,7 +17,7 @@ export const CurseNeedleShotActions = {
 /**
  * 咒杀击发系列行为详细数据表
  */
-export const CurseNeedleShotActionData: Record<string, IAction> = {
+export const CurseNeedleShotActionData: Record<string, IActionPrefab> = {
     [CurseNeedleShotActions.MANUAL_PRESS]: {
         id: CurseNeedleShotActions.MANUAL_PRESS,
         name: '咒杀击发:手动按压',

@@ -13,8 +13,8 @@ export const ResourceAttributes = {
     /** 毛发储备量 */
     HAIR_RESERVE: 'hair_reserve',
     /** 糖末储备量 */
-    SUGAR_POWDER_RESERVE: 'sugar_powder_reserve',
-    /** 肉糜储备量 */
+    sugar__RESERVE: 'sugar__reserve',
+    /** 肉块储备量 */
     MINCED_MEAT_RESERVE: 'minced_meat_reserve',
     /** 黑晶储备量 */
     BLACK_CRYSTAL_RESERVE: 'black_crystal_reserve',
@@ -34,6 +34,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'ml',
         tags: ['资源', '基础', '生命'],
+        scope: ['player'],
     },
     [ResourceAttributes.RUSTY_IRON_RESERVE]: {
         id: ResourceAttributes.RUSTY_IRON_RESERVE,
@@ -45,6 +46,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'kg',
         tags: ['资源', '材料', '锻造'],
+        scope: ['player'],
     },
     [ResourceAttributes.BONE_FRAGMENT_RESERVE]: {
         id: ResourceAttributes.BONE_FRAGMENT_RESERVE,
@@ -56,6 +58,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'pcs',
         tags: ['资源', '材料', '强化'],
+        scope: ['player'],
     },
     [ResourceAttributes.HAIR_RESERVE]: {
         id: ResourceAttributes.HAIR_RESERVE,
@@ -67,9 +70,10 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'g',
         tags: ['资源', '材料', '催化'],
+        scope: ['player'],
     },
-    [ResourceAttributes.SUGAR_POWDER_RESERVE]: {
-        id: ResourceAttributes.SUGAR_POWDER_RESERVE,
+    [ResourceAttributes.sugar__RESERVE]: {
+        id: ResourceAttributes.sugar__RESERVE,
         name: '糖末储备量',
         description: '具有成瘾性的白色粉末，在某些领域是硬通货。',
         defaultValue: 0n,
@@ -78,10 +82,11 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'g',
         tags: ['资源', '交易', '成瘾'],
+        scope: ['player'],
     },
     [ResourceAttributes.MINCED_MEAT_RESERVE]: {
         id: ResourceAttributes.MINCED_MEAT_RESERVE,
-        name: '肉糜储备量',
+        name: '肉块储备量',
         description: '经过处理的生物组织，是维持生命或培养生化造物的原料。',
         defaultValue: 0n,
         minValue: 0n,
@@ -89,6 +94,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'kg',
         tags: ['资源', '生存', '生物'],
+        scope: ['player'],
     },
     [ResourceAttributes.BLACK_CRYSTAL_RESERVE]: {
         id: ResourceAttributes.BLACK_CRYSTAL_RESERVE,
@@ -100,5 +106,6 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '稀有资源'],
         unit: 'ct',
         tags: ['资源', '稀有', '黑暗'],
+        scope: ['player'],
     },
 };

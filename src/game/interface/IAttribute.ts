@@ -1,5 +1,10 @@
 import type { IData } from './IData';
 /**
+ * 属性适用范围
+ */
+export type AttributeScope = 'player' | 'enemy' | 'item' | 'map' | 'reincarnation' | 'all';
+
+/**
  * 属性定义接口
  * 用于定义玩家或敌人的各类数值属性 (如：力量、敏捷、精神等)
  */
@@ -18,4 +23,10 @@ export interface IAttribute extends IData {
     category?: string;
     /** 是否默认加载此属性 (默认为 false) */
     isDefaultLoaded?: boolean;
+    /** 
+     * 属性适用范围
+     * 定义该属性可以出现在哪些预制体的 stats 中
+     * 如果包含 'all'，则所有预制体均可使用
+     */
+    scope?: AttributeScope[];
 }

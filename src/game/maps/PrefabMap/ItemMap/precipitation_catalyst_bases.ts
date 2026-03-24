@@ -1,4 +1,4 @@
-import type { IItem } from '../../../interface';
+import type { IItemPrefab } from '../../../interface';
 
 /**
  * 沉淀催化基底系列物品 ID 映射表
@@ -13,7 +13,7 @@ export const PrecipitationCatalystItems = {
 /**
  * 沉淀催化基底系列详细数据表
  */
-export const PrecipitationCatalystItemData: Record<string, IItem> = {
+export const PrecipitationCatalystItemData: Record<string, IItemPrefab> = {
     [PrecipitationCatalystItems.BONE_PRECIPITATION_CATALYST]: {
         id: PrecipitationCatalystItems.BONE_PRECIPITATION_CATALYST,
         name: '骨沉淀催化基底',
