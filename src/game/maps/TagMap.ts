@@ -1,11 +1,13 @@
+import type { IText } from '../interface/IText';
+
 /**
  * 标签元数据接口
  */
 export interface Tag {
   id: string;          // 原始 ID (字符串)
-  name: string;        // 显示名称
+  name: IText;        // 显示名称
   type: TagType;       // 种类 (用于排序和分组)
-  description?: string; // 描述内容
+  description?: IText; // 描述内容
   color?: string;      // 可选颜色
 }
 

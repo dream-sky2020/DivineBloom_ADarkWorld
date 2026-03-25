@@ -20,6 +20,7 @@ export const BaseAttributes = {
 export const BaseAttributeData: Record<string, IAttribute> = {
     [BaseAttributes.FEAR_MAJESTY]: {
         id: BaseAttributes.FEAR_MAJESTY,
+        kind: 'raw',
         name: '恐惧威仪',
         description: '衡量对敌方造成恐惧效果的能力。',
         defaultValue: 10n,
@@ -31,6 +32,7 @@ export const BaseAttributeData: Record<string, IAttribute> = {
     },
     [BaseAttributes.FEAR_RESISTANCE]: {
         id: BaseAttributes.FEAR_RESISTANCE,
+        kind: 'raw',
         name: '恐惧抵抗',
         description: '降低受到的恐惧效果影响。',
         defaultValue: 0n,
@@ -42,6 +44,7 @@ export const BaseAttributeData: Record<string, IAttribute> = {
     },
     [BaseAttributes.FEAR_DAMAGE_REDUCTION]: {
         id: BaseAttributes.FEAR_DAMAGE_REDUCTION,
+        kind: 'bonus',
         name: '恐惧伤害减免',
         description: '处于恐惧状态时，造成的伤害百分比降低。',
         defaultValue: 0,
@@ -55,6 +58,7 @@ export const BaseAttributeData: Record<string, IAttribute> = {
     },
     [BaseAttributes.FEAR_INCAPACITATE_CHANCE]: {
         id: BaseAttributes.FEAR_INCAPACITATE_CHANCE,
+        kind: 'bonus',
         name: '恐惧无法行动概率',
         description: '处于恐惧状态时，回合开始时无法执行行动的概率。',
         defaultValue: 0,

@@ -29,6 +29,7 @@ export const ActionTriggerAttributes = {
 export const ActionTriggerAttributeData: Record<string, IAttribute> = {
     [ActionTriggerAttributes.ALLOW_MANUAL_TRIGGER]: {
         id: ActionTriggerAttributes.ALLOW_MANUAL_TRIGGER,
+        kind: 'raw',
         name: '允许手动触发',
         description: '是否允许玩家通过点击来触发此行为。',
         defaultValue: 1,
@@ -40,6 +41,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
     },
     [ActionTriggerAttributes.MANUAL_TRIGGER_THRESHOLD]: {
         id: ActionTriggerAttributes.MANUAL_TRIGGER_THRESHOLD,
+        kind: 'raw',
         name: '手动触发阈值',
         description: '手动触发需要的最小充能层数。只有当前计数达到这个层数，玩家点击才有效。',
         defaultValue: 1n,
@@ -50,6 +52,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
     },
     [ActionTriggerAttributes.ALLOW_UI_CONTROL_MANUAL_THRESHOLD]: {
         id: ActionTriggerAttributes.ALLOW_UI_CONTROL_MANUAL_THRESHOLD,
+        kind: 'raw',
         name: 'UI 控制手动阈值',
         description: '是否允许玩家在 UI 上手动调整“手动触发阈值”。',
         defaultValue: 0,
@@ -61,6 +64,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
     },
     [ActionTriggerAttributes.ALLOW_UI_CONTROL_MANUAL_THRESHOLD_TOGGLE]: {
         id: ActionTriggerAttributes.ALLOW_UI_CONTROL_MANUAL_THRESHOLD_TOGGLE,
+        kind: 'raw',
         name: 'UI 控制手动阈值开关',
         description: '是否允许玩家在 UI 上开启或关闭“手动触发阈值”限制。',
         defaultValue: 0,
@@ -72,6 +76,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
     },
     [ActionTriggerAttributes.ALLOW_AUTO_TRIGGER]: {
         id: ActionTriggerAttributes.ALLOW_AUTO_TRIGGER,
+        kind: 'raw',
         name: '允许自动触发',
         description: '是否允许系统自动执行此行为。',
         defaultValue: 1,
@@ -83,6 +88,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
     },
     [ActionTriggerAttributes.AUTO_TRIGGER_THRESHOLD]: {
         id: ActionTriggerAttributes.AUTO_TRIGGER_THRESHOLD,
+        kind: 'raw',
         name: '自动触发阈值',
         description: '自动触发需要的最小充能层数。只有当前计数达到这个层数，自动逻辑才会执行。',
         defaultValue: 1n,
@@ -93,6 +99,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
     },
     [ActionTriggerAttributes.ALLOW_UI_CONTROL_AUTO_THRESHOLD]: {
         id: ActionTriggerAttributes.ALLOW_UI_CONTROL_AUTO_THRESHOLD,
+        kind: 'raw',
         name: 'UI 控制自动阈值',
         description: '是否允许玩家在 UI 上手动调整“自动触发阈值”。',
         defaultValue: 0,
@@ -104,6 +111,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
     },
     [ActionTriggerAttributes.ALLOW_UI_CONTROL_AUTO_THRESHOLD_TOGGLE]: {
         id: ActionTriggerAttributes.ALLOW_UI_CONTROL_AUTO_THRESHOLD_TOGGLE,
+        kind: 'raw',
         name: 'UI 控制自动阈值开关',
         description: '是否允许玩家在 UI 上开启或关闭“自动触发阈值”限制。',
         defaultValue: 0,

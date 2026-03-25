@@ -30,6 +30,7 @@ export const ActionAttributes = {
 export const ActionAttributeData: Record<string, IAttribute> = {
     [ActionAttributes.ACTION_SPEED_MULTIPLIER]: {
         id: ActionAttributes.ACTION_SPEED_MULTIPLIER,
+        kind: 'total',
         name: '全体行动速度倍率',
         description: '对最终行动速度进行的全局倍数加成。',
         defaultValue: 1.0,
@@ -42,6 +43,7 @@ export const ActionAttributeData: Record<string, IAttribute> = {
     },
     [ActionAttributes.MAX_ACTION_SPEED_MULTIPLIER]: {
         id: ActionAttributes.MAX_ACTION_SPEED_MULTIPLIER,
+        kind: 'raw',
         name: '最大行动速度倍率',
         description: '全体行动速度倍率能够达到的最大上限。',
         defaultValue: 10.0,
@@ -53,6 +55,7 @@ export const ActionAttributeData: Record<string, IAttribute> = {
     },
     [ActionAttributes.EXTRA_ATTACK_CHANCE]: {
         id: ActionAttributes.EXTRA_ATTACK_CHANCE,
+        kind: 'total',
         name: '额外攻击概率',
         description: '每次攻击时触发额外连击的概率。',
         defaultValue: 0,
@@ -65,6 +68,7 @@ export const ActionAttributeData: Record<string, IAttribute> = {
     },
     [ActionAttributes.EXTRA_ATTACK_COUNT]: {
         id: ActionAttributes.EXTRA_ATTACK_COUNT,
+        kind: 'total',
         name: '额外攻击次数',
         description: '触发额外攻击时，实际进行的打击次数。',
         defaultValue: 0n,
@@ -75,6 +79,7 @@ export const ActionAttributeData: Record<string, IAttribute> = {
     },
     [ActionAttributes.EXTRA_ATTACK_COUNT_LIMIT]: {
         id: ActionAttributes.EXTRA_ATTACK_COUNT_LIMIT,
+        kind: 'raw',
         name: '最大额外攻击次数',
         description: '单次连击中额外攻击次数的最高上限。',
         defaultValue: 1n,
@@ -85,6 +90,7 @@ export const ActionAttributeData: Record<string, IAttribute> = {
     },
     [ActionAttributes.OVERFLOW_EXTRA_ATTACK_CHANCE_TO_COUNT_CONVERSION]: {
         id: ActionAttributes.OVERFLOW_EXTRA_ATTACK_CHANCE_TO_COUNT_CONVERSION,
+        kind: 'raw',
         name: '溢出额外攻击概率转化为额外攻击次数的比例',
         description: '当额外攻击概率超过 100% 时，每 100% 溢出概率转化的额外攻击次数。',
         defaultValue: 1n,
@@ -95,6 +101,7 @@ export const ActionAttributeData: Record<string, IAttribute> = {
     },
     [ActionAttributes.OVERFLOW_EXTRA_ATTACK_COUNT_TO_DAMAGE_CONVERSION]: {
         id: ActionAttributes.OVERFLOW_EXTRA_ATTACK_COUNT_TO_DAMAGE_CONVERSION,
+        kind: 'raw',
         name: '溢出额外攻击次数转化为伤害的比例',
         description: '当额外攻击次数超过上限时，每 1 次溢出攻击次数转化的最终伤害加成比例。',
         defaultValue: 0,
@@ -107,6 +114,7 @@ export const ActionAttributeData: Record<string, IAttribute> = {
     },
     [ActionAttributes.OVERFLOW_SPEED_TO_BASE_DAMAGE_CONVERSION]: {
         id: ActionAttributes.OVERFLOW_SPEED_TO_BASE_DAMAGE_CONVERSION,
+        kind: 'raw',
         name: '溢出的速度倍率转化额外基础伤害比例',
         description: '当行动速度倍率超过上限时，每 1.0 溢出倍率转化的额外基础伤害数值。',
         defaultValue: 0n,
@@ -117,6 +125,7 @@ export const ActionAttributeData: Record<string, IAttribute> = {
     },
     [ActionAttributes.OVERFLOW_SPEED_TO_PERCENT_DAMAGE_CONVERSION]: {
         id: ActionAttributes.OVERFLOW_SPEED_TO_PERCENT_DAMAGE_CONVERSION,
+        kind: 'raw',
         name: '溢出的速度倍率转化额外百分比伤害比例',
         description: '当行动速度倍率超过上限时，每 1.0 溢出倍率转化的额外百分比伤害加成。',
         defaultValue: 0,

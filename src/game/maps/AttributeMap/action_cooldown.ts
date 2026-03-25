@@ -24,6 +24,7 @@ export const ActionCooldownAttributes = {
 export const ActionCooldownAttributeData: Record<string, IAttribute> = {
     [ActionCooldownAttributes.CURRENT_COOLDOWN]: {
         id: ActionCooldownAttributes.CURRENT_COOLDOWN,
+        kind: 'current',
         name: '现行为冷却时间',
         description: '当前行为剩余的冷却时间（秒）。',
         defaultValue: 0,
@@ -35,6 +36,7 @@ export const ActionCooldownAttributeData: Record<string, IAttribute> = {
     },
     [ActionCooldownAttributes.INITIAL_COOLDOWN]: {
         id: ActionCooldownAttributes.INITIAL_COOLDOWN,
+        kind: 'raw',
         name: '初始行为冷却时间',
         description: '行为开始时的初始冷却时间（秒）。',
         defaultValue: 1.0,
@@ -46,6 +48,7 @@ export const ActionCooldownAttributeData: Record<string, IAttribute> = {
     },
     [ActionCooldownAttributes.RESET_COOLDOWN]: {
         id: ActionCooldownAttributes.RESET_COOLDOWN,
+        kind: 'total',
         name: '重置后行为冷却时间',
         description: '行为触发后重置的冷却时间（秒）。',
         defaultValue: 1.0,
@@ -57,6 +60,7 @@ export const ActionCooldownAttributeData: Record<string, IAttribute> = {
     },
     [ActionCooldownAttributes.MIN_RESET_COOLDOWN]: {
         id: ActionCooldownAttributes.MIN_RESET_COOLDOWN,
+        kind: 'total',
         name: '最小重置后行为冷却时间',
         description: '行为触发后重置冷却时间的最低下限。',
         defaultValue: 0.1,
@@ -68,6 +72,7 @@ export const ActionCooldownAttributeData: Record<string, IAttribute> = {
     },
     [ActionCooldownAttributes.AUTO_COOLDOWN_ACCUMULATE]: {
         id: ActionCooldownAttributes.AUTO_COOLDOWN_ACCUMULATE,
+        kind: 'raw',
         name: '自动充能',
         description: '冷却完毕后是否自动重置并计数充能。',
         defaultValue: 0,
@@ -79,6 +84,7 @@ export const ActionCooldownAttributeData: Record<string, IAttribute> = {
     },
     [ActionCooldownAttributes.MAX_COOLDOWN_ACCUMULATE_CHARGES]: {
         id: ActionCooldownAttributes.MAX_COOLDOWN_ACCUMULATE_CHARGES,
+        kind: 'total',
         name: '最大充能层数',
         description: '行为可以连续充能的最大次数上限。',
         defaultValue: 1n,

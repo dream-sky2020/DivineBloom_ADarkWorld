@@ -18,6 +18,7 @@ export const HPAttributes = {
 export const HPAttributeData: Record<string, IAttribute> = {
     [HPAttributes.HP]: {
         id: HPAttributes.HP,
+        kind: 'current',
         name: '生命值',
         description: '角色的当前生命值',
         defaultValue: 100n,
@@ -30,6 +31,7 @@ export const HPAttributeData: Record<string, IAttribute> = {
     },
     [HPAttributes.HP_MAX]: {
         id: HPAttributes.HP_MAX,
+        kind: 'total',
         name: '最大生命值',
         description: '角色的生命值上限',
         defaultValue: 100n,
@@ -42,6 +44,7 @@ export const HPAttributeData: Record<string, IAttribute> = {
     },
     [HPAttributes.HP_REMOVED_MAX]: {
         id: HPAttributes.HP_REMOVED_MAX,
+        kind: 'bonus',
         name: '被削除的血量上限',
         description: '由于某些负面状态或效果导致暂时无法使用的血量上限部分。',
         defaultValue: 0n,

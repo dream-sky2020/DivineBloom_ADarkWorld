@@ -8,4 +8,7 @@ import type { IData } from './IData';
 export interface IEnum extends IData {
     /** 备注信息 (可选) */
     remark?: string;
+
+    /** 允许任意其他属性 */
+    [key: string]: any;
 }

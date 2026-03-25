@@ -32,6 +32,7 @@ export const LootAttributes = {
 export const LootAttributeData: Record<string, IAttribute> = {
     [LootAttributes.BLOOD_LOOT]: {
         id: LootAttributes.BLOOD_LOOT,
+        kind: 'raw',
         name: '血液掉落量',
         description: '战斗胜利后可获得的血液数量。',
         defaultValue: 0n,
@@ -44,6 +45,7 @@ export const LootAttributeData: Record<string, IAttribute> = {
     },
     [LootAttributes.RUSTY_IRON_LOOT]: {
         id: LootAttributes.RUSTY_IRON_LOOT,
+        kind: 'raw',
         name: '锈铁掉落量',
         description: '从击败的敌人残骸中可回收的锈铁数量。',
         defaultValue: 0n,
@@ -56,6 +58,7 @@ export const LootAttributeData: Record<string, IAttribute> = {
     },
     [LootAttributes.BONE_FRAGMENT_LOOT]: {
         id: LootAttributes.BONE_FRAGMENT_LOOT,
+        kind: 'raw',
         name: '骨片掉落量',
         description: '击碎敌人骨骼后可收集的碎片数量。',
         defaultValue: 0n,
@@ -68,6 +71,7 @@ export const LootAttributeData: Record<string, IAttribute> = {
     },
     [LootAttributes.HAIR_LOOT]: {
         id: LootAttributes.HAIR_LOOT,
+        kind: 'raw',
         name: '毛发掉落量',
         description: '从敌人尸体上剥取的毛发数量。',
         defaultValue: 0n,
@@ -80,6 +84,7 @@ export const LootAttributeData: Record<string, IAttribute> = {
     },
     [LootAttributes.SUGAR__LOOT]: {
         id: LootAttributes.SUGAR__LOOT,
+        kind: 'raw',
         name: '糖末掉落量',
         description: '敌人随身携带或体内蕴含的糖末数量。',
         defaultValue: 0n,
@@ -92,6 +97,7 @@ export const LootAttributeData: Record<string, IAttribute> = {
     },
     [LootAttributes.MEAT_LOOT]: {
         id: LootAttributes.MEAT_LOOT,
+        kind: 'raw',
         name: '肉块掉落量',
         description: '战斗后可采集的生物组织数量。',
         defaultValue: 0n,
@@ -104,6 +110,7 @@ export const LootAttributeData: Record<string, IAttribute> = {
     },
     [LootAttributes.BLACK_CRYSTAL_LOOT]: {
         id: LootAttributes.BLACK_CRYSTAL_LOOT,
+        kind: 'raw',
         name: '黑晶掉落量',
         description: '极少数强大敌人可能掉落的黑暗能量晶体。',
         defaultValue: 0n,
@@ -116,6 +123,7 @@ export const LootAttributeData: Record<string, IAttribute> = {
     },
     [LootAttributes.LOOT_CHANCE_MODIFIER]: {
         id: LootAttributes.LOOT_CHANCE_MODIFIER,
+        kind: 'bonus',
         name: '掉落率加成',
         description: '增加获得额外掉落物的概率。',
         defaultValue: 0,
@@ -129,6 +137,7 @@ export const LootAttributeData: Record<string, IAttribute> = {
     },
     [LootAttributes.LOOT_QUANTITY_MODIFIER]: {
         id: LootAttributes.LOOT_QUANTITY_MODIFIER,
+        kind: 'bonus',
         name: '掉落数量加成',
         description: '增加掉落资源时的实际获得倍率。',
         defaultValue: 1.0,

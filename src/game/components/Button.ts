@@ -1,5 +1,3 @@
-import type { IComponentDefinition } from '../interface/IComponent';
-
 export interface ButtonComponentData {
     /**
      * 是否允许手动触发
@@ -48,10 +46,7 @@ const defaultButtonComponentData = (): ButtonComponentData => ({
     isFocused: false
 });
 
-export const ButtonComponentDefinition: IComponentDefinition<
-    ButtonComponentData,
-    ButtonComponent
-> = {
+export const ButtonComponentDefinition: any = {
     id: 'game.component.button',
     name: 'Button',
 

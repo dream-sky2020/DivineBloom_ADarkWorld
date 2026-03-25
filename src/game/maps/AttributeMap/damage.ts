@@ -18,6 +18,7 @@ export const DamageAttributes = {
 export const DamageAttributeData: Record<string, IAttribute> = {
     [DamageAttributes.BASE_DAMAGE]: {
         id: DamageAttributes.BASE_DAMAGE,
+        kind: 'raw',
         name: '基础伤害',
         description: '角色造成的原始伤害值，是所有伤害计算的基石。',
         defaultValue: 10n,
@@ -30,6 +31,7 @@ export const DamageAttributeData: Record<string, IAttribute> = {
     },
     [DamageAttributes.PERCENT_DAMAGE]: {
         id: DamageAttributes.PERCENT_DAMAGE,
+        kind: 'bonus',
         name: '百分比伤害加成',
         description: '在基础伤害之上额外增加的百分比伤害。',
         defaultValue: 0,
@@ -44,6 +46,7 @@ export const DamageAttributeData: Record<string, IAttribute> = {
     },
     [DamageAttributes.DAMAGE_MIN_LIMIT]: {
         id: DamageAttributes.DAMAGE_MIN_LIMIT,
+        kind: 'total',
         name: '伤害下限',
         description: '无论敌方防御多高，角色最少能造成的保底伤害。',
         defaultValue: 1n,

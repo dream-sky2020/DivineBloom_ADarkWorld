@@ -44,6 +44,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     // --- 治疗统计 ---
     [StatisticsAttributes.HEALING_TOTAL_ARCHIVE]: {
         id: StatisticsAttributes.HEALING_TOTAL_ARCHIVE,
+        kind: 'current',
         name: '本存档治疗总计',
         description: '自存档创建以来累计的总治疗量。',
         defaultValue: 0n,
@@ -54,6 +55,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.HEALING_TOTAL_CYCLE]: {
         id: StatisticsAttributes.HEALING_TOTAL_CYCLE,
+        kind: 'current',
         name: '本轮回治疗总计',
         description: '本次轮回（转生）中累计的总治疗量。',
         defaultValue: 0n,
@@ -64,6 +66,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.HEALING_TOTAL_EXPLORATION]: {
         id: StatisticsAttributes.HEALING_TOTAL_EXPLORATION,
+        kind: 'current',
         name: '本探索治疗总计',
         description: '本次探索任务中累计的总治疗量。',
         defaultValue: 0n,
@@ -74,6 +77,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.HEALING_TOTAL_FLOOR]: {
         id: StatisticsAttributes.HEALING_TOTAL_FLOOR,
+        kind: 'current',
         name: '本层数治疗总计',
         description: '当前层数中累计的总治疗量。',
         defaultValue: 0n,
@@ -84,6 +88,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.HEALING_TOTAL_COMBAT]: {
         id: StatisticsAttributes.HEALING_TOTAL_COMBAT,
+        kind: 'current',
         name: '本战斗治疗总计',
         description: '本次战斗中累计的总治疗量。',
         defaultValue: 0n,
@@ -96,6 +101,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     // --- 伤害统计 ---
     [StatisticsAttributes.DAMAGE_TOTAL_ARCHIVE]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_ARCHIVE,
+        kind: 'current',
         name: '本存档伤害总计',
         description: '自存档创建以来累计的总伤害量。',
         defaultValue: 0n,
@@ -106,6 +112,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.DAMAGE_TOTAL_CYCLE]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_CYCLE,
+        kind: 'current',
         name: '本轮回伤害总计',
         description: '本次轮回（转生）中累计的总伤害量。',
         defaultValue: 0n,
@@ -116,6 +123,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.DAMAGE_TOTAL_EXPLORATION]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_EXPLORATION,
+        kind: 'current',
         name: '本探索伤害总计',
         description: '本次探索任务中累计的总伤害量。',
         defaultValue: 0n,
@@ -126,6 +134,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.DAMAGE_TOTAL_FLOOR]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_FLOOR,
+        kind: 'current',
         name: '本层数伤害总计',
         description: '当前层数中累计的总伤害量。',
         defaultValue: 0n,
@@ -136,6 +145,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.DAMAGE_TOTAL_COMBAT]: {
         id: StatisticsAttributes.DAMAGE_TOTAL_COMBAT,
+        kind: 'current',
         name: '本战斗伤害总计',
         description: '本次战斗中累计的总伤害量。',
         defaultValue: 0n,
@@ -148,6 +158,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     // --- 死亡统计 ---
     [StatisticsAttributes.DEATH_COUNT_ARCHIVE]: {
         id: StatisticsAttributes.DEATH_COUNT_ARCHIVE,
+        kind: 'current',
         name: '本存档死亡次数总计',
         description: '自存档创建以来累计的总死亡次数。',
         defaultValue: 0n,
@@ -158,6 +169,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.DEATH_COUNT_CYCLE]: {
         id: StatisticsAttributes.DEATH_COUNT_CYCLE,
+        kind: 'current',
         name: '本轮回死亡次数总计',
         description: '本次轮回（转生）中累计的总死亡次数。',
         defaultValue: 0n,
@@ -168,6 +180,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.DEATH_COUNT_EXPLORATION]: {
         id: StatisticsAttributes.DEATH_COUNT_EXPLORATION,
+        kind: 'current',
         name: '本探索死亡次数总计',
         description: '本次探索任务中累计的总死亡次数。',
         defaultValue: 0n,
@@ -178,6 +191,7 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
     },
     [StatisticsAttributes.DEATH_COUNT_FLOOR]: {
         id: StatisticsAttributes.DEATH_COUNT_FLOOR,
+        kind: 'current',
         name: '本层数死亡次数总计',
         description: '当前层数中累计的总死亡次数。',
         defaultValue: 0n,

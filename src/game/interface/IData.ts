@@ -1,3 +1,5 @@
+import type { IText } from './IText';
+
 /**
  * 基础数据定义接口
  * 所有具有唯一 ID、名称和描述的游戏对象都应继承此接口
@@ -6,9 +8,9 @@ export interface IData {
     /** 唯一标识符 */
     id: string;
     /** 显示名称 */
-    name: string;
+    name: IText;
     /** 详细描述 */
-    description: string;
+    description: IText;
     /** 标签列表 (可选) */
     tags?: string[];
     /**

@@ -5,11 +5,12 @@ import {
   ActionTriggerModeDataMap, 
   AttributeModifierDataMap, 
   AttributePredicateDataMap 
-} from '../game/maps/IEnumMap'
-import { ActionDataMap } from '../game/maps/PrefabMap/ActionMap'
-import { EnemyDataMap } from '../game/maps/PrefabMap/EnemyMap'
-import { ItemDataMap } from '../game/maps/PrefabMap/ItemMap'
-import { MapAreaDataMap } from '../game/maps/PrefabMap/MapMap'
+} from '../game/maps/EnumMap'
+import { FormulaDataMap } from '../game/maps/FormulaMap'
+import { ActionDataMap } from '../game/maps/ObjectMap/ActionMap'
+import { EnemyDataMap } from '../game/maps/ObjectMap/EnemyMap'
+import { ItemDataMap } from '../game/maps/ObjectMap/ItemMap'
+import { MapAreaDataMap } from '../game/maps/ObjectMap/MapMap'
 import {
   SearchOutlined,
   DatabaseOutlined,
@@ -20,8 +21,19 @@ import {
   EnvironmentOutlined,
   CodeOutlined,
   HomeOutlined,
+  CalculatorOutlined,
 } from '@ant-design/icons-vue'
 import { TagDataMap, TagType, TagTypeWeight, type Tag } from '../game/maps/TagMap'
+import { Calculator } from '../game/tool/Calculation'
+import type { IText } from '../game/interface/IText'
+
+/**
+ * 获取文本显示内容
+ */
+const getText = (text: IText | undefined): string => {
+  if (!text) return ''
+  return typeof text === 'string' ? text : text.default
+}
 
 /**
  * 递归分类节点接口
@@ -44,6 +56,7 @@ const allRawData = [
   ...Object.values(EnemyDataMap),
   ...Object.values(ItemDataMap),
   ...Object.values(MapAreaDataMap),
+  ...Object.values(FormulaDataMap),
 ]
 
 /**
@@ -170,7 +183,7 @@ const availableTags = computed(() => {
     if (weightA !== weightB) {
       return weightA - weightB
     }
-    return a.name.localeCompare(b.name)
+    return getText(a.name).localeCompare(getText(b.name))
   })
 })
 
@@ -226,8 +239,8 @@ const getAllDisplayData = (node: DataNode, results: any[] = []): any[] => {
     // 搜索文本过滤
     const matchesSearch = !searchText.value || (
       item.id.toLowerCase().includes(searchText.value.toLowerCase()) ||
-      item.name.toLowerCase().includes(searchText.value.toLowerCase()) ||
-      item.description?.toLowerCase().includes(searchText.value.toLowerCase())
+      getText(item.name).toLowerCase().includes(searchText.value.toLowerCase()) ||
+      getText(item.description).toLowerCase().includes(searchText.value.toLowerCase())
     )
 
     // 标签过滤：必须包含所有 includeTags，且不能包含任何 excludeTags
@@ -312,6 +325,7 @@ const getCategoryIcon = (name: string) => {
   if (name === '枚举' || name === '机制') return CodeOutlined
   if (name === '属性') return TagOutlined
   if (name === '转生') return DatabaseOutlined
+  if (name === '公式') return CalculatorOutlined
   return DatabaseOutlined
 }
 
@@ -444,25 +458,30 @@ const getCategoryIcon = (name: string) => {
               <a-tag color="blue" style="font-family: monospace">{{ record.id }}</a-tag>
             </template>
             <template v-else-if="column.key === 'name'">
-              <span style="font-weight: 600">{{ record.name }}</span>
+              <span style="font-weight: 600">{{ getText(record.name) }}</span>
             </template>
             <template v-else-if="column.key === 'tags'">
               <div style="display: flex; flex-wrap: wrap; gap: 4px">
                 <a-tooltip 
                   v-for="tag in record.tags" 
                   :key="tag" 
-                  :title="TagDataMap[tag]?.description || '暂无描述'"
+                  :title="getText(TagDataMap[tag]?.description) || '暂无描述'"
                   placement="top"
                 >
                   <a-tag color="orange" size="small" style="cursor: help">
-                    {{ TagDataMap[tag]?.name || tag }}
+                    {{ getText(TagDataMap[tag]?.name) || tag }}
                   </a-tag>
                 </a-tooltip>
               </div>
             </template>
             <template v-else-if="column.key === 'description'">
               <div style="max-width: 500px; line-height: 1.5; font-size: 13px">
-                {{ record.description }}
+                {{ getText(record.description) }}
+                <!-- 新增：展示公式结构 -->
+                <div v-if="record.nodes" style="margin-top: 8px; padding: 8px; background: #fafafa; border: 1px solid #eee; border-radius: 4px">
+                  <div style="font-weight: 600; font-size: 11px; color: #888; margin-bottom: 4px">公式逻辑:</div>
+                  <pre style="margin: 0; font-family: monospace; white-space: pre-wrap; font-size: 12px; color: #1890ff">{{ Calculator.runFormula(record.nodes).explainFormula() }}</pre>
+                </div>
                 <div v-if="record.categoryPath" style="margin-top: 4px; font-size: 11px; color: #aaa">
                   路径: {{ record.categoryPath.join(' / ') }}
                 </div>

@@ -15,6 +15,7 @@ import { CritAttributes, CritAttributeData } from './crit';
 import { ActionCooldownAttributes, ActionCooldownAttributeData } from './action_cooldown';
 import { ActionTriggerAttributes, ActionTriggerAttributeData } from './action_trigger';
 import { LootAttributes, LootAttributeData } from './loot';
+import { ReincarnationAttributes, ReincarnationAttributeData } from './reincarnation';
 
 export * from './fear';
 export * from './resources';
@@ -32,6 +33,7 @@ export * from './crit';
 export * from './action_cooldown';
 export * from './action_trigger';
 export * from './loot';
+export * from './reincarnation';
 
 /**
  * 属性 ID 映射表 (全量 ID)
@@ -53,6 +55,7 @@ export const AttributeTypeMap = {
     ...ActionCooldownAttributes,
     ...ActionTriggerAttributes,
     ...LootAttributes,
+    ...ReincarnationAttributes,
 } as const;
 
 /**
@@ -102,4 +105,5 @@ export const AttributeDataMap: Record<AttributeID, IAttribute> = {
     ...ActionCooldownAttributeData,
     ...ActionTriggerAttributeData,
     ...LootAttributeData,
+    ...ReincarnationAttributeData,
 } as Record<AttributeID, IAttribute>;

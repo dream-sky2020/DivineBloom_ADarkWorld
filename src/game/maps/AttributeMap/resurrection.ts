@@ -36,6 +36,7 @@ export const ResurrectionAttributes = {
 export const ResurrectionAttributeData: Record<string, IAttribute> = {
     [ResurrectionAttributes.RESURRECTION_COUNT]: {
         id: ResurrectionAttributes.RESURRECTION_COUNT,
+        kind: 'raw',
         name: '死亡后复活次数',
         description: '死亡后可以无条件直接复活的次数（保底）。',
         defaultValue: 0n,
@@ -46,6 +47,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.RESURRECTION_CHANCE_WITHOUT_REMAINING]: {
         id: ResurrectionAttributes.RESURRECTION_CHANCE_WITHOUT_REMAINING,
+        kind: 'total',
         name: '死亡后无复活次数复活概率',
         description: '当保底复活次数耗尽后，死亡时尝试概率复活的几率。',
         defaultValue: 0,
@@ -59,6 +61,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.MAX_RESURRECTION_CHANCE]: {
         id: ResurrectionAttributes.MAX_RESURRECTION_CHANCE,
+        kind: 'raw',
         name: '最大死亡后复活概率',
         description: '概率复活的几率能够达到的最高上限。',
         defaultValue: 0.5,
@@ -72,6 +75,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.RESURRECTION_CHANCE_REDUCTION_PENALTY]: {
         id: ResurrectionAttributes.RESURRECTION_CHANCE_REDUCTION_PENALTY,
+        kind: 'raw',
         name: '死亡后复活概率减少惩罚',
         description: '每次通过概率复活成功后，下一次触发概率复活时会扣除的概率数值（衰减机制）。',
         defaultValue: 0,
@@ -85,6 +89,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.RESURRECTION_HP_RECOVERY_PERCENT]: {
         id: ResurrectionAttributes.RESURRECTION_HP_RECOVERY_PERCENT,
+        kind: 'raw',
         name: '复活后血量回复百分比',
         description: '成功复活后，瞬间恢复的生命值占最大生命值的比例。',
         defaultValue: 0.5,
@@ -98,6 +103,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.RESURRECTION_CLEAR_STATUS_EFFECTS]: {
         id: ResurrectionAttributes.RESURRECTION_CLEAR_STATUS_EFFECTS,
+        kind: 'raw',
         name: '复活时是否清除异常状态',
         description: '成功复活后，是否移除身上所有的负面效果及异常状态（0表示不清除，1表示清除）。',
         defaultValue: 0n,
@@ -109,6 +115,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.OVERFLOW_RESURRECTION_CHANCE_TO_COUNT_CONVERSION]: {
         id: ResurrectionAttributes.OVERFLOW_RESURRECTION_CHANCE_TO_COUNT_CONVERSION,
+        kind: 'raw',
         name: '溢出的复活概率转化保底复活次数的比例',
         description: '当复活概率超过最大上限时，每 100% 溢出概率转化的额外保底复活次数。',
         defaultValue: 1n,
@@ -119,6 +126,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.TOTAL_RESURRECTED_COUNT]: {
         id: ResurrectionAttributes.TOTAL_RESURRECTED_COUNT,
+        kind: 'current',
         name: '已经复活的次数',
         description: '在当前探索或生命周期中，角色已经通过保底或概率成功复活的总次数。',
         defaultValue: 0n,
@@ -129,6 +137,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.CURRENT_RESURRECTION_CHANCE_PENALTY]: {
         id: ResurrectionAttributes.CURRENT_RESURRECTION_CHANCE_PENALTY,
+        kind: 'current',
         name: '概率复活后累计的复活概率惩罚',
         description: '当前已经累计扣除的复活概率总值（由于多次成功概率复活引起）。',
         defaultValue: 0,
@@ -142,6 +151,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.OVERFLOW_RESURRECTION_COUNT_BONUS]: {
         id: ResurrectionAttributes.OVERFLOW_RESURRECTION_COUNT_BONUS,
+        kind: 'bonus',
         name: '溢出的复活概率转化的额外保底复活次数',
         description: '由溢出的复活概率转化而来的、额外的保底复活次数。',
         defaultValue: 0n,
@@ -152,6 +162,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.REMAINING_RESURRECTION_COUNT]: {
         id: ResurrectionAttributes.REMAINING_RESURRECTION_COUNT,
+        kind: 'current',
         name: '剩余保底复活次数',
         description: '当前剩余的、可以直接触发的保底复活次数。',
         defaultValue: 0n,
@@ -162,6 +173,7 @@ export const ResurrectionAttributeData: Record<string, IAttribute> = {
     },
     [ResurrectionAttributes.FINAL_RESURRECTION_CHANCE]: {
         id: ResurrectionAttributes.FINAL_RESURRECTION_CHANCE,
+        kind: 'total',
         name: '最终死亡后概率复活的概率',
         description: '经过上限修正及惩罚扣除后，最终生效的死亡复活几率。',
         defaultValue: 0,

@@ -22,6 +22,7 @@ export const CritAttributes = {
 export const CritAttributeData: Record<string, IAttribute> = {
     [CritAttributes.CRIT_RATE]: {
         id: CritAttributes.CRIT_RATE,
+        kind: 'total',
         name: '暴击率',
         description: '决定造成暴击的概率',
         defaultValue: 0.05,
@@ -36,6 +37,7 @@ export const CritAttributeData: Record<string, IAttribute> = {
     },
     [CritAttributes.CRIT_DAMAGE]: {
         id: CritAttributes.CRIT_DAMAGE,
+        kind: 'total',
         name: '暴击伤害',
         description: '暴击时造成的伤害倍数',
         defaultValue: 1.5,
@@ -49,6 +51,7 @@ export const CritAttributeData: Record<string, IAttribute> = {
     },
     [CritAttributes.CRIT_RATE_MAX]: {
         id: CritAttributes.CRIT_RATE_MAX,
+        kind: 'total',
         name: '最大暴击率',
         description: '暴击率的上限。',
         defaultValue: 1.0,
@@ -63,6 +66,7 @@ export const CritAttributeData: Record<string, IAttribute> = {
     },
     [CritAttributes.OVERFLOW_CRIT_RATE_TO_DAMAGE_CONVERSION]: {
         id: CritAttributes.OVERFLOW_CRIT_RATE_TO_DAMAGE_CONVERSION,
+        kind: 'raw',
         name: '溢出暴击率转化暴击伤害比例',
         description: '当暴击率超过最大暴击率时，溢出部分按比例转化为额外的暴击伤害。',
         defaultValue: 1.0,
@@ -73,6 +77,7 @@ export const CritAttributeData: Record<string, IAttribute> = {
     },
     [CritAttributes.CRIT_DAMAGE_FIXED]: {
         id: CritAttributes.CRIT_DAMAGE_FIXED,
+        kind: 'bonus',
         name: '暴击伤害固定加成',
         description: '暴击时造成的固定额外伤害数值。',
         defaultValue: 0n,

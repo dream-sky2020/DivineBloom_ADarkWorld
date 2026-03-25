@@ -1,6 +1,4 @@
-import type { SystemContextBase } from './SystemContext';
-
-export interface ISystem<TContext = SystemContextBase, TRenderer = unknown> {
+export interface ISystem<TContext = any, TRenderer = unknown> {
     /**
      * 系统名称 (用于注册和调试)
      */

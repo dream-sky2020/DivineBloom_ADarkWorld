@@ -22,6 +22,7 @@ export const ReductionAttributes = {
 export const ReductionAttributeData: Record<string, IAttribute> = {
     [ReductionAttributes.REDUCTION_FIXED]: {
         id: ReductionAttributes.REDUCTION_FIXED,
+        kind: 'total',
         name: '伤害固定值减免',
         description: '每次受到伤害时减去的固定数值。',
         defaultValue: 0n,
@@ -33,6 +34,7 @@ export const ReductionAttributeData: Record<string, IAttribute> = {
     },
     [ReductionAttributes.REDUCTION_PERCENT]: {
         id: ReductionAttributes.REDUCTION_PERCENT,
+        kind: 'total',
         name: '伤害百分比减免',
         description: '按比例降低受到的伤害。',
         defaultValue: 0,
@@ -46,6 +48,7 @@ export const ReductionAttributeData: Record<string, IAttribute> = {
     },
     [ReductionAttributes.REDUCTION_PERCENT_MAX]: {
         id: ReductionAttributes.REDUCTION_PERCENT_MAX,
+        kind: 'raw',
         name: '最大百分比减免',
         description: '百分比伤害减免的上限。',
         defaultValue: 0.9,
@@ -60,6 +63,7 @@ export const ReductionAttributeData: Record<string, IAttribute> = {
     },
     [ReductionAttributes.REDUCTION_DIVISOR]: {
         id: ReductionAttributes.REDUCTION_DIVISOR,
+        kind: 'total',
         name: '伤害除于值',
         description: '最终伤害会除以此数值。',
         defaultValue: 1.0,
@@ -71,6 +75,7 @@ export const ReductionAttributeData: Record<string, IAttribute> = {
     },
     [ReductionAttributes.OVERFLOW_REDUCTION_PERCENT_TO_DIVISOR_CONVERSION]: {
         id: ReductionAttributes.OVERFLOW_REDUCTION_PERCENT_TO_DIVISOR_CONVERSION,
+        kind: 'raw',
         name: '溢出百分比减免转化为伤害除于值比例',
         description: '当百分比减免超过最大百分比减免时，溢出部分按比例转化为伤害除于值。',
         defaultValue: 1.0,

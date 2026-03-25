@@ -26,6 +26,7 @@ export const ResourceAttributes = {
 export const ResourceAttributeData: Record<string, IAttribute> = {
     [ResourceAttributes.BLOOD_RESERVE]: {
         id: ResourceAttributes.BLOOD_RESERVE,
+        kind: 'current',
         name: '血液储备量',
         description: '玩家当前拥有的血液总量，是许多黑暗仪式的核心物资。',
         defaultValue: 0n,
@@ -38,6 +39,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
     },
     [ResourceAttributes.RUSTY_IRON_RESERVE]: {
         id: ResourceAttributes.RUSTY_IRON_RESERVE,
+        kind: 'current',
         name: '锈铁储备量',
         description: '从废墟中搜刮出的锈蚀金属，可用于基础锻造。',
         defaultValue: 0n,
@@ -50,6 +52,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
     },
     [ResourceAttributes.BONE_FRAGMENT_RESERVE]: {
         id: ResourceAttributes.BONE_FRAGMENT_RESERVE,
+        kind: 'current',
         name: '骨片储备量',
         description: '死者的残骸碎片，常用于强化骨质武装。',
         defaultValue: 0n,
@@ -62,6 +65,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
     },
     [ResourceAttributes.HAIR_RESERVE]: {
         id: ResourceAttributes.HAIR_RESERVE,
+        kind: 'current',
         name: '毛发储备量',
         description: '从怪物身上剥取的毛发或纤维，可用于编织或作为催化剂。',
         defaultValue: 0n,
@@ -74,6 +78,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
     },
     [ResourceAttributes.sugar__RESERVE]: {
         id: ResourceAttributes.sugar__RESERVE,
+        kind: 'current',
         name: '糖末储备量',
         description: '具有成瘾性的白色粉末，在某些领域是硬通货。',
         defaultValue: 0n,
@@ -86,6 +91,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
     },
     [ResourceAttributes.MINCED_MEAT_RESERVE]: {
         id: ResourceAttributes.MINCED_MEAT_RESERVE,
+        kind: 'current',
         name: '肉块储备量',
         description: '经过处理的生物组织，是维持生命或培养生化造物的原料。',
         defaultValue: 0n,
@@ -98,6 +104,7 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
     },
     [ResourceAttributes.BLACK_CRYSTAL_RESERVE]: {
         id: ResourceAttributes.BLACK_CRYSTAL_RESERVE,
+        kind: 'current',
         name: '黑晶储备量',
         description: '蕴含纯粹黑暗能量的晶体，极其罕见且危险。',
         defaultValue: 0n,

@@ -41,6 +41,7 @@ export const BleedingAttributes = {
 export const BleedingAttributeData: Record<string, IAttribute> = {
     [BleedingAttributes.BLEED_CHANCE]: {
         id: BleedingAttributes.BLEED_CHANCE,
+        kind: 'total',
         name: '流血施加概率',
         description: '攻击命中后使目标进入流血状态的几率。',
         defaultValue: 0,
@@ -55,6 +56,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_APPLY_BASE_DAMAGE]: {
         id: BleedingAttributes.BLEED_APPLY_BASE_DAMAGE,
+        kind: 'total',
         name: '施加流血基础伤害',
         description: '攻击成功施加流血时，赋予目标的流血基础伤害。重复施加时通常取最高值。',
         defaultValue: 0n,
@@ -66,6 +68,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_APPLY_PERCENT_DAMAGE]: {
         id: BleedingAttributes.BLEED_APPLY_PERCENT_DAMAGE,
+        kind: 'total',
         name: '施加流血百分比伤害',
         description: '攻击成功施加流血时，赋予目标的流血百分比伤害加成。重复施加时通常取最高值。',
         defaultValue: 0,
@@ -79,6 +82,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_APPLY_TRIGGER_COUNT]: {
         id: BleedingAttributes.BLEED_APPLY_TRIGGER_COUNT,
+        kind: 'total',
         name: '施加流血触发次数',
         description: '攻击成功施加流血时，赋予目标的流血总触发次数。',
         defaultValue: 3n,
@@ -90,6 +94,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_APPLY_INTERVAL]: {
         id: BleedingAttributes.BLEED_APPLY_INTERVAL,
+        kind: 'total',
         name: '施加流血伤害间隔',
         description: '攻击成功施加流血时，赋予目标的流血触发间隔（秒）。重复施加时通常取最小值。',
         defaultValue: 1.0,
@@ -101,6 +106,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_BASE_DAMAGE]: {
         id: BleedingAttributes.BLEED_BASE_DAMAGE,
+        kind: 'current',
         name: '流血基础伤害',
         description: '当前流血状态下，每次触发时造成的固定数值伤害。',
         defaultValue: 0n,
@@ -111,6 +117,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_PERCENT_DAMAGE]: {
         id: BleedingAttributes.BLEED_PERCENT_DAMAGE,
+        kind: 'current',
         name: '流血百分比伤害加成',
         description: '当前流血状态下的额外伤害比例。',
         defaultValue: 0,
@@ -123,6 +130,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_TRIGGER_COUNT_REMAINING]: {
         id: BleedingAttributes.BLEED_TRIGGER_COUNT_REMAINING,
+        kind: 'current',
         name: '流血剩余触发次数',
         description: '当前流血状态在消失前，还会触发多少次伤害。',
         defaultValue: 0n,
@@ -133,6 +141,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_INTERVAL]: {
         id: BleedingAttributes.BLEED_INTERVAL,
+        kind: 'current',
         name: '流血伤害间隔',
         description: '流血状态下，每次造成伤害的时间间隔（秒）。',
         defaultValue: 1.0,
@@ -143,6 +152,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_DETONATION_CHANCE]: {
         id: BleedingAttributes.BLEED_DETONATION_CHANCE,
+        kind: 'total',
         name: '流血引爆概率',
         description: '每次攻击后，有概率立即结算目标当前受到的流血状态的所有剩余伤害。',
         defaultValue: 0,
@@ -157,6 +167,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.BLEED_DETONATION_COUNT]: {
         id: BleedingAttributes.BLEED_DETONATION_COUNT,
+        kind: 'total',
         name: '流血引爆次数',
         description: '触发流血引爆时，实际执行引爆结算的次数。',
         defaultValue: 1n,
@@ -168,6 +179,7 @@ export const BleedingAttributeData: Record<string, IAttribute> = {
     },
     [BleedingAttributes.OVERFLOW_BLEED_DETONATION_CHANCE_TO_COUNT_CONVERSION]: {
         id: BleedingAttributes.OVERFLOW_BLEED_DETONATION_CHANCE_TO_COUNT_CONVERSION,
+        kind: 'raw',
         name: '溢出流血引爆概率转化引爆次数比例',
         description: '当流血引爆概率超过 100% 时，每 100% 溢出概率转化的额外引爆次数。',
         defaultValue: 1n,

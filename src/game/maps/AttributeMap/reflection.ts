@@ -22,6 +22,7 @@ export const ReflectionAttributes = {
 export const ReflectionAttributeData: Record<string, IAttribute> = {
     [ReflectionAttributes.REFLECTION_RATIO]: {
         id: ReflectionAttributes.REFLECTION_RATIO,
+        kind: 'total',
         name: '伤害反射比例',
         description: '受到伤害时，反射给攻击者的伤害比例。',
         defaultValue: 0,
@@ -33,6 +34,7 @@ export const ReflectionAttributeData: Record<string, IAttribute> = {
     },
     [ReflectionAttributes.REFLECTION_CHANCE]: {
         id: ReflectionAttributes.REFLECTION_CHANCE,
+        kind: 'total',
         name: '伤害反射概率',
         description: '受到攻击时触发伤害反射的几率。',
         defaultValue: 0,
@@ -46,6 +48,7 @@ export const ReflectionAttributeData: Record<string, IAttribute> = {
     },
     [ReflectionAttributes.REFLECTION_CHANCE_LIMIT]: {
         id: ReflectionAttributes.REFLECTION_CHANCE_LIMIT,
+        kind: 'raw',
         name: '伤害反射概率上限',
         description: '伤害反射概率能够达到的最大理论值。',
         defaultValue: 1,
@@ -59,6 +62,7 @@ export const ReflectionAttributeData: Record<string, IAttribute> = {
     },
     [ReflectionAttributes.REFLECTION_BASE_BONUS]: {
         id: ReflectionAttributes.REFLECTION_BASE_BONUS,
+        kind: 'bonus',
         name: '伤害反射基础伤害加成',
         description: '在基于受击伤害计算出的反射伤害基础上，额外增加的固定数值。',
         defaultValue: 0n,
@@ -69,6 +73,7 @@ export const ReflectionAttributeData: Record<string, IAttribute> = {
     },
     [ReflectionAttributes.OVERFLOW_REFLECTION_CHANCE_TO_BASE_BONUS_CONVERSION]: {
         id: ReflectionAttributes.OVERFLOW_REFLECTION_CHANCE_TO_BASE_BONUS_CONVERSION,
+        kind: 'raw',
         name: '溢出伤害反射概率转化伤害反射基础伤害加成比例',
         description: '当伤害反射概率超过上限时，每 1% 溢出反射概率转化的额外反射基础伤害数值。',
         defaultValue: 0n,
