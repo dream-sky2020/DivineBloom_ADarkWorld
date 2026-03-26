@@ -23,7 +23,8 @@ import {
   HomeOutlined,
   CalculatorOutlined,
 } from '@ant-design/icons-vue'
-import { TagDataMap, TagType, TagTypeWeight, type Tag } from '../game/maps/TagMap'
+import { TagDataMap } from '../game/maps/TagMap'
+import { TagType, TagTypeWeight, type ITag as Tag } from '../game/interface/ITag'
 import { Calculator } from '../game/tool/Calculation'
 import type { IText } from '../game/interface/IText'
 

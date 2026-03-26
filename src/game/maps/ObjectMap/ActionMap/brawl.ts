@@ -42,7 +42,7 @@ export const BrawlActionData: Record<string, IObject> = {
             stamina: 18
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'kick', 'mobility', 'interrupt']
+        tags: ['攻击', '近战', '踢击', '位移', '打断']
     },
     [BrawlActions.WRESTLING]: {
         id: BrawlActions.WRESTLING,
@@ -59,7 +59,7 @@ export const BrawlActionData: Record<string, IObject> = {
             stamina: 15
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'wrestling', 'control']
+        tags: ['攻击', '近战', '摔跤', '控制']
     },
     [BrawlActions.BOXING]: {
         id: BrawlActions.BOXING,
@@ -80,7 +80,7 @@ export const BrawlActionData: Record<string, IObject> = {
             stamina: 5
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'boxing', 'fast']
+        tags: ['攻击', '近战', '拳击', '快速']
     },
     [BrawlActions.ELBOW_STRIKE]: {
         id: BrawlActions.ELBOW_STRIKE,
@@ -99,7 +99,7 @@ export const BrawlActionData: Record<string, IObject> = {
             stamina: 10
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'elbow', 'impact', 'interrupt']
+        tags: ['攻击', '近战', '肘击', '冲击', '打断']
     },
     [BrawlActions.BODY_IMPACT]: {
         id: BrawlActions.BODY_IMPACT,
@@ -116,7 +116,7 @@ export const BrawlActionData: Record<string, IObject> = {
             stamina: 25
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'impact', 'heavy', 'stun']
+        tags: ['攻击', '近战', '冲击', '重型', '眩晕']
     },
     [BrawlActions.HEART_GOUGING]: {
         id: BrawlActions.HEART_GOUGING,
@@ -137,7 +137,7 @@ export const BrawlActionData: Record<string, IObject> = {
             strengthRatio: 3.0
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'finisher', 'heavy', 'bloody']
+        tags: ['攻击', '近战', '终结技', '重型', '血腥']
     },
     [BrawlActions.SHRED]: {
         id: BrawlActions.SHRED,
@@ -158,7 +158,7 @@ export const BrawlActionData: Record<string, IObject> = {
             strengthRatio: 5.0
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'finisher', 'extreme', 'bloody']
+        tags: ['攻击', '近战', '终结技', '极限', '血腥']
     },
     [BrawlActions.THROW]: {
         id: BrawlActions.THROW,
@@ -175,7 +175,7 @@ export const BrawlActionData: Record<string, IObject> = {
             stamina: 20
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'throw', 'control']
+        tags: ['攻击', '近战', '抛投', '控制']
     },
     [BrawlActions.RIP_HEAD_OFF]: {
         id: BrawlActions.RIP_HEAD_OFF,
@@ -196,7 +196,7 @@ export const BrawlActionData: Record<string, IObject> = {
             strengthRatio: 6.0
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'finisher', 'extreme', 'bloody']
+        tags: ['攻击', '近战', '终结技', '极限', '血腥']
     },
     [BrawlActions.RIP_ARM_OFF]: {
         id: BrawlActions.RIP_ARM_OFF,
@@ -217,7 +217,7 @@ export const BrawlActionData: Record<string, IObject> = {
             strengthRatio: 4.0
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'finisher', 'bloody']
+        tags: ['攻击', '近战', '终结技', '血腥']
     },
     [BrawlActions.CRUSH_STOMP]: {
         id: BrawlActions.CRUSH_STOMP,
@@ -237,7 +237,7 @@ export const BrawlActionData: Record<string, IObject> = {
             strengthRatio: 4.5
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'finisher', 'heavy', 'impact']
+        tags: ['攻击', '近战', '终结技', '重型', '冲击']
     },
     [BrawlActions.CRUSH_SKULL]: {
         id: BrawlActions.CRUSH_SKULL,
@@ -258,6 +258,6 @@ export const BrawlActionData: Record<string, IObject> = {
             strengthRatio: 5.5
         },
         categoryPath: ['行为', '战斗', '搏击'],
-        tags: ['attack', 'melee', 'finisher', 'extreme', 'bloody']
+        tags: ['攻击', '近战', '终结技', '极限', '血腥']
     }
 };

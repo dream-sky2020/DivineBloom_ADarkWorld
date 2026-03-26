@@ -35,7 +35,7 @@ export const ScavengeActionData: Record<string, IObject> = {
             stamina: 10n
         },
         categoryPath: ['行为', '生活', '搜刮'],
-        tags: ['collect', 'scavenge', 'ruins']
+        tags: ['采集', '搜刮', '废墟']
     },
     [ScavengeActions.SCAVENGE_CORPSE_PILE]: {
         id: ScavengeActions.SCAVENGE_CORPSE_PILE,
@@ -54,7 +54,7 @@ export const ScavengeActionData: Record<string, IObject> = {
             stamina: 12n
         },
         categoryPath: ['行为', '生活', '搜刮'],
-        tags: ['collect', 'scavenge', 'corpse']
+        tags: ['采集', '搜刮', '尸骸']
     },
     [ScavengeActions.SCAVENGE_FLESH_MOUNTAIN]: {
         id: ScavengeActions.SCAVENGE_FLESH_MOUNTAIN,
@@ -74,7 +74,7 @@ export const ScavengeActionData: Record<string, IObject> = {
             hp: 2n
         },
         categoryPath: ['行为', '生活', '搜刮'],
-        tags: ['collect', 'scavenge', 'flesh_mountain', 'high_risk']
+        tags: ['采集', '搜刮', '肉山', '高风险']
     },
     [ScavengeActions.SCAVENGE_SHOP]: {
         id: ScavengeActions.SCAVENGE_SHOP,
@@ -95,7 +95,7 @@ export const ScavengeActionData: Record<string, IObject> = {
             stamina: 9n
         },
         categoryPath: ['行为', '生活', '搜刮'],
-        tags: ['collect', 'scavenge', 'shop']
+        tags: ['采集', '搜刮', '商店']
     },
     [ScavengeActions.SCAVENGE_SAWMILL]: {
         id: ScavengeActions.SCAVENGE_SAWMILL,
@@ -116,7 +116,7 @@ export const ScavengeActionData: Record<string, IObject> = {
             stamina: 11n
         },
         categoryPath: ['行为', '生活', '搜刮'],
-        tags: ['collect', 'scavenge', 'sawmill', 'materials']
+        tags: ['采集', '搜刮', '锯木厂', '材料']
     },
     
 };

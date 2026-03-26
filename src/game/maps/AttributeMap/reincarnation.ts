@@ -45,7 +45,7 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         defaultValue: 0,
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
-        tags: ['转生', 'UI', '坐标'],
+        tags: ['转生', '界面', '坐标'],
         scope: ['reincarnation'],
     },
     [ReincarnationAttributes.REINCARNATION_UI_POSITION_Y]: {
@@ -56,7 +56,7 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         defaultValue: 0,
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
-        tags: ['转生', 'UI', '坐标'],
+        tags: ['转生', '界面', '坐标'],
         scope: ['reincarnation'],
     },
     [ReincarnationAttributes.MAX_REINCARNATION_UPGRADE_COUNT]: {

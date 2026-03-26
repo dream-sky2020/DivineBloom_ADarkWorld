@@ -36,7 +36,7 @@ export const BloodCollectionActionData: Record<string, IObject> = {
             stamina: 9n
         },
         categoryPath: ['行为', '生活', '采集'],
-        tags: ['collect', 'blood', 'all', 'gateway']
+        tags: ['采集', '血液', '全域', '门户']
     },
     [BloodCollectionActions.BLOOD_COLLECTION_WHITE_GATE]: {
         id: BloodCollectionActions.BLOOD_COLLECTION_WHITE_GATE,
@@ -57,7 +57,7 @@ export const BloodCollectionActionData: Record<string, IObject> = {
             stamina: 6n
         },
         categoryPath: ['行为', '生活', '采集'],
-        tags: ['collect', 'blood', 'white_gate']
+        tags: ['采集', '血液', '洁白之门']
     },
     [BloodCollectionActions.BLOOD_COLLECTION_BLACK_STONE_GATE]: {
         id: BloodCollectionActions.BLOOD_COLLECTION_BLACK_STONE_GATE,
@@ -78,7 +78,7 @@ export const BloodCollectionActionData: Record<string, IObject> = {
             stamina: 7n
         },
         categoryPath: ['行为', '生活', '采集'],
-        tags: ['collect', 'blood', 'black_stone_gate']
+        tags: ['采集', '血液', '黑石之门']
     },
     [BloodCollectionActions.BLOOD_COLLECTION_STEEL_GATE]: {
         id: BloodCollectionActions.BLOOD_COLLECTION_STEEL_GATE,
@@ -99,7 +99,7 @@ export const BloodCollectionActionData: Record<string, IObject> = {
             stamina: 8n
         },
         categoryPath: ['行为', '生活', '采集'],
-        tags: ['collect', 'blood', 'steel_gate']
+        tags: ['采集', '血液', '钢铁之门']
     },
     [BloodCollectionActions.BLOOD_COLLECTION_RUST_GATE]: {
         id: BloodCollectionActions.BLOOD_COLLECTION_RUST_GATE,
@@ -120,7 +120,7 @@ export const BloodCollectionActionData: Record<string, IObject> = {
             stamina: 8n
         },
         categoryPath: ['行为', '生活', '采集'],
-        tags: ['collect', 'blood', 'rust_gate']
+        tags: ['采集', '血液', '锈蚀之门']
     },
     [BloodCollectionActions.BLOOD_COLLECTION_BLOODSTAIN_GATE]: {
         id: BloodCollectionActions.BLOOD_COLLECTION_BLOODSTAIN_GATE,
@@ -141,6 +141,6 @@ export const BloodCollectionActionData: Record<string, IObject> = {
             stamina: 9n
         },
         categoryPath: ['行为', '生活', '采集'],
-        tags: ['collect', 'blood', 'bloodstain_gate']
+        tags: ['采集', '血液', '血染之门']
     }
 };

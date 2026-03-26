@@ -4,3 +4,5 @@ export * from './IText';
 export * from './IEnum';
 export * from './IObject';
 export * from './IFormula';
+export * from './ITag';
+export * from './IWorld';

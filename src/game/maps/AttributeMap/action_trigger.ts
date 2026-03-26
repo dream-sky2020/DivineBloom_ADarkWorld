@@ -60,7 +60,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
         maxValue: 1,
         category: 'combat',
         categoryPath: ['属性', '战斗', '触发'],
-        tags: ['战斗', '触发', 'UI'],
+        tags: ['战斗', '触发', '界面'],
     },
     [ActionTriggerAttributes.ALLOW_UI_CONTROL_MANUAL_THRESHOLD_TOGGLE]: {
         id: ActionTriggerAttributes.ALLOW_UI_CONTROL_MANUAL_THRESHOLD_TOGGLE,
@@ -72,7 +72,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
         maxValue: 1,
         category: 'combat',
         categoryPath: ['属性', '战斗', '触发'],
-        tags: ['战斗', '触发', 'UI'],
+        tags: ['战斗', '触发', '界面'],
     },
     [ActionTriggerAttributes.ALLOW_AUTO_TRIGGER]: {
         id: ActionTriggerAttributes.ALLOW_AUTO_TRIGGER,
@@ -107,7 +107,7 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
         maxValue: 1,
         category: 'combat',
         categoryPath: ['属性', '战斗', '触发'],
-        tags: ['战斗', '触发', 'UI'],
+        tags: ['战斗', '触发', '界面'],
     },
     [ActionTriggerAttributes.ALLOW_UI_CONTROL_AUTO_THRESHOLD_TOGGLE]: {
         id: ActionTriggerAttributes.ALLOW_UI_CONTROL_AUTO_THRESHOLD_TOGGLE,
@@ -119,6 +119,6 @@ export const ActionTriggerAttributeData: Record<string, IAttribute> = {
         maxValue: 1,
         category: 'combat',
         categoryPath: ['属性', '战斗', '触发'],
-        tags: ['战斗', '触发', 'UI'],
+        tags: ['战斗', '触发', '界面'],
     },
 };

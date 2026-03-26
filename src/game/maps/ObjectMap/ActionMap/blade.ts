@@ -34,7 +34,7 @@ export const BladeActionData: Record<string, IObject> = {
             stamina: 8n
         },
         categoryPath: ['行为', '战斗', '剑技'],
-        tags: ['attack', 'melee', 'sword', 'thrust']
+        tags: ['攻击', '近战', '剑技', '刺击']
     },
     [BladeActions.SWEEP]: {
         id: BladeActions.SWEEP,
@@ -55,7 +55,7 @@ export const BladeActionData: Record<string, IObject> = {
             stamina: 14n
         },
         categoryPath: ['行为', '战斗', '剑技'],
-        tags: ['attack', 'melee', 'sword', 'sweep', 'aoe']
+        tags: ['攻击', '近战', '剑技', '横扫', '范围伤害']
     },
     [BladeActions.SLASH]: {
         id: BladeActions.SLASH,
@@ -72,7 +72,7 @@ export const BladeActionData: Record<string, IObject> = {
             stamina: 12n
         },
         categoryPath: ['行为', '战斗', '剑技'],
-        tags: ['attack', 'melee', 'sword', 'slash']
+        tags: ['攻击', '近战', '剑技', '劈砍']
     },
     [BladeActions.HEART_PIERCE]: {
         id: BladeActions.HEART_PIERCE,
@@ -92,7 +92,7 @@ export const BladeActionData: Record<string, IObject> = {
             strengthRatio: 3.5
         },
         categoryPath: ['行为', '战斗', '剑技'],
-        tags: ['attack', 'melee', 'sword', 'finisher', 'bloody']
+        tags: ['攻击', '近战', '剑技', '终结技', '血腥']
     },
     [BladeActions.BEHEADING]: {
         id: BladeActions.BEHEADING,
@@ -112,7 +112,7 @@ export const BladeActionData: Record<string, IObject> = {
             strengthRatio: 4.5
         },
         categoryPath: ['行为', '战斗', '剑技'],
-        tags: ['attack', 'melee', 'sword', 'finisher', 'extreme', 'bloody']
+        tags: ['攻击', '近战', '剑技', '终结技', '极限', '血腥']
     },
     [BladeActions.BISECT]: {
         id: BladeActions.BISECT,
@@ -132,7 +132,7 @@ export const BladeActionData: Record<string, IObject> = {
             strengthRatio: 5.5
         },
         categoryPath: ['行为', '战斗', '剑技'],
-        tags: ['attack', 'melee', 'sword', 'finisher', 'extreme', 'bloody']
+        tags: ['攻击', '近战', '剑技', '终结技', '极限', '血腥']
     },
     [BladeActions.DISMEMBER]: {
         id: BladeActions.DISMEMBER,
@@ -152,7 +152,7 @@ export const BladeActionData: Record<string, IObject> = {
             strengthRatio: 4.0
         },
         categoryPath: ['行为', '战斗', '剑技'],
-        tags: ['attack', 'melee', 'sword', 'finisher', 'bloody']
+        tags: ['攻击', '近战', '剑技', '终结技', '血腥']
     },
     [BladeActions.CRUSH]: {
         id: BladeActions.CRUSH,
@@ -172,6 +172,6 @@ export const BladeActionData: Record<string, IObject> = {
             strengthRatio: 5.0
         },
         categoryPath: ['行为', '战斗', '剑技'],
-        tags: ['attack', 'melee', 'sword', 'finisher', 'heavy', 'impact']
+        tags: ['攻击', '近战', '剑技', '终结技', '重型', '冲击']
     }
 };

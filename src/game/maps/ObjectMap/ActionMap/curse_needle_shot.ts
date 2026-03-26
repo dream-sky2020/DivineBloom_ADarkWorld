@@ -33,7 +33,7 @@ export const CurseNeedleShotActionData: Record<string, IObject> = {
             stamina: 5
         },
         categoryPath: ['行为', '战斗', '射击'],
-        tags: ['attack', 'ranged', 'needle', 'curse', 'manual']
+        tags: ['攻击', '远程', '射针', '咒杀', '手动']
     },
     [CurseNeedleShotActions.WOODEN_CROSSBOW]: {
         id: CurseNeedleShotActions.WOODEN_CROSSBOW,
@@ -50,7 +50,7 @@ export const CurseNeedleShotActionData: Record<string, IObject> = {
             stamina: 7
         },
         categoryPath: ['行为', '战斗', '射击'],
-        tags: ['attack', 'ranged', 'needle', 'curse', 'wooden_crossbow']
+        tags: ['攻击', '远程', '射针', '咒杀', '木弩']
     },
     [CurseNeedleShotActions.FLAP_CROSSBOW]: {
         id: CurseNeedleShotActions.FLAP_CROSSBOW,
@@ -71,7 +71,7 @@ export const CurseNeedleShotActionData: Record<string, IObject> = {
             stamina: 8
         },
         categoryPath: ['行为', '战斗', '射击'],
-        tags: ['attack', 'ranged', 'needle', 'curse', 'flap_crossbow']
+        tags: ['攻击', '远程', '射针', '咒杀', '皮瓣弩']
     },
     [CurseNeedleShotActions.STEEL_CROSSBOW]: {
         id: CurseNeedleShotActions.STEEL_CROSSBOW,
@@ -88,7 +88,7 @@ export const CurseNeedleShotActionData: Record<string, IObject> = {
             stamina: 15
         },
         categoryPath: ['行为', '战斗', '射击'],
-        tags: ['attack', 'ranged', 'needle', 'curse', 'steel_crossbow']
+        tags: ['攻击', '远程', '射针', '咒杀', '钢弩']
     },
     [CurseNeedleShotActions.RECURVE_COMPOSITE_CROSSBOW]: {
         id: CurseNeedleShotActions.RECURVE_COMPOSITE_CROSSBOW,
@@ -109,7 +109,7 @@ export const CurseNeedleShotActionData: Record<string, IObject> = {
             stamina: 12
         },
         categoryPath: ['行为', '战斗', '射击'],
-        tags: ['attack', 'ranged', 'needle', 'curse', 'recurve_composite_crossbow']
+        tags: ['攻击', '远程', '射针', '咒杀', '复合弩']
     },
     [CurseNeedleShotActions.SEMI_AUTO_REPEATING_CROSSBOW]: {
         id: CurseNeedleShotActions.SEMI_AUTO_REPEATING_CROSSBOW,
@@ -130,7 +130,7 @@ export const CurseNeedleShotActionData: Record<string, IObject> = {
             stamina: 10
         },
         categoryPath: ['行为', '战斗', '射击'],
-        tags: ['attack', 'ranged', 'needle', 'curse', 'semi_auto']
+        tags: ['攻击', '远程', '射针', '咒杀', '半自动']
     },
     [CurseNeedleShotActions.AUTO_REPEATING_CROSSBOW]: {
         id: CurseNeedleShotActions.AUTO_REPEATING_CROSSBOW,
@@ -150,6 +150,6 @@ export const CurseNeedleShotActionData: Record<string, IObject> = {
             stamina: 5
         },
         categoryPath: ['行为', '战斗', '射击'],
-        tags: ['attack', 'ranged', 'needle', 'curse', 'auto']
+        tags: ['攻击', '远程', '射针', '咒杀', '全自动']
     }
 };
