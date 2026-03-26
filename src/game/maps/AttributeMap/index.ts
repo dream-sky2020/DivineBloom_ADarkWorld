@@ -16,6 +16,8 @@ import { ActionCooldownAttributes, ActionCooldownAttributeData } from './action_
 import { ActionTriggerAttributes, ActionTriggerAttributeData } from './action_trigger';
 import { LootAttributes, LootAttributeData } from './loot';
 import { ReincarnationAttributes, ReincarnationAttributeData } from './reincarnation';
+import { DialogueAttributes, DialogueAttributeData } from './dialogue';
+import { ChoiceAttributes, ChoiceAttributeData } from './choice';
 
 export * from './fear';
 export * from './resources';
@@ -34,6 +36,8 @@ export * from './action_cooldown';
 export * from './action_trigger';
 export * from './loot';
 export * from './reincarnation';
+export * from './dialogue';
+export * from './choice';
 
 /**
  * 属性 ID 映射表 (全量 ID)
@@ -56,6 +60,8 @@ export const AttributeTypeMap = {
     ...ActionTriggerAttributes,
     ...LootAttributes,
     ...ReincarnationAttributes,
+    ...DialogueAttributes,
+    ...ChoiceAttributes,
 } as const;
 
 /**
@@ -106,4 +112,6 @@ export const AttributeDataMap: Record<AttributeID, IAttribute> = {
     ...ActionTriggerAttributeData,
     ...LootAttributeData,
     ...ReincarnationAttributeData,
+    ...DialogueAttributeData,
+    ...ChoiceAttributeData,
 } as Record<AttributeID, IAttribute>;

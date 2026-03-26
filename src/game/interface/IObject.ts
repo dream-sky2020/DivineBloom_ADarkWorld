@@ -11,7 +11,7 @@ export interface IObject<TAttrUnion extends string = string> extends IData {
      * 初始属性集 (Key 为属性 ID)
      * 只能使用 TAttrUnion 中定义的属性 ID
      */
-    stats?: Partial<Record<TAttrUnion, number | bigint>>;
+    stats?: Partial<Record<TAttrUnion, number | bigint | string | string[]>>;
 
     /** 预制体版本 (可选) */
     version?: string;

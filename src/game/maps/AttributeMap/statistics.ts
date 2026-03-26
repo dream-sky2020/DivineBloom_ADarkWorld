@@ -35,6 +35,16 @@ export const StatisticsAttributes = {
     DEATH_COUNT_EXPLORATION: 'death_count_exploration',
     /** 本层数死亡次数总计 */
     DEATH_COUNT_FLOOR: 'death_count_floor',
+
+    /** 游玩总时长 (存档级) */
+    PLAY_TIME_ARCHIVE: 'play_time_archive',
+    /** 本轮回游玩时长 */
+    PLAY_TIME_CYCLE: 'play_time_cycle',
+    /** 本次探索游玩时长 */
+    PLAY_TIME_EXPLORATION: 'play_time_exploration',
+
+    /** 当前系统时间 (时间戳) */
+    SYSTEM_TIME: 'system_time',
 } as const;
 
 /**
@@ -199,5 +209,59 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
         category: 'statistics',
         categoryPath: ['属性', '统计', '生存累计'],
         tags: ['统计', '生存', '死亡', '累计'],
+    },
+
+    // --- 时间统计 ---
+    [StatisticsAttributes.PLAY_TIME_ARCHIVE]: {
+        id: StatisticsAttributes.PLAY_TIME_ARCHIVE,
+        kind: 'current',
+        name: '累计游玩时间',
+        description: '该存档自创建以来的总游玩时间。',
+        defaultValue: 0n,
+        minValue: 0n,
+        category: 'statistics',
+        categoryPath: ['属性', '统计', '时间'],
+        unit: 'ms',
+        tags: ['统计', '时间', '累计'],
+        scope: ['all'],
+    },
+    [StatisticsAttributes.PLAY_TIME_CYCLE]: {
+        id: StatisticsAttributes.PLAY_TIME_CYCLE,
+        kind: 'current',
+        name: '本轮回游玩时间',
+        description: '本次轮回（转生）中经过的时间。',
+        defaultValue: 0n,
+        minValue: 0n,
+        category: 'statistics',
+        categoryPath: ['属性', '统计', '时间'],
+        unit: 'ms',
+        tags: ['统计', '时间', '轮回'],
+        scope: ['all'],
+    },
+    [StatisticsAttributes.PLAY_TIME_EXPLORATION]: {
+        id: StatisticsAttributes.PLAY_TIME_EXPLORATION,
+        kind: 'current',
+        name: '本次探索时间',
+        description: '本次进入地图探索后经过的时间。',
+        defaultValue: 0n,
+        minValue: 0n,
+        category: 'statistics',
+        categoryPath: ['属性', '统计', '时间'],
+        unit: 'ms',
+        tags: ['统计', '时间', '探索'],
+        scope: ['all'],
+    },
+    [StatisticsAttributes.SYSTEM_TIME]: {
+        id: StatisticsAttributes.SYSTEM_TIME,
+        kind: 'current',
+        name: '系统当前时间',
+        description: '用于记录系统同步的实时时间戳。',
+        defaultValue: 0n,
+        minValue: 0n,
+        category: 'system',
+        categoryPath: ['属性', '系统', '时间'],
+        unit: 'timestamp',
+        tags: ['系统', '时间'],
+        scope: ['all'],
     },
 };

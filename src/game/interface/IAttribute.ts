@@ -7,7 +7,7 @@ export type AttributeScope = 'player' | 'enemy' | 'item' | 'map' | 'reincarnatio
 /**
  * 属性数值类型定义
  */
-export type AttributeValueType = 'number' | 'bigint' | 'string' | 'id';
+export type AttributeValueType = 'number' | 'bigint' | 'string' | 'id' | 'string_array' | 'id_array';
 
 /**
  * 属性本质分类 (用于高解释度计算框架)
@@ -34,11 +34,11 @@ export interface IAttribute extends IData {
      */
     valueType?: AttributeValueType;
     /** 属性默认值 (增量游戏中使用 bigint 以支持超大数值，或 string 支持非数值属性/ID) */
-    defaultValue: bigint | number | string;
+    defaultValue: bigint | number | string | string[];
     /** 属性最小值 (可选) */
-    minValue?: bigint | number | string;
+    minValue?: bigint | number | string | string[];
     /** 属性最大值 (可选) */
-    maxValue?: bigint | number | string;
+    maxValue?: bigint | number | string | string[];
     /** 是否是百分比属性 (例如：暴击率) */
     isPercent?: boolean;
     /** 属性单位 (如：'点', '%', 'kg') */

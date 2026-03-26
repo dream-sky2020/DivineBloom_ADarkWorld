@@ -6,3 +6,5 @@ export * from './IObject';
 export * from './IFormula';
 export * from './ITag';
 export * from './IWorld';
+export * from './ISystem';
+export * from './ICommand';
