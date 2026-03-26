@@ -18,6 +18,8 @@ import { LootAttributes, LootAttributeData } from './loot';
 import { ReincarnationAttributes, ReincarnationAttributeData } from './reincarnation';
 import { DialogueAttributes, DialogueAttributeData } from './dialogue';
 import { ChoiceAttributes, ChoiceAttributeData } from './choice';
+import { ObjectAttributeRegistry, AttributeToScopeMap, ObjectAttributeUtils } from '../../registry/ObjectAttributeRegistry';
+import { AttributeTypeMap, type AttributeID } from './types';
 
 export * from './fear';
 export * from './resources';
@@ -38,36 +40,8 @@ export * from './loot';
 export * from './reincarnation';
 export * from './dialogue';
 export * from './choice';
-
-/**
- * 属性 ID 映射表 (全量 ID)
- */
-export const AttributeTypeMap = {
-    ...BaseAttributes,
-    ...ResourceAttributes,
-    ...ReflectionAttributes,
-    ...DodgeAttributes,
-    ...DamageAttributes,
-    ...ActionAttributes,
-    ...HealingAttributes,
-    ...StatisticsAttributes,
-    ...ResurrectionAttributes,
-    ...BleedingAttributes,
-    ...ReductionAttributes,
-    ...HPAttributes,
-    ...CritAttributes,
-    ...ActionCooldownAttributes,
-    ...ActionTriggerAttributes,
-    ...LootAttributes,
-    ...ReincarnationAttributes,
-    ...DialogueAttributes,
-    ...ChoiceAttributes,
-} as const;
-
-/**
- * 属性 ID 类型
- */
-export type AttributeID = typeof AttributeTypeMap[keyof typeof AttributeTypeMap];
+export * from '../../registry/ObjectAttributeRegistry';
+export * from './types';
 
 /**
  * 敌人预制体可用的属性 ID 联合类型

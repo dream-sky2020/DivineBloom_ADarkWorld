@@ -35,7 +35,6 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
         tags: ['转生', '系统', '购买'],
-        scope: ['reincarnation'],
     },
     [ReincarnationAttributes.REINCARNATION_UI_POSITION_X]: {
         id: ReincarnationAttributes.REINCARNATION_UI_POSITION_X,
@@ -46,7 +45,6 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
         tags: ['转生', '界面', '坐标'],
-        scope: ['reincarnation'],
     },
     [ReincarnationAttributes.REINCARNATION_UI_POSITION_Y]: {
         id: ReincarnationAttributes.REINCARNATION_UI_POSITION_Y,
@@ -57,7 +55,6 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
         tags: ['转生', '界面', '坐标'],
-        scope: ['reincarnation'],
     },
     [ReincarnationAttributes.MAX_REINCARNATION_UPGRADE_COUNT]: {
         id: ReincarnationAttributes.MAX_REINCARNATION_UPGRADE_COUNT,
@@ -69,7 +66,6 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
         tags: ['转生', '系统', '上限'],
-        scope: ['reincarnation'],
     },
     [ReincarnationAttributes.CURRENT_REINCARNATION_UPGRADE_COUNT]: {
         id: ReincarnationAttributes.CURRENT_REINCARNATION_UPGRADE_COUNT,
@@ -81,7 +77,6 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
         tags: ['转生', '系统', '进度'],
-        scope: ['reincarnation'],
     },
     [ReincarnationAttributes.REINCARNATION_PREREQUISITE_ID]: {
         id: ReincarnationAttributes.REINCARNATION_PREREQUISITE_ID,
@@ -92,7 +87,6 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
         tags: ['转生', '系统', '前置'],
-        scope: ['reincarnation'],
     },
     [ReincarnationAttributes.REINCARNATION_PREREQUISITE_LEVEL]: {
         id: ReincarnationAttributes.REINCARNATION_PREREQUISITE_LEVEL,
@@ -104,6 +98,5 @@ export const ReincarnationAttributeData: Record<string, IAttribute> = {
         category: 'reincarnation',
         categoryPath: ['属性', '系统', '转生'],
         tags: ['转生', '系统', '前置'],
-        scope: ['reincarnation'],
     },
 };

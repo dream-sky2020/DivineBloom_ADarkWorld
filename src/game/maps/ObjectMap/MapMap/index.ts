@@ -32,3 +32,11 @@ export const MapAreaDataMap: Record<string, IObject> = {
     },
     */
 } as Record<string, IObject>;
+
+/**
+ * 地图地图定义 (自我描述)
+ */
+export const MapMapDefinition = {
+    kind: 'map',
+    data: MapAreaDataMap,
+} as const;

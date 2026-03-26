@@ -47,3 +47,11 @@ export const ItemDataMap: Record<ItemID, IObject> = {
     ...PhysicalStrengthData,
     ...PhysicalToughnessData,
 } as Record<ItemID, IObject>;
+
+/**
+ * 物品地图定义 (自我描述)
+ */
+export const ItemMapDefinition = {
+    kind: 'item',
+    data: ItemDataMap,
+} as const;

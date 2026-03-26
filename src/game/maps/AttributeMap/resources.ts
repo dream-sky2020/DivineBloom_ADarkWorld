@@ -35,7 +35,6 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'ml',
         tags: ['资源', '基础', '生命'],
-        scope: ['player'],
     },
     [ResourceAttributes.RUSTY_IRON_RESERVE]: {
         id: ResourceAttributes.RUSTY_IRON_RESERVE,
@@ -48,7 +47,6 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'kg',
         tags: ['资源', '材料', '锻造'],
-        scope: ['player'],
     },
     [ResourceAttributes.BONE_FRAGMENT_RESERVE]: {
         id: ResourceAttributes.BONE_FRAGMENT_RESERVE,
@@ -61,7 +59,6 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'pcs',
         tags: ['资源', '材料', '强化'],
-        scope: ['player'],
     },
     [ResourceAttributes.HAIR_RESERVE]: {
         id: ResourceAttributes.HAIR_RESERVE,
@@ -74,7 +71,6 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'g',
         tags: ['资源', '材料', '催化'],
-        scope: ['player'],
     },
     [ResourceAttributes.sugar__RESERVE]: {
         id: ResourceAttributes.sugar__RESERVE,
@@ -87,7 +83,6 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'g',
         tags: ['资源', '交易', '成瘾'],
-        scope: ['player'],
     },
     [ResourceAttributes.MINCED_MEAT_RESERVE]: {
         id: ResourceAttributes.MINCED_MEAT_RESERVE,
@@ -100,7 +95,6 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '基础资源'],
         unit: 'kg',
         tags: ['资源', '生存', '生物'],
-        scope: ['player'],
     },
     [ResourceAttributes.BLACK_CRYSTAL_RESERVE]: {
         id: ResourceAttributes.BLACK_CRYSTAL_RESERVE,
@@ -113,6 +107,5 @@ export const ResourceAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '资源', '稀有资源'],
         unit: 'ct',
         tags: ['资源', '稀有', '黑暗'],
-        scope: ['player'],
     },
 };

@@ -1,4 +1,4 @@
-import type { IObject } from '../../interface';
+import type { IObject } from '../../../interface';
 
 /**
  * 具体的对话选项接口
@@ -50,3 +50,11 @@ export const ChoiceDataMap: Record<string, IChoiceGroup> = {
         }
     }
 };
+
+/**
+ * 对话选择地图定义 (自我描述)
+ */
+export const ChoiceMapDefinition = {
+    kind: 'choice',
+    data: ChoiceDataMap,
+} as const;

@@ -39,3 +39,11 @@ export const ActionDataMap: Record<ActionID, IObject> = {
     ...BladeActionData,
     ...BrawlActionData
 } as Record<ActionID, IObject>;
+
+/**
+ * 行为地图定义 (自我描述)
+ */
+export const ActionMapDefinition = {
+    kind: 'action',
+    data: ActionDataMap,
+} as const;

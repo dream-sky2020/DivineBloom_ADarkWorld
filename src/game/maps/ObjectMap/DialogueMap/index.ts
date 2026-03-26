@@ -1,4 +1,4 @@
-import type { IObject } from '../../interface';
+import type { IObject } from '../../../interface';
 
 /**
  * 对话节点接口
@@ -66,3 +66,11 @@ export const DialogueDataMap: Record<string, IDialogue> = {
         }
     }
 };
+
+/**
+ * 对话地图定义 (自我描述)
+ */
+export const DialogueMapDefinition = {
+    kind: 'dialogue',
+    data: DialogueDataMap,
+} as const;

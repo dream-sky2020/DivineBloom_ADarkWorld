@@ -33,7 +33,6 @@ export const DialogueAttributeData: Record<string, IAttribute> = {
         valueType: 'id',
         category: 'dialogue',
         categoryPath: ['属性', '对话', '状态'],
-        scope: ['all'],
     },
     [DialogueAttributes.CURRENT_NODE_ID]: {
         id: DialogueAttributes.CURRENT_NODE_ID,
@@ -44,7 +43,6 @@ export const DialogueAttributeData: Record<string, IAttribute> = {
         valueType: 'id',
         category: 'dialogue',
         categoryPath: ['属性', '对话', '状态'],
-        scope: ['all'],
     },
     [DialogueAttributes.SPEAKER_NAME]: {
         id: DialogueAttributes.SPEAKER_NAME,
@@ -55,7 +53,6 @@ export const DialogueAttributeData: Record<string, IAttribute> = {
         valueType: 'string',
         category: 'dialogue',
         categoryPath: ['属性', '对话', '显示'],
-        scope: ['all'],
     },
     [DialogueAttributes.DIALOGUE_CONTENT]: {
         id: DialogueAttributes.DIALOGUE_CONTENT,
@@ -66,7 +63,6 @@ export const DialogueAttributeData: Record<string, IAttribute> = {
         valueType: 'string',
         category: 'dialogue',
         categoryPath: ['属性', '对话', '显示'],
-        scope: ['all'],
     },
     [DialogueAttributes.DIALOGUE_STATE]: {
         id: DialogueAttributes.DIALOGUE_STATE,
@@ -77,7 +73,6 @@ export const DialogueAttributeData: Record<string, IAttribute> = {
         valueType: 'string',
         category: 'dialogue',
         categoryPath: ['属性', '对话', '状态'],
-        scope: ['all'],
     },
     [DialogueAttributes.ACTIVE_DIALOGUE_LIST]: {
         id: DialogueAttributes.ACTIVE_DIALOGUE_LIST,
@@ -88,7 +83,6 @@ export const DialogueAttributeData: Record<string, IAttribute> = {
         valueType: 'id_array',
         category: 'dialogue',
         categoryPath: ['属性', '对话', '管理'],
-        scope: ['all'],
     },
     [DialogueAttributes.DIALOGUE_HISTORY]: {
         id: DialogueAttributes.DIALOGUE_HISTORY,
@@ -99,6 +93,5 @@ export const DialogueAttributeData: Record<string, IAttribute> = {
         valueType: 'id_array',
         category: 'dialogue',
         categoryPath: ['属性', '对话', '管理'],
-        scope: ['all'],
     },
 };

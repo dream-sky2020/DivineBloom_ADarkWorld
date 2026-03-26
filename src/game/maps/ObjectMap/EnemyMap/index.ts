@@ -78,3 +78,11 @@ export const EnemyDataMap: Record<EnemyID, IObject> = {
         }
     },
 };
+
+/**
+ * 敌人地图定义 (自我描述)
+ */
+export const EnemyMapDefinition = {
+    kind: 'enemy',
+    data: EnemyDataMap,
+} as const;

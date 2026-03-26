@@ -223,7 +223,6 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '统计', '时间'],
         unit: 'ms',
         tags: ['统计', '时间', '累计'],
-        scope: ['all'],
     },
     [StatisticsAttributes.PLAY_TIME_CYCLE]: {
         id: StatisticsAttributes.PLAY_TIME_CYCLE,
@@ -236,7 +235,6 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '统计', '时间'],
         unit: 'ms',
         tags: ['统计', '时间', '轮回'],
-        scope: ['all'],
     },
     [StatisticsAttributes.PLAY_TIME_EXPLORATION]: {
         id: StatisticsAttributes.PLAY_TIME_EXPLORATION,
@@ -249,7 +247,6 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '统计', '时间'],
         unit: 'ms',
         tags: ['统计', '时间', '探索'],
-        scope: ['all'],
     },
     [StatisticsAttributes.SYSTEM_TIME]: {
         id: StatisticsAttributes.SYSTEM_TIME,
@@ -262,6 +259,5 @@ export const StatisticsAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '系统', '时间'],
         unit: 'timestamp',
         tags: ['系统', '时间'],
-        scope: ['all'],
     },
 };

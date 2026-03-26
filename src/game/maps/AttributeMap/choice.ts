@@ -27,7 +27,6 @@ export const ChoiceAttributeData: Record<string, IAttribute> = {
         valueType: 'id_array',
         category: 'choice',
         categoryPath: ['属性', '对话', '选择'],
-        scope: ['all'],
     },
     [ChoiceAttributes.SELECTED_CHOICE_INDEX]: {
         id: ChoiceAttributes.SELECTED_CHOICE_INDEX,
@@ -38,7 +37,6 @@ export const ChoiceAttributeData: Record<string, IAttribute> = {
         valueType: 'number',
         category: 'choice',
         categoryPath: ['属性', '对话', '选择'],
-        scope: ['all'],
     },
     [ChoiceAttributes.CHOICE_VISIBILITY]: {
         id: ChoiceAttributes.CHOICE_VISIBILITY,
@@ -49,7 +47,6 @@ export const ChoiceAttributeData: Record<string, IAttribute> = {
         valueType: 'string',
         category: 'choice',
         categoryPath: ['属性', '对话', '显示'],
-        scope: ['all'],
     },
     [ChoiceAttributes.LAST_CHOSEN_ID]: {
         id: ChoiceAttributes.LAST_CHOSEN_ID,
@@ -60,6 +57,5 @@ export const ChoiceAttributeData: Record<string, IAttribute> = {
         valueType: 'id',
         category: 'choice',
         categoryPath: ['属性', '对话', '记录'],
-        scope: ['all'],
     },
 };

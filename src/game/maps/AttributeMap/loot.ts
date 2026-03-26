@@ -41,7 +41,6 @@ export const LootAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '掉落'],
         unit: 'ml',
         tags: ['掉落', '资源', '血液'],
-        scope: ['enemy'],
     },
     [LootAttributes.RUSTY_IRON_LOOT]: {
         id: LootAttributes.RUSTY_IRON_LOOT,
@@ -54,7 +53,6 @@ export const LootAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '掉落'],
         unit: 'kg',
         tags: ['掉落', '资源', '材料'],
-        scope: ['enemy'],
     },
     [LootAttributes.BONE_FRAGMENT_LOOT]: {
         id: LootAttributes.BONE_FRAGMENT_LOOT,
@@ -67,7 +65,6 @@ export const LootAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '掉落'],
         unit: 'pcs',
         tags: ['掉落', '资源', '材料'],
-        scope: ['enemy'],
     },
     [LootAttributes.HAIR_LOOT]: {
         id: LootAttributes.HAIR_LOOT,
@@ -80,7 +77,6 @@ export const LootAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '掉落'],
         unit: 'g',
         tags: ['掉落', '资源', '材料'],
-        scope: ['enemy'],
     },
     [LootAttributes.SUGAR__LOOT]: {
         id: LootAttributes.SUGAR__LOOT,
@@ -93,7 +89,6 @@ export const LootAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '掉落'],
         unit: 'g',
         tags: ['掉落', '资源', '交易'],
-        scope: ['enemy'],
     },
     [LootAttributes.MEAT_LOOT]: {
         id: LootAttributes.MEAT_LOOT,
@@ -106,7 +101,6 @@ export const LootAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '掉落'],
         unit: 'kg',
         tags: ['掉落', '资源', '生存'],
-        scope: ['enemy'],
     },
     [LootAttributes.BLACK_CRYSTAL_LOOT]: {
         id: LootAttributes.BLACK_CRYSTAL_LOOT,
@@ -119,7 +113,6 @@ export const LootAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '战斗', '掉落'],
         unit: 'ct',
         tags: ['掉落', '资源', '稀有'],
-        scope: ['enemy'],
     },
     [LootAttributes.LOOT_CHANCE_MODIFIER]: {
         id: LootAttributes.LOOT_CHANCE_MODIFIER,
@@ -133,7 +126,6 @@ export const LootAttributeData: Record<string, IAttribute> = {
         category: 'combat',
         categoryPath: ['属性', '战斗', '掉落'],
         tags: ['掉落', '概率', '加成'],
-        scope: ['player'],
     },
     [LootAttributes.LOOT_QUANTITY_MODIFIER]: {
         id: LootAttributes.LOOT_QUANTITY_MODIFIER,
@@ -146,6 +138,5 @@ export const LootAttributeData: Record<string, IAttribute> = {
         category: 'combat',
         categoryPath: ['属性', '战斗', '掉落'],
         tags: ['掉落', '数量', '加成'],
-        scope: ['player'],
     },
 };

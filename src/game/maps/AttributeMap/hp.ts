@@ -27,7 +27,6 @@ export const HPAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '生存', '生命值'],
         isDefaultLoaded: true,
         tags: ['生存', '基础', '消耗品'],
-        scope: ['player', 'enemy'],
     },
     [HPAttributes.HP_MAX]: {
         id: HPAttributes.HP_MAX,
@@ -40,7 +39,6 @@ export const HPAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '生存', '生命值'],
         isDefaultLoaded: true,
         tags: ['生存', '基础', '上限'],
-        scope: ['player', 'enemy'],
     },
     [HPAttributes.HP_REMOVED_MAX]: {
         id: HPAttributes.HP_REMOVED_MAX,
@@ -53,6 +51,5 @@ export const HPAttributeData: Record<string, IAttribute> = {
         categoryPath: ['属性', '生存', '生命值'],
         isDefaultLoaded: true,
         tags: ['生存', '减益', '上限'],
-        scope: ['player', 'enemy'],
     },
 };
