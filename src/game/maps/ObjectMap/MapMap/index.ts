@@ -1,4 +1,4 @@
-import type { IObject } from '../../../interface/IObject';
+import type { IObjectTemplate } from '../../../interface/IObjectTemplate';
 
 /**
  * 地图区域 ID 映射表 (基础 ID)
@@ -15,23 +15,24 @@ export type MapAreaID = typeof MapAreaItems[keyof typeof MapAreaItems];
 
 /**
  * 地图区域详细数据表
- * 使用 IObject接口
+ * 使用 IObjectTemplate 接口
  */
-export const MapAreaDataMap: Record<string, IObject> = {
+export const MapAreaDataMap: Record<string, IObjectTemplate> = {
     /* 
     [MapAreaItems.ABANDONED_VILLAGE]: {
         id: MapAreaItems.ABANDONED_VILLAGE,
         name: '荒废村庄',
         description: '曾经宁静的村落，现在只有游荡的亡灵和破碎的瓦砾。',
-        dangerLevel: 5,
-        possibleEnemies: [
-            { enemyId: 'zombie' as any, weight: 70 },
-            { enemyId: 'ghost' as any, weight: 30 }
-        ],
-        availableActions: ['scavenge_ruins', 'search_well'],
+        categoryPath: ['地图', '区域', '废墟'],
+        kind: 'map',
+        stats: {
+            'danger_level': 5,
+            'possible_enemies': ['zombie', 'ghost'],
+            'available_actions': ['scavenge_ruins', 'search_well'],
+        }
     },
     */
-} as Record<string, IObject>;
+} as Record<string, IObjectTemplate>;
 
 /**
  * 地图地图定义 (自我描述)

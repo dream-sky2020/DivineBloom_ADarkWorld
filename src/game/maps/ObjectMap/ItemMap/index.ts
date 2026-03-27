@@ -1,4 +1,4 @@
-import type { IObject } from '../../../interface/IObject';
+import type { IObjectTemplate } from '../../../interface/IObjectTemplate';
 import { BrownSugarItems, BrownSugarItemData } from './brown_sugar';
 import { ProtectionTalismanItems, ProtectionTalismanItemData } from './protection_talisman';
 import { CurseNeedleItems, CurseNeedleItemData } from './curse_needles';
@@ -33,9 +33,9 @@ export type ItemID = typeof ItemTypeMap[keyof typeof ItemTypeMap];
 
 /**
  * 物品详细数据表
- * 使用 IObject 接口
+ * 使用 IObjectTemplate 接口
  */
-export const ItemDataMap: Record<ItemID, IObject> = {
+export const ItemDataMap: Record<ItemID, IObjectTemplate> = {
     ...BrownSugarItemData,
     ...ProtectionTalismanItemData,
     ...CurseNeedleItemData,
@@ -46,7 +46,7 @@ export const ItemDataMap: Record<ItemID, IObject> = {
     ...PrecipitationCatalystItemData,
     ...PhysicalStrengthData,
     ...PhysicalToughnessData,
-} as Record<ItemID, IObject>;
+} as Record<ItemID, IObjectTemplate>;
 
 /**
  * 物品地图定义 (自我描述)

@@ -1,23 +1,21 @@
-import type { IData } from './IData';
+import type { IObjectTemplate } from './IObjectTemplate';
+import type { AttributeID } from '../maps/AttributeMap/types';
 
 /**
- * 预制体接口
- * 用于存储具体的游戏内容（如敌人、物品、技能等）。
- * 预制体是基础数据（IData）和逻辑枚举（IEnum）的组合。
- * @template TAttrUnion 该预制体允许使用的属性 ID 的联合类型
+ * 运行时对象/实体接口 (Runtime Object/Entity)
+ * 用于代表在游戏运行过程中，基于 IObjectTemplate 加载出来的具体实体。
+ * 
+ * 在 ECS 架构下，这个接口可以作为实体属性集的容器。
+ * 
+ * @template TAttrUnion 该对象允许使用的属性 ID 的联合类型，默认为 AttributeID
  */
-export interface IObject<TAttrUnion extends string = string> extends IData {
+export interface IObject<TAttrUnion extends string = AttributeID> extends IObjectTemplate<TAttrUnion> {
     /** 
-     * 初始属性集 (Key 为属性 ID)
-     * 只能使用 TAttrUnion 中定义的属性 ID
+     * 实例特有的唯一标识符 (例如 UUID)
+     * 区别于预制体的静态 ID (Data ID)
      */
-    stats?: Partial<Record<TAttrUnion, number | bigint | string | string[]>>;
+    instanceId?: string;
 
-    /** 预制体版本 (可选) */
-    version?: string;
-    /** 其他可供搜索的数据 (如：稀有度、来源) */
-    metadata?: Record<string, any>;
-
-    /** 允许任意其他属性 */
+    /** 运行时允许动态增加或修改任意属性 */
     [key: string]: any;
 }

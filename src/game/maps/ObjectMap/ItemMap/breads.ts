@@ -1,4 +1,4 @@
-import type { IObject } from '../../../interface';
+import type { IObjectTemplate } from '../../../interface';
 
 /**
  * 面包物品 ID 映射表
@@ -23,103 +23,117 @@ export const BreadItems = {
 /**
  * 面包详细数据表
  */
-export const BreadItemData: Record<string, IObject> = {
+export const BreadItemData: Record<string, IObjectTemplate> = {
     [BreadItems.FOAMY_BROWN_BREAD]: {
         id: BreadItems.FOAMY_BROWN_BREAD,
         name: '泡沫黑面包',
         description: '口感轻飘如泡沫，几乎感觉不到实感的劣质黑面包。',
-        volume: 0.5,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.SAWDUST_BROWN_BREAD]: {
         id: BreadItems.SAWDUST_BROWN_BREAD,
         name: '木屑黑面包',
         description: '混入了大量木屑，极其难以下咽的黑面包。',
-        volume: 0.5,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.DRY_POWDER_BROWN_BREAD]: {
         id: BreadItems.DRY_POWDER_BROWN_BREAD,
         name: '干粉黑面包',
         description: '干瘪且充满粉尘感的黑面包，吃完会感到异常口渴。',
-        volume: 0.5,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.STONE_BROWN_BREAD]: {
         id: BreadItems.STONE_BROWN_BREAD,
         name: '石黑面包',
         description: '坚硬如石，常被戏称为防御用面包。',
-        volume: 0.5,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.HARD_BROWN_BREAD]: {
         id: BreadItems.HARD_BROWN_BREAD,
         name: '硬黑面包',
         description: '质地紧硬的黑面包，需要良好的牙口。',
-        volume: 0.5,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.TOUGH_BROWN_BREAD]: {
         id: BreadItems.TOUGH_BROWN_BREAD,
         name: '韧黑面包',
         description: '富有嚼劲（或者说难以扯断）的黑面包。',
-        volume: 0.5,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.SOFT_BROWN_BREAD]: {
         id: BreadItems.SOFT_BROWN_BREAD,
         name: '松软黑面包',
         description: '难得一见的松软黑面包，品质尚佳。',
-        volume: 0.5,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.GREYISH_WHITE_BREAD]: {
         id: BreadItems.GREYISH_WHITE_BREAD,
         name: '灰白面包',
         description: '由于面粉不够纯净而呈现灰白色的普通面包。',
-        volume: 0.4,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.MIXED_WHITE_BREAD]: {
         id: BreadItems.MIXED_WHITE_BREAD,
         name: '杂白面包',
         description: '混有杂质的白面包，口感一般。',
-        volume: 0.4,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.PURE_WHITE_BREAD]: {
         id: BreadItems.PURE_WHITE_BREAD,
         name: '纯白面包',
         description: '洁白无瑕的精制白面包，是身份的象征。',
-        volume: 0.4,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.YELLOW_SPOTTED_BREAD]: {
         id: BreadItems.YELLOW_SPOTTED_BREAD,
         name: '黄斑面包',
         description: '表面带有不均匀黄色斑点的特色面包。',
-        volume: 0.4,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.TURMERIC_BREAD]: {
         id: BreadItems.TURMERIC_BREAD,
         name: '姜黄面包',
         description: '加入了姜黄调制，色泽金黄且带有独特辛香。',
-        volume: 0.4,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.GOLDEN_BREAD]: {
         id: BreadItems.GOLDEN_BREAD,
         name: '金黄面包',
         description: '色泽诱人，香气扑鼻的顶级面包。',
-        volume: 0.4,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
     [BreadItems.HOLY_BREAD]: {
         id: BreadItems.HOLY_BREAD,
         name: '圣洁面包',
         description: '仿佛散发着微光，被赋予了祝福的神圣面包。',
-        volume: 0.4,
         categoryPath: ['物品', '消耗品', '面包系列'],
+        kind: 'item',
+        stats: {}
     },
 };

@@ -1,4 +1,4 @@
-import type { IObject } from '../../../interface';
+import type { IObjectTemplate } from '../../../interface';
 
 /**
  * 沉淀催化基底系列物品 ID 映射表
@@ -13,33 +13,37 @@ export const PrecipitationCatalystItems = {
 /**
  * 沉淀催化基底系列详细数据表
  */
-export const PrecipitationCatalystItemData: Record<string, IObject> = {
+export const PrecipitationCatalystItemData: Record<string, IObjectTemplate> = {
     [PrecipitationCatalystItems.BONE_PRECIPITATION_CATALYST]: {
         id: PrecipitationCatalystItems.BONE_PRECIPITATION_CATALYST,
         name: '骨沉淀催化基底',
         description: '以骨骼沉淀物为基础制成的催化基底，用于特定的转化流程。',
         categoryPath: ['物品', '材料', '催化剂'],
-        volume: 1
+        kind: 'item',
+        stats: {}
     },
     [PrecipitationCatalystItems.FUR_PRECIPITATION_CATALYST]: {
         id: PrecipitationCatalystItems.FUR_PRECIPITATION_CATALYST,
         name: '毛皮沉淀催化基底',
         description: '以毛皮沉淀物为基础制成的催化基底，用于特定的转化流程。',
         categoryPath: ['物品', '材料', '催化剂'],
-        volume: 1
+        kind: 'item',
+        stats: {}
     },
     [PrecipitationCatalystItems.SUGAR_PRECIPITATION_CATALYST]: {
         id: PrecipitationCatalystItems.SUGAR_PRECIPITATION_CATALYST,
         name: '糖沉淀催化基底',
         description: '以糖沉淀物为基础制成的催化基底，用于特定的转化流程。',
         categoryPath: ['物品', '材料', '催化剂'],
-        volume: 1
+        kind: 'item',
+        stats: {}
     },
     [PrecipitationCatalystItems.GUNPOWDER_PRECIPITATION_CATALYST]: {
         id: PrecipitationCatalystItems.GUNPOWDER_PRECIPITATION_CATALYST,
         name: '火药沉淀催化基底',
         description: '以火药沉淀物为基础制成的催化基底，用于特定的转化流程。',
         categoryPath: ['物品', '材料', '催化剂'],
-        volume: 1
+        kind: 'item',
+        stats: {}
     }
 };

@@ -1,4 +1,4 @@
-import type { IObject } from '../../../interface/IObject';
+import type { IObjectTemplate } from '../../../interface/IObjectTemplate';
 import { AttributeTypeMap } from '../../AttributeMap';
 
 /**
@@ -22,60 +22,52 @@ export type EnemyID = typeof EnemyTypeMap[keyof typeof EnemyTypeMap];
 
 /**
  * 敌人详细数据表
- * 使用 IObject 接口
+ * 使用 IObjectTemplate 接口
  */
-export const EnemyDataMap: Record<EnemyID, IObject> = {
+export const EnemyDataMap: Record<EnemyID, IObjectTemplate> = {
     [EnemyTypeMap.SLIME]: {
         id: EnemyTypeMap.SLIME,
         name: '史莱姆',
         description: '一种粘糊糊的弱小生物',
         categoryPath: ['敌人', '野外生物', '史莱姆'],
+        kind: 'enemy',
         stats: {
             [AttributeTypeMap.HP]: 20n,
             [AttributeTypeMap.HP_MAX]: 20n,
         },
-        rewards: {
-            exp: 10n,
-        }
     },
     [EnemyTypeMap.WILD_WOLF]: {
         id: EnemyTypeMap.WILD_WOLF,
         name: '野狼',
         description: '森林中的掠食者，具有较快的行动速度',
         categoryPath: ['敌人', '野外生物', '野狼'],
+        kind: 'enemy',
         stats: {
             [AttributeTypeMap.HP]: 50n,
             [AttributeTypeMap.HP_MAX]: 50n,
         },
-        rewards: {
-            exp: 30n,
-        }
     },
     [EnemyTypeMap.SKELETON]: {
         id: EnemyTypeMap.SKELETON,
         name: '骷髅兵',
         description: '被诅咒而复活的亡灵，防御力不俗',
         categoryPath: ['敌人', '亡灵生物', '骷髅兵'],
+        kind: 'enemy',
         stats: {
             [AttributeTypeMap.HP]: 80n,
             [AttributeTypeMap.HP_MAX]: 80n,
         },
-        rewards: {
-            exp: 50n,
-        }
     },
     [EnemyTypeMap.GOBLIN]: {
         id: EnemyTypeMap.GOBLIN,
         name: '哥布林',
         description: '贪婪而狡诈的小型生物',
         categoryPath: ['敌人', '亚人类', '哥布林'],
+        kind: 'enemy',
         stats: {
             [AttributeTypeMap.HP]: 40n,
             [AttributeTypeMap.HP_MAX]: 40n,
         },
-        rewards: {
-            exp: 25n,
-        }
     },
 };
 

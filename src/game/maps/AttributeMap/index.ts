@@ -18,7 +18,6 @@ import { LootAttributes, LootAttributeData } from './loot';
 import { ReincarnationAttributes, ReincarnationAttributeData } from './reincarnation';
 import { DialogueAttributes, DialogueAttributeData } from './dialogue';
 import { ChoiceAttributes, ChoiceAttributeData } from './choice';
-import { ObjectAttributeRegistry, AttributeToScopeMap, ObjectAttributeUtils } from '../../registry/ObjectAttributeRegistry';
 import { AttributeTypeMap, type AttributeID } from './types';
 
 export * from './fear';
@@ -40,7 +39,6 @@ export * from './loot';
 export * from './reincarnation';
 export * from './dialogue';
 export * from './choice';
-export * from '../../registry/ObjectAttributeRegistry';
 export * from './types';
 
 /**

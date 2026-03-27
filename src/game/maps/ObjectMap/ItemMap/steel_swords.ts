@@ -1,4 +1,4 @@
-import type { IObject } from '../../../interface';
+import type { IObjectTemplate } from '../../../interface';
 
 /**
  * 钢剑系列物品 ID 映射表
@@ -28,138 +28,157 @@ export const SteelSwordItems = {
 /**
  * 钢剑系列详细数据表
  */
-export const SteelSwordItemData: Record<string, IObject> = {
+export const SteelSwordItemData: Record<string, IObjectTemplate> = {
     [SteelSwordItems.SOFT_STEEL_SWORD]: {
         id: SteelSwordItems.SOFT_STEEL_SWORD,
         name: '软钢剑',
         description: '韧性有余、锋锐不足的训练型钢剑。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.RAW_STEEL_SWORD]: {
         id: SteelSwordItems.RAW_STEEL_SWORD,
         name: '生钢剑',
         description: '未经充分处理的钢剑，剑身略显粗糙。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.COOKED_STEEL_SWORD]: {
         id: SteelSwordItems.COOKED_STEEL_SWORD,
         name: '熟钢剑',
         description: '热处理完成后的标准钢剑，性能均衡。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.HARD_STEEL_SWORD]: {
         id: SteelSwordItems.HARD_STEEL_SWORD,
         name: '硬钢剑',
         description: '高硬度剑刃带来更强破甲能力。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.LIGHT_STEEL_SWORD]: {
         id: SteelSwordItems.LIGHT_STEEL_SWORD,
         name: '轻钢剑',
         description: '减重打造，便于快速连击与机动。',
-        volume: 1.8,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.HEAVY_STEEL_SWORD]: {
         id: SteelSwordItems.HEAVY_STEEL_SWORD,
         name: '重钢剑',
         description: '份量十足，擅长以势压人。',
-        volume: 2.4,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.REFINED_STEEL_SWORD]: {
         id: SteelSwordItems.REFINED_STEEL_SWORD,
         name: '精钢剑',
         description: '选材与锻造都更加考究的高品质钢剑。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.GREY_STEEL_SWORD]: {
         id: SteelSwordItems.GREY_STEEL_SWORD,
         name: '灰钢剑',
         description: '灰哑剑身低调朴素，适合长期佩用。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.YELLOW_STEEL_SWORD]: {
         id: SteelSwordItems.YELLOW_STEEL_SWORD,
         name: '黄钢剑',
         description: '剑体带有淡黄光泽，辨识度极高。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.CYAN_STEEL_SWORD]: {
         id: SteelSwordItems.CYAN_STEEL_SWORD,
         name: '青钢剑',
         description: '青色冷光流转于刃面，气质凌厉。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.RED_STEEL_SWORD]: {
         id: SteelSwordItems.RED_STEEL_SWORD,
         name: '红钢剑',
         description: '赤红纹理如血，威慑感强烈。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.ROSE_STEEL_SWORD]: {
         id: SteelSwordItems.ROSE_STEEL_SWORD,
         name: '玫瑰钢剑',
         description: '玫瑰色泽优雅华美，兼具观赏与实战价值。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.PURPLE_STEEL_SWORD]: {
         id: SteelSwordItems.PURPLE_STEEL_SWORD,
         name: '紫钢剑',
         description: '深紫剑刃神秘沉稳，常见于贵族武装。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.BLUE_STEEL_SWORD]: {
         id: SteelSwordItems.BLUE_STEEL_SWORD,
         name: '蓝钢剑',
         description: '蓝辉如水，剑势灵动流畅。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.INK_STEEL_SWORD]: {
         id: SteelSwordItems.INK_STEEL_SWORD,
         name: '墨钢剑',
         description: '乌黑剑身不反光，适合夜间作战。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.WHITE_STEEL_SWORD]: {
         id: SteelSwordItems.WHITE_STEEL_SWORD,
         name: '白钢剑',
         description: '银白如霜，锋芒外露。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.MIRROR_STEEL_SWORD]: {
         id: SteelSwordItems.MIRROR_STEEL_SWORD,
         name: '镜钢剑',
         description: '抛光如镜，能映出敌我身影的高亮钢剑。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.MOONLIGHT_STEEL_SWORD]: {
         id: SteelSwordItems.MOONLIGHT_STEEL_SWORD,
         name: '月光钢剑',
         description: '在夜色下会泛起柔和银辉的名剑。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
     [SteelSwordItems.SUNLIGHT_STEEL_SWORD]: {
         id: SteelSwordItems.SUNLIGHT_STEEL_SWORD,
         name: '日光钢剑',
         description: '剑身如烈日般耀眼，斩击气势磅礴。',
-        volume: 2,
         categoryPath: ['物品', '装备/武器', '剑类'],
+        kind: 'item',
+        stats: {}
     },
 };

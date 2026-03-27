@@ -1,4 +1,4 @@
-import type { IObject } from '../../../interface';
+import type { IObjectTemplate } from '../../../interface';
 
 import { ScavengeActions, ScavengeActionData } from './scavenge';
 import { BloodCollectionActions, BloodCollectionActionData } from './blood_collection';
@@ -32,13 +32,13 @@ export type ActionID = typeof ActionTypeMap[keyof typeof ActionTypeMap];
 /**
  * 行为详细数据表
  */
-export const ActionDataMap: Record<ActionID, IObject> = {
+export const ActionDataMap: Record<ActionID, IObjectTemplate> = {
     ...ScavengeActionData,
     ...BloodCollectionActionData,
     ...CurseNeedleShotActionData,
     ...BladeActionData,
     ...BrawlActionData
-} as Record<ActionID, IObject>;
+} as Record<ActionID, IObjectTemplate>;
 
 /**
  * 行为地图定义 (自我描述)

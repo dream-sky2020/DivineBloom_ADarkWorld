@@ -3,6 +3,7 @@ export * from './IAttribute';
 export * from './IText';
 export * from './IEnum';
 export * from './IObject';
+export * from './IObjectTemplate';
 export * from './IFormula';
 export * from './ITag';
 export * from './IWorld';
