@@ -1,5 +1,5 @@
 import type { IWorld, ISystem, ICommand } from '../interface';
-import { TimeSystem, CommandSystem } from '../systems';
+import { TimeSystem, CommandSystem, InitialSystem } from '../systems';
 
 /**
  * 游戏逻辑主循环 (ECS 系统调度中心)
@@ -63,6 +63,8 @@ export class Loop {
      */
     private initInternalSystems(): void {
         this.systems = [
+            // 初始化系统，优先级设为最低 (-200)，确保它最早运行 (init 时)
+            new InitialSystem(),
             // 处理命令系统的优先级设为最高 (-100)，确保它最先运行
             new CommandSystem(),
             // 计时系统的优先级设为 0，兢兢业业更新时长

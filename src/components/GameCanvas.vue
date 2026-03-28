@@ -3,9 +3,112 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { Loop } from '../game/engine';
 import type { IWorld } from '../game/interface';
 import { AttributeTypeMap } from '../game/maps/AttributeMap';
+import { PersistenceUtils } from '../game/tool';
 
 const loopRef = ref<Loop | null>(null);
 const worldState = ref<IWorld | null>(null);
+
+/**
+ * 导出存档
+ */
+async function exportWorld() {
+  if (!loopRef.value) return;
+  const world = loopRef.value.getWorld();
+  const json = PersistenceUtils.serialize(world);
+
+  try {
+    // 优先使用浏览器最新的 File System Access API
+    if ('showSaveFilePicker' in window) {
+      const handle = await (window as any).showSaveFilePicker({
+        suggestedName: `save_${world.id}_${Date.now()}.json`,
+        types: [{
+          description: 'JSON Game Save',
+          accept: { 'application/json': ['.json'] },
+        }],
+      });
+      const writable = await handle.createWritable();
+      await writable.write(json);
+      await writable.close();
+      alert('导出成功！');
+    } else {
+      // 降级方案：传统的 <a> 标签下载
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `save_${world.id}_${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  } catch (err: any) {
+    if (err.name !== 'AbortError') {
+      console.error('导出失败', err);
+      alert('导出失败: ' + err.message);
+    }
+  }
+}
+
+/**
+ * 导入存档
+ */
+async function importWorld() {
+  try {
+    let json = '';
+    
+    // 优先使用 File System Access API
+    if ('showOpenFilePicker' in window) {
+      const [handle] = await (window as any).showOpenFilePicker({
+        types: [{
+          description: 'JSON Game Save',
+          accept: { 'application/json': ['.json'] },
+        }],
+      });
+      const file = await handle.getFile();
+      json = await file.text();
+    } else {
+      // 降级方案：创建一个隐藏的 input[type="file"]
+      json = await new Promise<string>((resolve, reject) => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+        input.onchange = async (e: any) => {
+          const file = e.target.files[0];
+          if (file) {
+            resolve(await file.text());
+          } else {
+            reject(new Error('未选择文件'));
+          }
+        };
+        input.click();
+      });
+    }
+
+    if (!json) return;
+
+    // 1. 反序列化
+    const newWorld = PersistenceUtils.deserialize(json);
+
+    // 2. 重新初始化循环
+    if (loopRef.value) {
+      loopRef.value.stop();
+    }
+    
+    const newLoop = new Loop(newWorld);
+    loopRef.value = newLoop;
+    
+    newLoop.onUpdate((updatedWorld) => {
+      worldState.value = { ...updatedWorld };
+    });
+
+    newLoop.start();
+    alert('存档导入成功！');
+  } catch (err: any) {
+    if (err.name !== 'AbortError') {
+      console.error('导入失败', err);
+      alert('导入失败: ' + err.message);
+    }
+  }
+}
 
 /**
  * 减少累计游玩时长 (演示扁平化命令对全局属性的操作)
@@ -77,6 +180,8 @@ onUnmounted(() => {
         
         <div class="controls">
           <button @click="decreasePlayTime">减少累计时长 (5秒)</button>
+          <button @click="exportWorld" class="export-btn">导出存档 (Save to File)</button>
+          <button @click="importWorld" class="import-btn">导入存档 (Load from File)</button>
         </div>
       </div>
 
@@ -108,6 +213,19 @@ onUnmounted(() => {
   padding: 15px;
   border-radius: 6px;
   margin-bottom: 20px;
+}
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.export-btn {
+  background-color: #2c3e50;
+  border-color: #34495e;
+}
+.import-btn {
+  background-color: #27ae60;
+  border-color: #2ecc71;
 }
 .time {
   color: #42b883;
